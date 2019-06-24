@@ -11,14 +11,21 @@ module.exports.run = async (bot, message, args) => {
   
   db.all(`SELECT * FROM Users WHERE Tag = ${message.author.id}`, (err, items) => {
     if(items == '') return message.channel.send('You have no pets! Use `()open Beginner Egg` to get started')    
-    let embed = new Discord.RichEmbed()
-    .setAuthor(`${message.author.username}'s Inventory`, message.author.displayAvatarURL)
-    .setDescription(items[0].Inventory.split(', ').join(""))
-    .addField('Eggs Opened', items[0].Eggs, true)
-    .setFooter(bot.user.username)
-    .setTimestamp()
+
   
-    message.channel.send(embed)
+    try {
+      let embed = new Discord.RichEmbed()
+      .setAuthor(`${message.author.username}'s Inventory`, message.author.displayAvatarURL)
+      .setDescription(items[0].Inventory.split(', ').join(""))
+      .addField('Eggs Opened', items[0].Eggs, true)
+      .setFooter(bot.user.username)
+      .setTimestamp()
+      
+      message.channel.send(embed)
+    } catch (error) {
+      message.channel.send(`You have too many pets! (${items[0].Eggs})`)
+    }
+  
   })
   
 

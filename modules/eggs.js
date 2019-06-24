@@ -105,10 +105,15 @@ function ice_shard_egg(message) {
       addpet('<:Frost_Wolf:592448891497218068>', message.author.id)
     }
   }, {
-    p: '30%',
+    p: '25%',
     f: () => {
-      message.reply(` <:Ice_Shard_Egg:592447966023778325> you just hatched a Common **Mouse**! (**30%**) <:Mouse:592446341809176606>`);
-      addpet('<:Mouse:592446341809176606>', message.author.id)
+      message.reply(` <:Ice_Shard_Egg:592447966023778325> you just hatched a Common **Cave Bat**! (**25%**) <:Cave_Bat:592448890960216166>`);
+      addpet('<:Cave_Bat:592448890960216166>', message.author.id)
+    }
+  }, {
+    p: '25%',
+    f: () => {
+      
     }
   })
   
