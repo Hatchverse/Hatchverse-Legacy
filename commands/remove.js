@@ -13,6 +13,7 @@ module.exports.run = async (bot, message, args) => {
     var type = args[0]
     if (type == "all" || "All") {
       db.run("UPDATE Users SET Inventory = '' WHERE Tag = ?", message.author.id)
+      message.channel.send(`Successfully removed **${items[0].Inventory.split(', ').length - 1}** pets!`)
     }
   })
 }

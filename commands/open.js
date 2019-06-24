@@ -15,7 +15,6 @@ module.exports.run = async (bot, message, args) => {
     }
     
     if(args.join(" ").toLowerCase() == "beginner egg") {
-      if(items[0].Inventory.split(', ').length >= 50) return message.channel.send('You have reached the max inventory space! Please use `()remove <pet name | all>`');
       eggs.beginner_egg(message)
     }
     
