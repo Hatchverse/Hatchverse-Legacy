@@ -44,9 +44,15 @@ module.exports.run = async (bot, message, args) => {
     }
     
     if(args.join(" ").toLowerCase() == "spikey egg") {
-      if(items[0].Eggs < 135) return message.channel.send(`You need to have **75** eggs opened to unlock this egg!`)
+      if(items[0].Eggs < 135) return message.channel.send(`You need to have **135** eggs opened to unlock this egg!`)
       if(items[0].Inventory.split(', ').length >= 50) return message.channel.send('You have reached the max inventory space! Please use `()remove <pet name | all>`');
       eggs.spikey_egg(message)
+    }
+    
+    if(args.join(" ").toLowerCase() == "slimey egg") {
+      if(items[0].Eggs < 200) return message.channel.send(`You need to have **200** eggs opened to unlock this egg!`)
+      if(items[0].Inventory.split(', ').length >= 50) return message.channel.send('You have reached the max inventory space! Please use `()remove <pet name | all>`');
+      eggs.slimey_egg(message)
     }
   
   })

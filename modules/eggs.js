@@ -173,51 +173,53 @@ function slimey_egg(message) {
     const slimeyegg = new probability({
       p: '0.01%',
       f: () => {
-        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Legendary **Slimey Winged Hydra**! (**0.01%**) <:Emerald_Golem:592443924526923786>`);
-        addpet('<:Emerald_Golem:592443924526923786>', message.author.id)
-        addgems(25, message.author.id)
+        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Legendary **Slimey Winged Hydra**! (**0.01%**) <:Slimey_Winged_Hydra:592425496503910400>`);
+        addpet('<:Slimey_Winged_Hydra:592425496503910400>', message.author.id)
+        addgems(100, message.author.id)
       }
     }, {
       p: '0.04%',
       f: () => {
-        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Legendary **Slimey Marshmallow**! (**0.04%**) <:Dark_Dragon:592443923545325587>`);
-        addpet('<:Dark_Dragon:592443923545325587>', message.author.id)
+        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Legendary **Slimey Marshmallow**! (**0.04%**) <:Slime_Marshmallow:591832045806813186>`);
+        addpet('<:Slime_Marshmallow:591832045806813186>', message.author.id)
+        addgems(75)
       }
     }, {
       p: '0.65%',
       f: () => {
-        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Legendary ****! (**0.65%**)  <:Dragon:592443924291780623>`);
-        addpet('<:Dragon:592443924291780623>', message.author.id)
+        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Legendary **Slimey Serpent**! (**0.65%**)  <:Slimey_Serpent:592404097991442433>`);
+        addpet('<:Slimey_Serpent:592404097991442433>', message.author.id)
+        addgems(50, message.author.id)
       }
     }, {
       p: '3%',
       f: () => {
-        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Unique **Ruby Golem**! (**3%**) <:Frost_Wolf:592448891497218068>`);
-        addpet('<:Ruby_Golem:592443924111425536>', message.author.id)
+        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Epic **Slimey Winged Horse**! (**3%**) <:Slimey_Winged_Horse:592429327266742279>`);
+        addpet('<:Slimey_Winged_Horse:592429327266742279>', message.author.id)
       }
     }, {
       p: '7%',
       f: () => {
-        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Common **Dino**! (**7%**) <:Dino:592443923482411023>`);
-        addpet('<:Dino:592443923482411023>', message.author.id)
+        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Epic **Slimey T-Rex**! (**7%**) <:Slimey_TRex:592405034046717953>`);
+        addpet('<:Slimey_TRex:592405034046717953>', message.author.id)
       }
     }, {
       p: '18%',
       f: () => {
-        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Common **Golem**! (**18%**) <:Golem:592443924186923008>`);
-        addpet('<:Golem:592443924186923008>', message.author.id)
+        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Rare **Slimey Dragon**! (**18%**) <:Slimey_Dragon:592403899579891733>`);
+        addpet('<:Slimey_Dragon:592403899579891733>', message.author.id)
       }
     }, {
       p: '27%',
       f: () => {
-        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Common **Golem**! (**27%**) <:Golem:592443924186923008>`);
-        addpet('<:Golem:592443924186923008>', message.author.id)
+        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Common **Slimey Wolf**! (**27%**) <:Slimey_Wolf:592407276099338261>`);
+        addpet('<:Slimey_Wolf:592407276099338261>', message.author.id)
       }
     }, {
       p: '44.3%',
       f: () => {
-        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Common **Golem**! (**44.3%**) <:Golem:592443924186923008>`);
-        addpet('<:Golem:592443924186923008>', message.author.id)
+        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Common **Slimey Kitty**! (**44.3%**) <:Slimey_Kitty:592426380919308299>`);
+        addpet('<:Slimey_Kitty:592426380919308299>', message.author.id)
       }
     })
   
