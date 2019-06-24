@@ -122,3 +122,45 @@ function ice_shard_egg(message) {
 }
 
 module.exports.ice_shard_egg = ice_shard_egg;
+
+function spikey_egg(message) {
+  const spikeyegg = new probability({
+      p: '1%',
+      f: () => {
+      message.reply(` <:Spikey_Egg:592443923998441475> you just hatched an Legendary **Ice Dragon**! (**1%**) <:Emerald_Golem:592443924526923786>`);
+      addpet('<:Emerald_Golem:592443924526923786>', message.author.id)
+    }
+  }, {
+    p: '7%',
+    f: () => {
+      message.reply(` <:Spikey_Egg:592443923998441475> you just hatched a Rare **Frost Deer**! (**7%**) <:Dark_Dragon:592443923545325587>`);
+      addpet('<:Dark_Dragon:592443923545325587>', message.author.id)
+    }
+  }, {
+    p: '12%',
+    f: () => {
+      message.reply(` <:Spikey_Egg:592443923998441475> you just hatched a Unique **Piggy**! (**15%**)  <:Dragon:592443924291780623>`);
+      addpet('<:Dragon:592443924291780623>', message.author.id)
+    }
+  }, {
+    p: '20%',
+    f: () => {
+      message.reply(` <:Spikey_Egg:592443923998441475> you just hatched a Unique **Frost Wolf**! (**20%**) <:Frost_Wolf:592448891497218068>`);
+      addpet('<:Ruby_Golem:592443924111425536>', message.author.id)
+    }
+  }, {
+    p: '30%',
+    f: () => {
+      message.reply(` <:Spikey_Egg:592443923998441475> you just hatched a Common **Cave Bat**! (**25%**) <:Dino:592443923482411023>`);
+      addpet('<:Dino:592443923482411023>', message.author.id)
+    }
+  }, {
+    p: '30%',
+    f: () => {
+      message.reply(` <:Spikey_Egg:592443923998441475> you just hatched a Common **Frost Kitty**! (**25%**) <:Golem:592443924186923008>`);
+      addpet('<:Golem:592443924186923008>', message.author.id)
+    }
+  })
+  
+  return spikeyegg();
+}

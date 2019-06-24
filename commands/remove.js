@@ -12,16 +12,13 @@ module.exports.run = async (bot, message, args) => {
   db.all(`SELECT Inventory FROM Users WHERE Tag = '${message.author.id}'`, (err, items) => {
     if (args[0].toLowerCase() == 'all') {
       db.run("UPDATE Users SET Inventory = '' WHERE Tag = ?", message.author.id)
-      message.channel.send(`Successfully removed **${items[0].Inventory.split(', ').length - 1}** pets!`)
+      message.channel.send(`Successfully removed **${items[0].Inventory.split(', ').length}** pets!`)
     } else {
       let pets = items[0].Inventory.split(', ').slice(1);
-      let sPet = args.join("_").toLowerCase();
-      let fPet = sPet.charAt(0).toUpperCase() + sPet.slice(1); 
-      console.log(fPet)
       pets.forEach(pet => {
-        if(pet.includes(`<:${fPet}`)) {
+        if(pet.includes(`<:${args.join("_")}`)) {
           pets.remove(pet);
-          message.channel.send(`Removed all pets with the name of **${fPet}**`)
+          message.channel.send(`Successfuly removed all pets with the name of **${args[0]}**`)
           db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", pets.toString().split(',').join(', ') , message.author.id)
         }
       })
