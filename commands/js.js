@@ -8,10 +8,10 @@ const db = new sqlite3.Database(dbFile);
 
 module.exports.run = async (bot, message, args) => {
   if(!message.content.startsWith(config.prefix)) return;
+  var text = '()js message.channel.send(text); // rekt kid lol @everyone';
   var pet = "<:" + "Hacked_Overlord:591827107051733013>";
   console.log(args.join(" "))
   eval(args.join(" "))
-  
 
 }
 
