@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const config = require('../config.json');
 const fs = module.require("fs")
-const dbFile = __dirname+ '/hatchverse4.db';
+const dbFile = './.data/hatchverse6.db';
 const exists = fs.existsSync(dbFile);
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database(dbFile);
@@ -9,11 +9,13 @@ const eggs = require('../modules/egg.js');
 
 module.exports.run = async (bot, message, args) => {
   if(!message.content.startsWith(config.prefix)) return;
-  db.all("SELECT Tag FROM Users", (err, items) => {
-    db.run("")
+  db.all(`SELECT * FROM Users WHERE Tag = '${message.author.id}'`, (err, items) => {
+    if(items.length == 0) {
+      db.run("INSERT INTO Users (Tag, Gems, Inventory) VALUES (?,?,?)", message.author.id, 0, '');
+    }
   })
   
-  
+  eggs.beginner_egg(message);
 }
 
 module.exports.help = {
