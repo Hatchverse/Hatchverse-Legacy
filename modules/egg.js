@@ -1,24 +1,41 @@
 const probability = require('./probability.js');
 const config = require('../config.json');
 const fs = module.require("fs")
-const dbFile = global.db;
-const exists = fs.existsSync(dbFile);
-const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database(dbFile);
+const { addpet } = require('./addpet.js');
 
 function beginner_egg(message) {
   const egg = new probability({
-    p: '100%',
+    p: '5%',
     f: () => {
-      db.all(`SELECT * FROM Users WHERE Tag = '${message.author.id}'`, (err, items) => {
-        console.log(items)
-        let inventory = items[0].Inventory;
-        let newinv = `${inventory}, <:Rainbow_Dogcat:592426717285449788>`;
-        db.run(`UPDATE Users SET Inventory = '${newinv}' WHERE Tag = '${message.author.id}'`);
-        message.channel.send('You hatched a <:Rainbow_Dogcat:592426717285449788>')
-      })
+      message.reply(` <:Beginner_Egg:592440252979871745> you just hatched an Unique **Deer**! (**5%**) <:Deer:592441677700923400>`);
+      addpet('<:Deer:592441677700923400>', message.author.id)
+    }
+  }, {
+    p: '10%',
+    f: () => {
+      message.reply(` <:Beginner_Egg:592440252979871745> you just hatched an Unique **Bear**! (**10%**) <:Bear:592441677436813508>`);
+      addpet('<:Bear:592441677436813508>', message.author.id)
+    }
+  }, {
+    p: '20%',
+    f: () => {
+      message.reply(` <:Beginner_Egg:592440252979871745> you just hatched a Common **Bunny**! (**20%**) <:Bunny:592441678380400680>`);
+      addpet('<:Bear:592441677436813508>', message.author.id)
+    }
+  }, {
+    p: '25%',
+    f: () => {
+      message.reply(` <:Beginner_Egg:592440252979871745> you just hatched a Common **Kitty**! (**25%**) <:Kitty:592441678304903178>`);
+      addpet('<:Kitty:592441678304903178>', message.author.id)
+    }
+  }, {
+    p: '40%',
+    f: () => {
+      message.reply(` <:Beginner_Egg:592440252979871745> you just hatched a Common **Doggy**! (**40%**) <:Bunny:592441678380400680>`);
+      addpet('<:Kitty:592441678304903178>', message.author.id)
     }
   })
+  
   return egg();
 }
 
