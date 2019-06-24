@@ -5,7 +5,7 @@ const dbFile = global.db;
 const exists = fs.existsSync(dbFile);
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database(dbFile);
-const eggs = require('../modules/egg.js');
+const eggs = require('../modules/eggs.js');
 
 module.exports.run = async (bot, message, args) => {
   if(!message.content.startsWith(config.prefix)) return;
@@ -16,6 +16,10 @@ module.exports.run = async (bot, message, args) => {
     
     if(args.join(" ").toLowerCase() == "beginner egg") {
       eggs.beginner_egg(message)
+    }
+    
+    if(args.join(" ").toLowerCase() == "spotted egg") {
+      eggs.spotted_egg(message)
     }
   
   })

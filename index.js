@@ -5,7 +5,7 @@ const express = require('express');
 const app = express();
   
 
-global.db = './.data/hatchverse12.db'
+global.db = './.data/hatchverse14.db'
 const dbFile = global.db;
 const exists = fs.existsSync(dbFile);
 const sqlite3 = require('sqlite3').verbose();
@@ -43,7 +43,7 @@ fs.readdir('./commands/', (err, files) => {
 
 bot.on('ready', async () => {
   console.log('Hatchverse has started!');
-  
+  bot.user.setActivity('your eggs', { type: 'WATCHING' })
 })
 
 bot.on('message', async (message) => {
