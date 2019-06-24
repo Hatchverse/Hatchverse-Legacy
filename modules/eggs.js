@@ -168,3 +168,60 @@ function spikey_egg(message) {
 }
 
 module.exports.spikey_egg = spikey_egg;
+
+function slimey_egg(message) {
+    const slimeyegg = new probability({
+      p: '0.01%',
+      f: () => {
+        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Legendary **Slimey Winged Hydra**! (**0.01%**) <:Emerald_Golem:592443924526923786>`);
+        addpet('<:Emerald_Golem:592443924526923786>', message.author.id)
+        addgems(25, message.author.id)
+      }
+    }, {
+      p: '0.04%',
+      f: () => {
+        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Legendary **Slimey Marshmallow**! (**0.04%**) <:Dark_Dragon:592443923545325587>`);
+        addpet('<:Dark_Dragon:592443923545325587>', message.author.id)
+      }
+    }, {
+      p: '0.65%',
+      f: () => {
+        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Legendary ****! (**0.65%**)  <:Dragon:592443924291780623>`);
+        addpet('<:Dragon:592443924291780623>', message.author.id)
+      }
+    }, {
+      p: '3%',
+      f: () => {
+        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Unique **Ruby Golem**! (**3%**) <:Frost_Wolf:592448891497218068>`);
+        addpet('<:Ruby_Golem:592443924111425536>', message.author.id)
+      }
+    }, {
+      p: '7%',
+      f: () => {
+        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Common **Dino**! (**7%**) <:Dino:592443923482411023>`);
+        addpet('<:Dino:592443923482411023>', message.author.id)
+      }
+    }, {
+      p: '18%',
+      f: () => {
+        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Common **Golem**! (**18%**) <:Golem:592443924186923008>`);
+        addpet('<:Golem:592443924186923008>', message.author.id)
+      }
+    }, {
+      p: '27%',
+      f: () => {
+        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Common **Golem**! (**27%**) <:Golem:592443924186923008>`);
+        addpet('<:Golem:592443924186923008>', message.author.id)
+      }
+    }, {
+      p: '44.3%',
+      f: () => {
+        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Common **Golem**! (**44.3%**) <:Golem:592443924186923008>`);
+        addpet('<:Golem:592443924186923008>', message.author.id)
+      }
+    })
+  
+  return slimeyegg();
+}
+
+module.exports.slimey_egg = slimey_egg;
