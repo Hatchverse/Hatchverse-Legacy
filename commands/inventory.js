@@ -15,10 +15,11 @@ module.exports.run = async (bot, message, args) => {
     try {
       let embed = new Discord.RichEmbed()
       .setAuthor(`${message.author.username}'s Inventory`, message.author.displayAvatarURL)
+      .setColor('#9c13f7')
       .setDescription(items[0].Inventory.split(', ').join(""))
       .addField('Eggs Opened', items[0].Eggs, true)
+      .addBlankField(true)
       .addField('Space', `${items[0].Inventory.split(', ').length - 1}/50`, true)
-      .addField('Actions', 'Remove', true)
       .setFooter(bot.user.username)
       .setTimestamp()
       
