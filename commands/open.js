@@ -11,7 +11,7 @@ module.exports.run = async (bot, message, args) => {
   if(!message.content.startsWith(config.prefix)) return;
   db.all(`SELECT * FROM Users WHERE Tag = '${message.author.id}'`, (err, items) => {
     if(items.length == 0) {
-      db.run("INSERT INTO Users (Tag, Gems, Inventory) VALUES (?,?,?)", message.author.id, 0, '');
+      db.run("INSERT INTO Users (Tag, Eggs, Gems, Inventory) VALUES (?,?,?,?)", message.author.id, 0, 0, '');
     }
     
     if(args.join(" ").toLowerCase() == "beginner egg") {

@@ -5,7 +5,7 @@ const express = require('express');
 const app = express();
   
 
-global.db = './.data/hatchverse14.db'
+global.db = './.data/hatchverse19.db'
 const dbFile = global.db;
 const exists = fs.existsSync(dbFile);
 const sqlite3 = require('sqlite3').verbose();
@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 
 db.serialize(function(){
   if (!exists) {
-    db.run('CREATE TABLE Users (Tag TEXT, Gems TEXT, Inventory TEXT)');
+    db.run('CREATE TABLE Users (Tag TEXT, Eggs TEXT, Gems TEXT, Inventory TEXT)');
     console.log('New table Users created!');
   };
 });

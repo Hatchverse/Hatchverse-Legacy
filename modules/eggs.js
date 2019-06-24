@@ -78,3 +78,41 @@ function spotted_egg(message) {
 }
 
 module.exports.spotted_egg = spotted_egg;
+
+function ice_shard_egg(message) {
+  const iceshardegg = new probability({
+      p: '15%',
+      f: () => {
+      message.reply(` <:Spotted_Egg:592446342228606976> you just hatched a Rare **Panda**! (**10%**) <:Panda:592446341012258816>`);
+      addpet('<:Panda:592446341012258816>', message.author.id)
+    }
+  }, {
+    p: '10%',
+    f: () => {
+      message.reply(` <:Spotted_Egg:592446342228606976> you just hatched a Unique **Polar Bear**! (**15%**) <:Polar_Bear:592446341158928412>`);
+      addpet('<:Polar_Bear:592446341158928412>', message.author.id)
+    }
+  }, {
+    p: '20%',
+    f: () => {
+      message.reply(` <:Spotted_Egg:592446342228606976> you just hatched a Common **Fox**! (**20%**)  <:Fox:592446341158928385>`);
+      addpet('<:Fox:592446341158928385>', message.author.id)
+    }
+  }, {
+    p: '25%',
+    f: () => {
+      message.reply(` <:Spotted_Egg:592446342228606976> you just hatched a Common **Wolf**! (**25%**) <:Wolf:592446342211698718>`);
+      addpet('<:Wolf:592446342211698718>', message.author.id)
+    }
+  }, {
+    p: '30%',
+    f: () => {
+      message.reply(` <:Spotted_Egg:592446342228606976> you just hatched a Common **Mouse**! (**30%**) <:Mouse:592446341809176606>`);
+      addpet('<:Mouse:592446341809176606>', message.author.id)
+    }
+  })
+  
+  return iceshardegg();
+}
+
+module.exports.spotted_egg = ice_shard_egg;
