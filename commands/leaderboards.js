@@ -16,17 +16,18 @@ module.exports.run = async (bot, message, args) => {
   } else {
     db.all("SELECT * FROM Users ORDER BY Eggs DESC LIMIT 25;", (err, items) => {
       let i = 1;
+      console.log(bot.members.get("302599378332549121"));
       
       let embed = new Discord.RichEmbed()
       .setAuthor('Hatchverse Leaderboard (Eggs Opened)')
-      .setDescription(items.map(item => `${i++}. ${bot.fetchUser(item.Tag)} <:Beginner_Egg:592440252979871745> ${item.Eggs}`))
+      .setDescription(items.map(item => `${i++}. ${bot.members.get(item.Tag)} <:Beginner_Egg:592440252979871745> ${item.Eggs}`))
       .setTimestamp()
       .setFooter(bot.user.username, bot.user.displayAvatarURL)
       
       message.channel.send(embed)
     })
   }
-
+  
 }
 
 module.exports.help = {
