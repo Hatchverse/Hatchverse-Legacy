@@ -18,8 +18,8 @@ module.exports.run = async (bot, message, args) => {
       .setColor('#9c13f7')
       .setDescription(items[0].Inventory.split(', ').join(""))
       .addField('Eggs Opened', items[0].Eggs, true)
-      .addBlankField(true)
       .addField('Space', `${items[0].Inventory.split(', ').length}/50`, true)
+      .addField('Gems', items[0].Gems, true)
       .setFooter(bot.user.username)
       .setTimestamp()
       
