@@ -17,9 +17,9 @@ module.exports.run = async (bot, message, args) => {
       .setAuthor(`${message.author.username}'s Inventory`, message.author.displayAvatarURL)
       .setColor('#9c13f7')
       .setDescription(items[0].Inventory.split(', ').join(""))
-      .addField('Eggs Opened', items[0].Eggs, true)
-      .addField('Space', `${items[0].Inventory.split(', ').length}/50`, true)
-      .addField('Gems', items[0].Gems, true)
+      .addField('Eggs Opened', `:egg: ${items[0].Eggs}`, true)
+      .addField('Space', `:package: ${items[0].Inventory.split(', ').length}/50`, true)
+      .addField('Gems', `<:Gem:592857805380255745> ${items[0].Gems}`, true)
       .setFooter(bot.user.username)
       .setTimestamp()
       

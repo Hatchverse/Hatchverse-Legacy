@@ -7,29 +7,32 @@ const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database(dbFile);
 
 module.exports.run = async (bot, message, args) => {
-  if(!message.content.startsWith(config.prefix)) return;
-  if (args[0].toLowerCase() == 'gems') {
-    db.all("SELECT * FROM Users ORDER BY Gems DESC;", (err, items) => {
+  if(!message.content.startsWith(config.prefix)) return;  
+  
+  if(args[0].toLowerCase() == 'eggs') {
+    db.all("SELECT * FROM Users ORDER BY Eggs DESC LIMIT 25;", (err, items) => {
       let i = 1;
 
       let embed = new Discord.RichEmbed()
-      .setAuthor('Hatchverse Leaderboard (Gems)')
-      .setDescription(items.map(item => `${i++}. **${bot.users.get(item.Tag).username + "#" + bot.users.get(item.Tag).discriminator}** :egg: **${item.Eggs}**`))
+      .setAuthor('Hatchverse Leaderboard (Eggs Opened)', bot.user.displayAvatarURL)
+      .setDescription(items.map(item => `\`${i++}.\` **${bot.users.get(item.Tag).username + "#" + bot.users.get(item.Tag).discriminator}** :egg: **${item.Eggs}**`))
       .setTimestamp()
-      .setFooter(bot.user.username, bot.user.displayAvatarURL)
+      .setColor('#9c13f7')
+      .setFooter(bot.user.username)
 
       message.channel.send(embed)
     })
   }
   
-  if(!args[0]) {
-      db.all("SELECT * FROM Users ORDER BY Eggs DESC LIMIT 25;", (err, items) => {
+  if (args[0].toLowerCase() == 'gems') {
+    db.all("SELECT * FROM Users ORDER BY Gems DESC;", (err, items) => {
       let i = 1;
 
       let embed = new Discord.RichEmbed()
-      .setAuthor('Hatchverse Leaderboard (Eggs Opened)')
-      .setDescription(items.map(item => `${i++}. **${bot.users.get(item.Tag).username + "#" + bot.users.get(item.Tag).discriminator}** :egg: **${item.Eggs}**`))
+      .setAuthor('Hatchverse Leaderboard (Gems)', bot.user.displayAvatarURL)
+      .setDescription(items.map(item => `\`${i++}.\` **${bot.users.get(item.Tag).username + "#" + bot.users.get(item.Tag).discriminator}** <:Gem:592857805380255745> **${item.Gems}**`))
       .setTimestamp()
+      .setColor('#9c13f7')
       .setFooter(bot.user.username, bot.user.displayAvatarURL)
 
       message.channel.send(embed)
