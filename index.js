@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
   res.send("Hatchverse Working V1.0");
 });
 
-db.serialize(function(){
+db.serialize(() => {
   if (!exists) {
     db.run('CREATE TABLE Users (Gems TEXT, Inventory TEXT, Tag TEXT)');
     console.log('New table Users created!');
