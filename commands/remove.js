@@ -9,6 +9,12 @@ const db = new sqlite3.Database(dbFile);
 module.exports.run = async (bot, message, args) => {
   if(!message.content.startsWith(config.prefix)) return;
   
+  db.all(`SELECT Inventory FROM Users WHERE Tag = '${message.author.id}'`, (err, items) => {
+    var type = args[0]
+    if (type == "all" || "All") {
+      db.run("UPDATE Users SET Inventory = '' WHERE Tag = ?", message.author.id)
+    }
+  })
 }
 
 module.exports.help = {

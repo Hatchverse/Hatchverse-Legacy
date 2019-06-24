@@ -113,7 +113,8 @@ function ice_shard_egg(message) {
   }, {
     p: '25%',
     f: () => {
-      
+      message.reply(` <:Ice_Shard_Egg:592447966023778325> you just hatched a Common **Frost Kitty**! (**25%**) <:Frost_Kitty:592448891329445888>`);
+      addpet('<:Frost_Kitty:592448891329445888>', message.author.id)
     }
   })
   

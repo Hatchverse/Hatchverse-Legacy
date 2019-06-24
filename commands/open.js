@@ -15,13 +15,18 @@ module.exports.run = async (bot, message, args) => {
     }
     
     if(args.join(" ").toLowerCase() == "beginner egg") {
-      if(items[0].Inventory.split(', ').length >= 50) return message.channel.send(`You have reached the max inventory space! Please `)
+      if(items[0].Inventory.split(', ').length >= 50) return message.channel.send('You have reached the max inventory space! Please use `()remove <pet name | all>`');
       eggs.beginner_egg(message)
     }
     
     if(args.join(" ").toLowerCase() == "spotted egg") {
       if(items[0].Eggs < 25) return message.channel.send(`You need to have 25 eggs opened to unlock this egg!`)
       eggs.spotted_egg(message)
+    }
+    
+     if(args.join(" ").toLowerCase() == "ice shard egg") {
+      if(items[0].Eggs < 75) return message.channel.send(`You need to have 75 eggs opened to unlock this egg!`)
+      eggs.ice_shard_egg(message)
     }
   
   })
