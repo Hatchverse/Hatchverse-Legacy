@@ -17,6 +17,7 @@ module.exports.run = async (bot, message, args) => {
       .setAuthor(`${message.author.username}'s Inventory`, message.author.displayAvatarURL)
       .setDescription(items[0].Inventory.split(', ').join(""))
       .addField('Eggs Opened', items[0].Eggs, true)
+      .addField('Space', `${items[0].Inventory.split(', ').length - 1}/50`, true)
       .addField('Actions', 'Remove', true)
       .setFooter(bot.user.username)
       .setTimestamp()
