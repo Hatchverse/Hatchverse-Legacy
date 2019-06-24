@@ -4,22 +4,13 @@ const fs = require('fs');
 const express = require('express');
 const app = express();
   
-const dbFile = './.data/tsetsetsets.db';
+const dbFile = './.data/poop.db';
 const exists = fs.existsSync(dbFile);
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database(dbFile);
 
 app.get('/', (req, res) => {
   res.send("Hatchverse Working V1.0");
-});
-
-db.serialize(() => {
-  if (!exists) {
-    db.run('CREATE TABLE Users (Gems TEXT, Inventory TEXT, Tag TEXT)');
-    console.log('New table Users created!');
-  } else {
-    console.log("Table 'Users' already created.")
-  }
 });
 
 const config = require('./config.json')
