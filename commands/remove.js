@@ -15,10 +15,14 @@ module.exports.run = async (bot, message, args) => {
       message.channel.send(`Successfully removed **${items[0].Inventory.split(', ').length - 1}** pets!`)
     } else {
       let pets = items[0].Inventory.split(', ').slice(1);
+      let sPet = args.join("_").toLowerCase();
+      let fPet = sPet.charAt(0).toUpperCase() + sPet.slice(1); 
+      console.log(fPet)
       pets.forEach(pet => {
-        if(pet.includes(`<:${args.join("_")}`)) {
+        if(pet.includes(`<:${fPet}`)) {
           pets.remove(pet);
-          db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", , message.author.id)
+          message.channel.send(`Removed all pets with the name of **${fPet}**`)
+          db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", pets.toString().split(',').join(', ') , message.author.id)
         }
       })
       

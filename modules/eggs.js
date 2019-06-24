@@ -20,7 +20,7 @@ function beginner_egg(message) {
     p: '20%',
     f: () => {
       message.reply(` <:Beginner_Egg:592440252979871745> you just hatched a Common **Bunny**! (**20%**) <:Bunny:592441678380400680>`);
-      addpet('<:Bear:592441677436813508>', message.author.id)
+      addpet('<:Bunny:592441678380400680>', message.author.id)
     }
   }, {
     p: '25%',

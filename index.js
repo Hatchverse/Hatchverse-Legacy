@@ -5,7 +5,7 @@ const express = require('express');
 const app = express();
   
 
-global.db = './.data/hatchverse.db'
+global.db = './.data/hatchverse3.db'
 const dbFile = global.db;
 const exists = fs.existsSync(dbFile);
 const sqlite3 = require('sqlite3').verbose();
