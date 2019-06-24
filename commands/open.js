@@ -19,6 +19,7 @@ module.exports.run = async (bot, message, args) => {
     }
     
     if(args.join(" ").toLowerCase() == "spotted egg") {
+      if(items[0].Eggs < 25) return message.channel.send(`You need to have 25 eggs opened to unlock this egg!`)
       eggs.spotted_egg(message)
     }
   

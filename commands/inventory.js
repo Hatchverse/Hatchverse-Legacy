@@ -13,7 +13,7 @@ module.exports.run = async (bot, message, args) => {
     if(items == '') return message.channel.send('You have no pets! Use `()open Beginner Egg` to get started')    
     let embed = new Discord.RichEmbed()
     .setAuthor(`${message.author.username}'s Inventory`, message.author.displayAvatarURL)
-    .setDescription(items[0].Inventory.split(', ').join(" "))
+    .setDescription(items[0].Inventory.split(', ').join(""))
     .addField('Eggs Opened', items[0].Eggs, true)
     .setFooter(bot.user.username)
     .setTimestamp()

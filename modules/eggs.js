@@ -81,33 +81,33 @@ module.exports.spotted_egg = spotted_egg;
 
 function ice_shard_egg(message) {
   const iceshardegg = new probability({
-      p: '15%',
+      p: '3%',
       f: () => {
-      message.reply(` <:Spotted_Egg:592446342228606976> you just hatched a Rare **Panda**! (**10%**) <:Panda:592446341012258816>`);
-      addpet('<:Panda:592446341012258816>', message.author.id)
+      message.reply(` <:Ice_Shard_Egg:592447966023778325> you just hatched an Epic **Ice Dragon**! (**3%**) <:Ice_Dragon:592448891106885633>`);
+      addpet('<:Ice_Dragon:592448891106885633>', message.author.id)
     }
   }, {
-    p: '10%',
+    p: '12%',
     f: () => {
-      message.reply(` <:Spotted_Egg:592446342228606976> you just hatched a Unique **Polar Bear**! (**15%**) <:Polar_Bear:592446341158928412>`);
-      addpet('<:Polar_Bear:592446341158928412>', message.author.id)
+      message.reply(` <:Ice_Shard_Egg:592447966023778325> you just hatched a Rare **Frost Deer**! (**12%**) <:Frost_Deer:592448890704494593>`);
+      addpet('<:Frost_Deer:592448890704494593>', message.author.id)
+    }
+  }, {
+    p: '15%',
+    f: () => {
+      message.reply(` <:Ice_Shard_Egg:592447966023778325> you just hatched a Unique **Piggy**! (**15%**)  <:Piggy:592448891014742060>`);
+      addpet('<:Piggy:592448891014742060>', message.author.id)
     }
   }, {
     p: '20%',
     f: () => {
-      message.reply(` <:Spotted_Egg:592446342228606976> you just hatched a Common **Fox**! (**20%**)  <:Fox:592446341158928385>`);
-      addpet('<:Fox:592446341158928385>', message.author.id)
-    }
-  }, {
-    p: '25%',
-    f: () => {
-      message.reply(` <:Spotted_Egg:592446342228606976> you just hatched a Common **Wolf**! (**25%**) <:Wolf:592446342211698718>`);
-      addpet('<:Wolf:592446342211698718>', message.author.id)
+      message.reply(` <:Ice_Shard_Egg:592447966023778325> you just hatched a Unique **Frost Wolf**! (**20%**) <:Frost_Wolf:592448891497218068>`);
+      addpet('<:Frost_Wolf:592448891497218068>', message.author.id)
     }
   }, {
     p: '30%',
     f: () => {
-      message.reply(` <:Spotted_Egg:592446342228606976> you just hatched a Common **Mouse**! (**30%**) <:Mouse:592446341809176606>`);
+      message.reply(` <:Ice_Shard_Egg:592447966023778325> you just hatched a Common **Mouse**! (**30%**) <:Mouse:592446341809176606>`);
       addpet('<:Mouse:592446341809176606>', message.author.id)
     }
   })
@@ -115,4 +115,4 @@ function ice_shard_egg(message) {
   return iceshardegg();
 }
 
-module.exports.spotted_egg = ice_shard_egg;
+module.exports.ice_shard_egg = ice_shard_egg;
