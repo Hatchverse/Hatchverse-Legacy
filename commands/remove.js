@@ -13,6 +13,15 @@ module.exports.run = async (bot, message, args) => {
     if (args[0].toLowerCase() == 'all') {
       db.run("UPDATE Users SET Inventory = '' WHERE Tag = ?", message.author.id)
       message.channel.send(`Successfully removed **${items[0].Inventory.split(', ').length - 1}** pets!`)
+    } else {
+      let pets = items[0].Inventory.split(', ').slice(1);
+      pets.forEach(pet => {
+        if(pet.includes(`<:${args.join("_")}`)) {
+          let index = pets.indexOf(pet);
+          delete pets[index];
+        }
+      })
+      
     }
   })
 }
