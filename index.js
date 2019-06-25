@@ -5,19 +5,19 @@ const express = require('express');
 const app = express();
   
 
-global.db = './.data/hatchverse5.db'
+global.db = './.data/hatchverse6.db'
 const dbFile = global.db;
 const exists = fs.existsSync(dbFile);
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database(dbFile);
 
 app.get('/', (req, res) => {
-  res.send("Hatchverse Working V1.5");
+  res.send("Hatchverse Working V1.6");
 });
 
 db.serialize(function(){
   if (!exists) {
-    db.run('CREATE TABLE Users (Tag TEXT, Eggs INT, Gems INT, Inventory TEXT)');
+    db.run('CREATE TABLE Users (Tag TEXT, Eggs INT, Gems INT, Inventory TEXT, Perks TEXT)');
     console.log('New table Users created!');
   };
 });

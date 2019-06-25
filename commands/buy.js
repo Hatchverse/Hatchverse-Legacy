@@ -11,8 +11,12 @@ module.exports.run = async (bot, message, args) => {
   
   db.all(`SELECT * FROM Users WHERE Tag = '${message.author.id}'`, (err, items) => {
     const gems = parseInt(items[0].Gems);
+    const perks = items[0].Perks;
+    
+
     
     if(args.join(" ").toLowerCase() == 'double egg') {
+      if(perks == 'd') return message.channel.send('You already own **Double Egg** perk!');
       if(gems < 1000) return message.channel.send(`Not enough **Gems** <:Gem:592857805380255745>! You need **${1000 - gems}** more!`);
       let embed = new Discord.RichEmbed()
       .setAuthor('Buy', bot.user.displayAvatarURL)
@@ -20,7 +24,7 @@ module.exports.run = async (bot, message, args) => {
       .setThumbnail('https://i.imgur.com/qpb0uIj.png')
       .setFooter('React with ✅ or ❌')
       .setTimestamp()
-
+      const chat = message;
       message.channel.send(embed)
       .then((message) => {
         message.react('✅').then(() => message.react("❌"))
@@ -29,7 +33,7 @@ module.exports.run = async (bot, message, args) => {
           const reaction = collected.first();
           
           if (reaction.name = "✅") {
-            message.channel.send('aaa')
+            db.run("UPDATE Users SET Perks = ? WHERE Tag = ?", 'd', chat.author.id)
           } else {
             return;
           }
@@ -44,6 +48,7 @@ module.exports.run = async (bot, message, args) => {
     }
 
     if(args.join(" ").toLowerCase() == 'triple egg') {
+      if(perks == 'd') return message.channel.send('You already own **Double Egg** perk!');
       if(gems < 2000) return message.channel.send(`Not enough **Gems** <:Gem:592857805380255745>! You need **${2000 - gems}** more!`);
       let embed = new Discord.RichEmbed()
       .setAuthor('Buy', bot.user.displayAvatarURL)
@@ -51,7 +56,8 @@ module.exports.run = async (bot, message, args) => {
       .setThumbnail("https://i.imgur.com/peud2fR.png")
       .setFooter('React with ✅ or ❌')
       .setTimestamp()
-
+      
+      const chat = message;
       message.channel.send(embed)
       .then((message) => {
         message.react('✅').then(() => message.react("❌"))
@@ -60,7 +66,7 @@ module.exports.run = async (bot, message, args) => {
           const reaction = collected.first();
           
           if (reaction.name = "✅") {
-            message.channel.send('aaa')
+            db.run("UPDATE Users SET Perks = ? WHERE Tag = ?", 't', chat.author.id)
           } else {
             return;
           }

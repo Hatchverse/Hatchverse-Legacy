@@ -21,7 +21,7 @@ module.exports.run = async (bot, message, args) => {
   
   db.all(`SELECT * FROM Users WHERE Tag = '${message.author.id}'`, (err, items) => {
     if(items.length == 0 || typeof items == 'undefined') {
-      db.run("INSERT INTO Users (Tag, Eggs, Gems, Inventory) VALUES (?,?,?,?)", message.author.id, 0, 0, '');
+      db.run("INSERT INTO Users (Tag, Eggs, Gems, Inventory, Perks) VALUES (?,?,?,?,?)", message.author.id, 0, 0, '', '');
       message.channel.send('**Successfully created user data!**')
       return;
     }
