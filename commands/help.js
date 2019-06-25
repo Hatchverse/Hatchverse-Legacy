@@ -10,7 +10,7 @@ module.exports.run = async (bot, message, args) => {
   if(!message.content.startsWith(config.prefix)) return;
   
   let embed = new Discord.RichEmbed()
-  .setAuthor('Help/Commands', bot.user.displayAvatarURL) //aaa noima add it to the descript
+  .setAuthor('Help/Commands', bot.user.displayAvatarURL)
   .addField('Eggs', '`()open <egg name>` - Opens an egg\n`()eggs` - Sends a message with every egg and its requirements')
   .addField('Inventory', '`()inventory` - Sends a message with your inventory\n`()remove <pet name | all>` - Removes a all pets or pets with a name')
   .addField('Shop', '`()shop` - Sends a message with the available perks/boosts you can buy\n`()buy <perk/boost name>` - Purchases the perk/boost')
