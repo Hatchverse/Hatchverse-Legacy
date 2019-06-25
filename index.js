@@ -5,14 +5,14 @@ const express = require('express');
 const app = express();
   
 
-global.db = './.data/hatchverse6.db'
+global.db = './.data/hatchverse17.db'
 const dbFile = global.db;
 const exists = fs.existsSync(dbFile);
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database(dbFile);
 
 app.get('/', (req, res) => {
-  res.send("Hatchverse Working V1.6");
+  res.send("Hatchverse Working V1.8");
 });
 
 db.serialize(function(){

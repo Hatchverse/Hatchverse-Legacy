@@ -22,8 +22,7 @@ module.exports.run = async (bot, message, args) => {
       .addField('Gems', `<:Gem:592857805380255745> ${items[0].Gems}`, true)
       .setFooter(bot.user.username)
       .setTimestamp()
-      
-      console.log(items)
+    
       
       message.channel.send(embed)
     } catch (error) {

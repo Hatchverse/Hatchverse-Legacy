@@ -16,7 +16,7 @@ module.exports.run = async (bot, message, args) => {
 
     
     if(args.join(" ").toLowerCase() == 'double egg') {
-      if(perks == 'd') return message.channel.send('You already own **Double Egg** perk!');
+      if(perks == 'd' || perks == "t") return message.channel.send('You already own **Double Egg** perk!');
       if(gems < 1000) return message.channel.send(`Not enough **Gems** <:Gem:592857805380255745>! You need **${1000 - gems}** more!`);
       let embed = new Discord.RichEmbed()
       .setAuthor('Buy', bot.user.displayAvatarURL)
@@ -34,6 +34,8 @@ module.exports.run = async (bot, message, args) => {
           
           if (reaction.name = "✅") {
             db.run("UPDATE Users SET Perks = ? WHERE Tag = ?", 'd', chat.author.id)
+            db.run("UPDATE Users SET Gems = ? WHERE Tag = ?", gems - 1000, chat.author.id)
+            message.channel.send('Successfully bought **Double Egg** perk!')
           } else {
             return;
           }
@@ -48,11 +50,11 @@ module.exports.run = async (bot, message, args) => {
     }
 
     if(args.join(" ").toLowerCase() == 'triple egg') {
-      if(perks == 'd') return message.channel.send('You already own **Double Egg** perk!');
-      if(gems < 2000) return message.channel.send(`Not enough **Gems** <:Gem:592857805380255745>! You need **${2000 - gems}** more!`);
+      if(perks == 't') return message.channel.send('You already own **Triple Egg** perk!');
+      if(gems < 10000) return message.channel.send(`Not enough **Gems** <:Gem:592857805380255745>! You need **${10000 - gems}** more!`);
       let embed = new Discord.RichEmbed()
       .setAuthor('Buy', bot.user.displayAvatarURL)
-      .setDescription('Are you sure you want to buy **Triple Egg** for <:Gem:592857805380255745> **2000**?')
+      .setDescription('Are you sure you want to buy **Triple Egg** for <:Gem:592857805380255745> **10000**?')
       .setThumbnail("https://i.imgur.com/peud2fR.png")
       .setFooter('React with ✅ or ❌')
       .setTimestamp()
@@ -67,6 +69,8 @@ module.exports.run = async (bot, message, args) => {
           
           if (reaction.name = "✅") {
             db.run("UPDATE Users SET Perks = ? WHERE Tag = ?", 't', chat.author.id)
+            db.run("UPDATE Users SET Gems = ? WHERE Tag = ?", gems - 10000, chat.author.id)
+            message.channel.send('Successfully bought **Triple Egg** perk!')
           } else {
             return;
           }
