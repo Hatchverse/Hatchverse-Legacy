@@ -11,6 +11,9 @@ module.exports.run = async (bot, message, args) => {
   
   db.all(`SELECT * FROM Users WHERE Tag = ${message.author.id}`, (err, items) => {
     if(items == '') return message.channel.send('You have no pets! Use `()open Beginner Egg` to get started')
+    let perks;
+    if (items[0].Perks == 'd') perks = 'Double Egg';
+    if (items[0].Perks == 'd') perks = 'Triple Egg';
   
     try {
       let embed = new Discord.RichEmbed()
@@ -20,6 +23,7 @@ module.exports.run = async (bot, message, args) => {
       .addField('Eggs Opened', `:egg: ${items[0].Eggs}`, true)
       .addField('Space', `:package: ${items[0].Inventory.split(', ').length}/50`, true)
       .addField('Gems', `<:Gem:592857805380255745> ${items[0].Gems}`, true)
+      .addField('Perks', `:arrow_up: ${perks}`, true)
       .setFooter(bot.user.username)
       .setTimestamp()
     

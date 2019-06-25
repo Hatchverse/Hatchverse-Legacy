@@ -13,9 +13,15 @@ module.exports.run = async (bot, message, args) => {
   
   if(!devs.includes(message.author.id)) return;
   
+    let embed = new Discord.RichEmbed()
+      .addField('test','test', true)
+      .addField('test', 'test',true)
+      .addField('test', 'test',true)
+      .addField('test', 'test',true)
+  
   if(args[0].toLowerCase() == "gems") {
     db.run(`UPDATE Users SET Gems = '${args[2]}' WHERE Tag = '${args[1]}'`);
-    message.channel.send(`Successfully set user **${args[1]}** Gems to **${args[2]}**`)
+    message.channel.send(`Successfully set user **${args[1]}** Gems to **${args[2]}**`);
   }
   
   if(args[0].toLowerCase() == "eggs") {
@@ -31,6 +37,8 @@ module.exports.run = async (bot, message, args) => {
     console.log(newargs)
     eval(newargs)
   }
+  
+
 }
 
 module.exports.help = {
