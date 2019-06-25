@@ -15,10 +15,11 @@ module.exports.run = async (bot, message, args) => {
       message.channel.send(`Successfully removed **${items[0].Inventory.split(', ').length}** pets!`)
     } else {
       let pets = items[0].Inventory.split(', ').slice(1);
+      console.log(`<:${args.join("_")}:`)
       pets.forEach(pet => {
         if(pet.includes(`<:${args.join("_")}`)) {
           pets.remove(pet);
-          message.channel.send(`Successfuly removed all pets with the name of **${args[0]}**`)
+          message.channel.send(`Successfuly removed all pets with the name of **${args.join(" ")}**`)
           db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", pets.toString().split(',').join(', ') , message.author.id)
         }
       })

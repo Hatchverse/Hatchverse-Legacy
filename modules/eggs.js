@@ -246,39 +246,33 @@ function rainbow_egg(message) {
     }, {
       p: '0.03%',
       f: () => {
-        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Legendary **Rainbow Serpent**! (**0.03%**)  <:Rainbow_Serpent:592426094607728661>`);
+        message.reply(` <:Rainbow_Egg:592425391004844032> you just hatched a Legendary **Rainbow Serpent**! (**0.03%**)  <:Rainbow_Serpent:592426094607728661>`);
         addpet('<:Rainbow_Serpent:592426094607728661>', message.author.id)
         addgems(50, message.author.id)
       }
     }, {
-      p: '3%',
+      p: '5%',
       f: () => {
-        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Epic **Slimey Winged Horse**! (**3%**) <:Slimey_Winged_Horse:592429327266742279>`);
-        addpet('<:Slimey_Winged_Horse:592429327266742279>', message.author.id)
+        message.reply(` <:Rainbow_Egg:592425391004844032> you just hatched a Epic **Rainbow Hybrid**! (**5%**) <:Rainbow_Hybrid:592428298735452169>`);
+        addpet('<:Rainbow_Hybrid:592428298735452169>', message.author.id)
       }
     }, {
-      p: '7%',
+      p: '19%',
       f: () => {
-        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Epic **Slimey T-Rex**! (**7%**) <:Slimey_TRex:592405034046717953>`);
-        addpet('<:Slimey_TRex:592405034046717953>', message.author.id)
+        message.reply(` <:Rainbow_Egg:592425391004844032> you just hatched a Rare **Rainbow Pegasus**! (**19%**) <:Rainbow_Pegasus:592428298978721822>`);
+        addpet('<:Rainbow_Pegasus:592428298978721822>', message.author.id)
       }
     }, {
-      p: '18%',
+      p: '31.043%',
       f: () => {
-        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Rare **Slimey Dragon**! (**18%**) <:Slimey_Dragon:592403899579891733>`);
-        addpet('<:Slimey_Dragon:592403899579891733>', message.author.id)
+        message.reply(` <:Rainbow_Egg:592425391004844032> you just hatched a Unique **Rainbow Dragon**! (**31.043%**) <:Rainbow_Dragon:592428298940841985>`);
+        addpet('<:Rainbow_Dragon:592428298940841985>', message.author.id)
       }
     }, {
       p: '27%',
       f: () => {
-        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Common **Slimey Wolf**! (**27%**) <:Slimey_Wolf:592407276099338261>`);
-        addpet('<:Slimey_Wolf:592407276099338261>', message.author.id)
-      }
-    }, {
-      p: '44.3%',
-      f: () => {
-        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Common **Slimey Kitty**! (**44.3%**) <:Slimey_Kitty:592426380919308299>`);
-        addpet('<:Slimey_Kitty:592426380919308299>', message.author.id)
+        message.reply(` <:Rainbow_Egg:592425391004844032> you just hatched a Common **Rainbow Butterfly**! (**27%**) <:Rainbow_Butterfly:592428298894573589>`);
+        addpet('<:Rainbow_Butterfly:592428298894573589>', message.author.id)
       }
     })
   
