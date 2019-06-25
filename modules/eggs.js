@@ -237,17 +237,17 @@ function rainbow_egg(message) {
         addgems(100, message.author.id)
       }
     }, {
-      p: '0.04%',
+      p: '0.01%',
       f: () => {
-        message.reply(` <:Rainbow_Egg:592425391004844032> you just hatched a Legendary **Slimey Marshmallow**! (**0.04%**) <:Slime_Marshmallow:591832045806813186>`);
-        addpet('<:Slime_Marshmallow:591832045806813186>', message.author.id)
+        message.reply(` <:Rainbow_Egg:592425391004844032> you just hatched a Legendary **Pixie**! (**0.01%**)  <:Pixie:592425899517804554>`);
+        addpet(' <:Pixie:592425899517804554>', message.author.id)
         addgems(75)
       }
     }, {
-      p: '0.65%',
+      p: '0.03%',
       f: () => {
-        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Legendary **Slimey Serpent**! (**0.65%**)  <:Slimey_Serpent:592404097991442433>`);
-        addpet('<:Slimey_Serpent:592404097991442433>', message.author.id)
+        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Legendary **Rainbow Serpent**! (**0.03%**)  <:Rainbow_Serpent:592426094607728661>`);
+        addpet('<:Rainbow_Serpent:592426094607728661>', message.author.id)
         addgems(50, message.author.id)
       }
     }, {
