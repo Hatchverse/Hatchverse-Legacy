@@ -43,7 +43,7 @@ fs.readdir('./commands/', (err, files) => {
 
 bot.on('ready', async () => {
   console.log('Hatchverse has started!');
-  bot.user.setActivity(`${bot.users.size} eggheads`, { type: 'WATCHING' })
+  bot.user.setActivity(`${bot.users.size} eggheads 🥚`, { type: 'WATCHING' })
 })
 
 bot.on('message', async (message) => {
