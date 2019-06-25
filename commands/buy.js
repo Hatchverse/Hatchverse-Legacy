@@ -13,7 +13,7 @@ module.exports.run = async (bot, message, args) => {
     const gems = parseInt(items[0].Gems);
     
     if(args.join(" ").toLowerCase() == 'double egg') {
-      if(gems < 1000) return message.channel.send(`Not enough Gems <:Gem:592857805380255745>! `);
+      if(gems < 1000) return message.channel.send(`Not enough **Gems** <:Gem:592857805380255745>! You need **${1000 - gems}** more!`);
       let embed = new Discord.RichEmbed()
       .setAuthor('Buy', bot.user.displayAvatarURL)
       .setDescription('Are you sure you want to buy **Double Egg** for <:Gem:592857805380255745> **1000**?')
@@ -22,9 +22,29 @@ module.exports.run = async (bot, message, args) => {
       .setTimestamp()
 
       message.channel.send(embed)
+      .then((message) => {
+        message.react('✅').then(() => message.react("❌"))
+        message.awaitReactions(filter, {max: 1, time: 10000, errors: ['time'] })
+        .then(collected => {
+          const reaction = collected.first();
+          
+          if (reaction.name = "✅") {
+            message.channel.send('aaa')
+          } else {
+            return;
+          }
+        })
+        setTimeout(() => { 
+          message.delete(); 
+        }, 10000);
+      })
+      const filter = (reaction, user) => {
+        return ['✅', '❌'].includes(reaction.emoji.name) && user.id === message.author.id;
+      };
     }
 
     if(args.join(" ").toLowerCase() == 'triple egg') {
+      if(gems < 2000) return message.channel.send(`Not enough **Gems** <:Gem:592857805380255745>! You need **${2000 - gems}** more!`);
       let embed = new Discord.RichEmbed()
       .setAuthor('Buy', bot.user.displayAvatarURL)
       .setDescription('Are you sure you want to buy **Triple Egg** for <:Gem:592857805380255745> **2000**?')
@@ -33,8 +53,27 @@ module.exports.run = async (bot, message, args) => {
       .setTimestamp()
 
       message.channel.send(embed)
+      .then((message) => {
+        message.react('✅').then(() => message.react("❌"))
+        message.awaitReactions(filter, {max: 1, time: 10000, errors: ['time'] })
+        .then(collected => {
+          const reaction = collected.first();
+          
+          if (reaction.name = "✅") {
+            message.channel.send('aaa')
+          } else {
+            return;
+          }
+        })
+        setTimeout(() => { 
+          message.delete(); 
+        }, 10000);
+      })
+      const filter = (reaction, user) => {
+        return ['✅', '❌'].includes(reaction.emoji.name) && user.id === message.author.id;
+      };
     }
-  });
+  })
 }
 
 module.exports.help = {
