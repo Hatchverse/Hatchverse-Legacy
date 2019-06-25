@@ -15,7 +15,7 @@ module.exports.run = async (bot, message, args) => {
   .addBlankField(true)
   .setColor('#9c13f7')
   .addField('Boosts', `*Coming soon...*`, true)
-  .setFooter(bot.user.username)
+  .setFooter("Use ()buy <Item Name> to purchase a boost/perk")
   .setTimestamp()
   
   message.channel.send(embed)
