@@ -8,15 +8,11 @@ function addpet(name, tag) {
   db.all(`SELECT * FROM Users WHERE Tag = '${tag}'`, (err, items) => {
     let inventory = items[0].Inventory;
     let eggsopened = parseInt(items[0].Eggs) + 1;
-    let newinv;
-    if(items[0].Inventory.length == 0) {
-      newinv = name
-    } else {
-      console.log
-      newinv = `${inventory}, ${name}`;
+    let inv = name;
+    if(inventory.length > 0) {
+      inv = inventory + ', ' + name;
     }
-
-    db.run(`UPDATE Users SET Inventory = '${newinv}' WHERE Tag = '${tag}'`);
+    db.run(`UPDATE Users SET Inventory = '${inv}' WHERE Tag = '${tag}'`);
     db.run(`UPDATE Users SET Eggs = '${eggsopened}' WHERE Tag = '${tag}'`);
   })
 }
