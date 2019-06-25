@@ -13,7 +13,8 @@ module.exports.run = async (bot, message, args) => {
   .setAuthor('Shop', bot.user.displayAvatarURL) //aaa noima add it to the descript
   .addField('Perks', `<:2xegg:592877627543388170> Double Egg - <:Gem:592857805380255745> **1000**\n<:3xegg:592878254654881802> Triple Egg - <:Gem:592857805380255745> **2000**`, true)
   .addBlankField(true)
-  .addField
+  .setColor('#9c13f7')
+  .addField('Boosts', `*Coming soon...*`, true)
   .setFooter(bot.user.username)
   .setTimestamp()
   
