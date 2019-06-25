@@ -67,6 +67,14 @@ module.exports.run = async (bot, message, args) => {
       if(perks == 't') return triple(eggs.slimey_egg);
       eggs.slimey_egg(message)
     }
+    
+    if(args.join(" ").toLowerCase() == "rainbow egg") {
+      if(items[0].Eggs < 300) return message.channel.send(`You need to have **300** eggs opened to unlock this egg!`)
+      if(inventory >= 50) return message.channel.send('You have reached the max inventory space! Please use `()remove <pet name | all>`');
+      if(perks == 'd') return double(eggs.rainbow_egg);
+      if(perks == 't') return triple(eggs.rainbow_egg);
+      eggs.rainbow_egg(message)
+    }
   
   })
   

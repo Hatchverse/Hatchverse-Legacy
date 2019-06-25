@@ -234,21 +234,21 @@ function rainbow_egg(message) {
       f: () => {
         message.reply(` <:Rainbow_Egg:592425391004844032> you just hatched a Legendary **Rainbow Dogcat**! (**0.003%**) <:Rainbow_Dogcat:592426717285449788>`);
         addpet('<:Rainbow_Dogcat:592426717285449788>', message.author.id)
-        addgems(100, message.author.id)
+        addgems(200, message.author.id)
       }
     }, {
       p: '0.01%',
       f: () => {
         message.reply(` <:Rainbow_Egg:592425391004844032> you just hatched a Legendary **Pixie**! (**0.01%**)  <:Pixie:592425899517804554>`);
         addpet(' <:Pixie:592425899517804554>', message.author.id)
-        addgems(75)
+        addgems(100)
       }
     }, {
       p: '0.03%',
       f: () => {
         message.reply(` <:Rainbow_Egg:592425391004844032> you just hatched a Legendary **Rainbow Serpent**! (**0.03%**)  <:Rainbow_Serpent:592426094607728661>`);
         addpet('<:Rainbow_Serpent:592426094607728661>', message.author.id)
-        addgems(50, message.author.id)
+        addgems(75, message.author.id)
       }
     }, {
       p: '5%',
