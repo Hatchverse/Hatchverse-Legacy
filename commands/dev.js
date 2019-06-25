@@ -12,16 +12,14 @@ module.exports.run = async (bot, message, args) => {
   
   if(!devs.includes(message.author.id)) return;
   
-  if(args[0].toLowerCase == "gems") {
-    db.all(`SELECT * FROM Users WHERE Tag = '${args[1]}'`, (err, items) => {
-      db.run(`UPDATE Users SET Gems = '${args[2]}' WHERE Tag = '${args[1]}'`);
-    })
+  if(args[0].toLowerCase() == "gems") {
+    db.run(`UPDATE Users SET Gems = '${args[2]}' WHERE Tag = '${args[1]}'`);
+    message.channel.send(`Successfully set user **${args[1]}** Gems to **${args[2]}**`)
   }
   
-  if(args[0].toLowerCase == "eggs") {
-    db.all(`SELECT * FROM Users WHERE Tag = '${args[1]}'`, (err, items) => {
-      db.run(`UPDATE Users SET Eggs = '${args[2]}' WHERE Tag = '${args[1]}'`);
-    })
+  if(args[0].toLowerCase() == "eggs") {
+    db.run(`UPDATE Users SET Eggs = '${args[2]}' WHERE Tag = '${args[1]}'`);
+    message.channel.send(`Successfully set user **${args[1]}** Eggs to **${args[2]}**`)
   }
 }
 

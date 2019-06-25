@@ -12,7 +12,7 @@ const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database(dbFile);
 
 app.get('/', (req, res) => {
-  res.send("Hatchverse Working V1.0");
+  res.send("Hatchverse Working V1.5");
 });
 
 db.serialize(function(){
@@ -43,7 +43,7 @@ fs.readdir('./commands/', (err, files) => {
 
 bot.on('ready', async () => {
   console.log('Hatchverse has started!');
-  bot.user.setActivity('your eggs', { type: 'WATCHING' })
+  bot.user.setActivity(`${bot.users.size} eggheads`, { type: 'WATCHING' })
 })
 
 bot.on('message', async (message) => {
