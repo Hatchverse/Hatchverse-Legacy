@@ -28,8 +28,16 @@ module.exports.run = async (bot, message, args) => {
   }
   
   if(args[0].toLowerCase() == "reset") {
+    if(args[1]) {
+      db.run(`UPDATE Users SET Gems = '0' WHERE Tag = '${args[1]}'`)
+      db.run(`UPDATE Users SET Eggs = '0' WHERE Tag = '${args[1]}'`)
+      db.run(`UPDATE Users SET Perks = '' WHERE Tag = '${args[1]}'`)
+      db.run(`UPDATE Users SET Inventory = '' WHERE Tag = '${args[1]}'`)
+      message.channel.send(`Successfully reset user **${args[1]}**`)
+      return;
+    }
     db.run('DELETE FROM Users')
-    db.run('DROP TABLE Users')
+    message.channel.send(`Successfully reset Hatchverse DB`)
   }
   if(args[0].toLowerCase() == "js") {
     var newargs = args.splice(1).join(" ")

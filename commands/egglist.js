@@ -17,15 +17,14 @@ module.exports.run = async (bot, message, args) => {
     const spikeyegg = eggs >= 135 ? ':unlock:' : ':lock:';
     const slimeyegg = eggs >= 200 ? ':unlock:' : ':lock:';
     const rainbowegg = eggs >= 300 ? ':unlock:' : ':lock:';
-    const hackweekegg = eggs >= 50 ? ':unlock:' : ':lock:';//go ahead and add the un added eggs so we dont have to do it later
     
     let embed = new Discord.RichEmbed()
     .setAuthor('Eggs', bot.user.displayAvatarURL)
     .setColor('#9c13f7')
-    .setDescription(`${beginneregg}-<:Beginner_Egg:592440252979871745> Beginner Egg - :egg: **0**\n${spottedegg}-<:Spotted_Egg:592446342228606976> Spotted Egg - :egg: **25**\n${iceshardegg}-<:Ice_Shard_Egg:592447966023778325> Ice Shard Egg - :egg:**75**\n`)
+    .setDescription(`${beginneregg}-<:Beginner_Egg:592440252979871745> Beginner Egg - :egg: **0**\n${spottedegg}-<:Spotted_Egg:592446342228606976> Spotted Egg - :egg: **25**\n${iceshardegg}-<:Ice_Shard_Egg:592447966023778325> Ice Shard Egg - :egg: **75**\n${spikeyegg}-<:Spikey_Egg:592443923998441475> Spikey Egg - :egg: **135**\n${slimeyegg}-<:SlimeyEgg:592424933217271809> Slimey Egg - :egg: **200**\n${rainbowegg}-<:Rainbow_Egg:592425391004844032> Rainbow Egg - :egg: **300**`)
     .setFooter(bot.user.username)
     .setTimestamp()
-    
+  
     message.channel.send(embed)
     
   })
