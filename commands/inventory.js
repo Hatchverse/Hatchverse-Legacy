@@ -11,9 +11,9 @@ module.exports.run = async (bot, message, args) => {
   
   db.all(`SELECT * FROM Users WHERE Tag = ${message.author.id}`, (err, items) => {
     if(items == '') return message.channel.send('You have no pets! Use `()open Beginner Egg` to get started')
-    let perks;
+    let perks = 'None';
     if (items[0].Perks == 'd') perks = 'Double Egg';
-    if (items[0].Perks == 'd') perks = 'Triple Egg';
+    if (items[0].Perks == 't') perks = 'Triple Egg';
   
     try {
       let embed = new Discord.RichEmbed()
