@@ -22,6 +22,7 @@ module.exports.run = async (bot, message, args) => {
     db.run(`UPDATE Users SET Eggs = '${args[2]}' WHERE Tag = '${args[1]}'`);
     message.channel.send(`Successfully set user **${args[1]}** Eggs to **${args[2]}**`)
   }
+  
 }
 
 module.exports.help = {
