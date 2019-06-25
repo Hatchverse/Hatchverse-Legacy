@@ -12,12 +12,12 @@ function addpet(name, tag) {
     if(items[0].Inventory.length == 0) {
       newinv = name
     } else {
+      console.log
       newinv = `${inventory}, ${name}`;
     }
 
     db.run(`UPDATE Users SET Inventory = '${newinv}' WHERE Tag = '${tag}'`);
     db.run(`UPDATE Users SET Eggs = '${eggsopened}' WHERE Tag = '${tag}'`);
-    console.log(items)
   })
 }
 
