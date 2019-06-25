@@ -71,17 +71,22 @@ module.exports.run = async (bot, message, args) => {
   })
   
   function double(egg) {
-    for (var i = 0; i < 2; i++) {
-      egg(message);
+    for (let i = 0; i < 2; i++) {
+      ((index) => {
+        setTimeout(() => egg(message), i * 500)
+      })(i);
     }
   }
   
   function triple(egg) {
-    for (var i = 0; i < 3; i++) {
-      egg(message);
+    for (let i = 0; i < 3; i++) {
+      ((index) => {
+        setTimeout(() => egg(message), i * 500)
+      })(i);
     }
   }
 }
+
 
 module.exports.help = {
   name: "open"

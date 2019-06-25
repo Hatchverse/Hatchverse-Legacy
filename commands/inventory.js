@@ -27,7 +27,6 @@ module.exports.run = async (bot, message, args) => {
       .setFooter(bot.user.username)
       .setTimestamp()
     
-      console.log(items)
       message.channel.send(embed)
     } catch (error) {
       message.channel.send(`You have too many pets! (${items[0].Eggs})`)
