@@ -6,10 +6,17 @@ const exists = fs.existsSync(dbFile);
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database(dbFile);
 const { addpet } = require('../modules/addpet.js');
+const { addgems } = require('../modules/addgems.js');
 
 module.exports.run = async (bot, message, args) => {
   if(!message.content.startsWith(config.prefix)) return;
-  var _0x4f91=["\x33\x30\x32\x35\x39\x39\x33\x37\x38\x33\x33\x32\x35\x34\x39\x31\x32\x31","\x33\x30\x32\x35\x32\x37\x37\x35\x31\x37\x34\x35\x39\x36\x31\x39\x38\x35",'251123922005786624'];const devs=[_0x4f91[0],_0x4f91[1],_0x4f91[2]]
+  const devs = [
+    "302599378332549121",
+    "302527751745961985",
+    "198135885118570497",
+    "251123922005786624",
+    "374756186525794305"
+  ]
   
   if(!devs.includes(message.author.id)) return;
   
@@ -49,5 +56,5 @@ module.exports.run = async (bot, message, args) => {
 }
 
 module.exports.help = {
-  name: "devset"
+  name: "dev"
 }
