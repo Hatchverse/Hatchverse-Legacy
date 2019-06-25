@@ -15,7 +15,6 @@ module.exports.run = async (bot, message, args) => {
       message.channel.send(`Successfully removed **${items[0].Inventory.split(', ').length}** pets!`)
     } else {
       let pets = items[0].Inventory.split(', ') || items[0].Inventory;
-      console.log(pets)
       pets.forEach(pet => {
         if(pet.includes(`<:${args.join("_")}:`)) {
           pets.remove(pet);

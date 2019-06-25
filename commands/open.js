@@ -26,7 +26,7 @@ module.exports.run = async (bot, message, args) => {
       return;
     }
     
-    let inventory = items[0].Inventory.split(', ').length - 1;
+    let inventory = items[0].Inventory.split(', ').length;
     
     if(args.join(" ").toLowerCase() == "beginner egg") {
       if(inventory >= 50) return message.channel.send('You have reached the max inventory space! Please use `()remove <pet name | all>`');

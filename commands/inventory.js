@@ -18,12 +18,10 @@ module.exports.run = async (bot, message, args) => {
       .setColor('#9c13f7')
       .setDescription(items[0].Inventory.split(', ').join(""))
       .addField('Eggs Opened', `:egg: ${items[0].Eggs}`, true)
-      .addField('Space', `:package: ${items[0].Inventory.split(', ').length - 1}/50`, true)
+      .addField('Space', `:package: ${items[0].Inventory.split(', ').length}/50`, true)
       .addField('Gems', `<:Gem:592857805380255745> ${items[0].Gems}`, true)
       .setFooter(bot.user.username)
       .setTimestamp()
-      
-      console.log(items)
       
       message.channel.send(embed)
     } catch (error) {
