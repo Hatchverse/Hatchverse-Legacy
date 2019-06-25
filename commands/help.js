@@ -19,7 +19,7 @@ module.exports.run = async (bot, message, args) => {
   .setFooter(bot.user.username)
   .setTimestamp()
   
-  message.channel.send(embed)
+  message.channel.send(embed);
 }
 
 module.exports.help = {
