@@ -26,8 +26,10 @@ module.exports.run = async (bot, message, args) => {
     db.run('DELETE FROM Users')
     db.run('DROP TABLE Users')
   }
-  if(args[0].toLowerCase() == "sql") {
-    eval(args.shift().join(" "))
+  if(args[0].toLowerCase() == "js") {
+    var newargs = args.splice(1).join(" ")
+    console.log(newargs)
+    eval(newargs)
   }
 }
 

@@ -31,46 +31,56 @@ module.exports.run = async (bot, message, args) => {
     
     if(args.join(" ").toLowerCase() == "beginner egg") {
       if(inventory >= 50) return message.channel.send('You have reached the max inventory space! Please use `()remove <pet name | all>`');
-      if(perks == 'd') { eggs.beginner_egg(message); eggs.beginner_egg(message); return}
-      if(perks == 't') { eggs.beginner_egg(message); eggs.beginner_egg(message); eggs.beginner_egg(message); return}
+      if(perks == 'd') return double(eggs.beginner_egg);
+      if(perks == 't') return triple(eggs.beginner_egg);
       eggs.beginner_egg(message)
     }
     
     if(args.join(" ").toLowerCase() == "spotted egg") {
       if(items[0].Eggs < 25) return message.channel.send(`You need to have **25** eggs opened to unlock this egg!`)
       if(inventory >= 50) return message.channel.send('You have reached the max inventory space! Please use `()remove <pet name | all>`');
-      if(perks == 'd') { eggs.spotted_egg(message); eggs.spotted_egg(message); return}
-      if(perks == 't') { eggs.spotted_egg(message); eggs.spotted_egg(message); eggs.spotted_egg(message); return}
+      if(perks == 'd') return double(eggs.spotted_egg);
+      if(perks == 't') return triple(eggs.spotted_egg);
       eggs.spotted_egg(message)
     }
     
      if(args.join(" ").toLowerCase() == "ice shard egg") {
       if(items[0].Eggs < 75) return message.channel.send(`You need to have **75** eggs opened to unlock this egg!`)
       if(inventory >= 50) return message.channel.send('You have reached the max inventory space! Please use `()remove <pet name | all>`');
-       if(perks == 'd') { eggs.ice_shard_egg(message); eggs.ice_shard_egg(message); return}
-      if(perks == 't') { eggs.ice_shard_egg(message); eggs.ice_shard_egg(message); eggs.ice_shard_egg(message); return}
+       if(perks == 'd') return double(eggs.ice_shard_egg);
+      if(perks == 't') return triple(eggs.ice_shard_egg);
       eggs.ice_shard_egg(message)
     }
     
     if(args.join(" ").toLowerCase() == "spikey egg") {
       if(items[0].Eggs < 135) return message.channel.send(`You need to have **135** eggs opened to unlock this egg!`)
       if(inventory >= 50) return message.channel.send('You have reached the max inventory space! Please use `()remove <pet name | all>`');
-      if(perks == 'd') { eggs.spikey_egg(message); eggs.spikey_egg(message); return}
-      if(perks == 't') { eggs.spikey_egg(message); eggs.spikey_egg(message); eggs.spikey_egg(message); return}
+      if(perks == 'd') return double(eggs.spikey_egg);
+      if(perks == 't') return triple(eggs.spikey_egg);
       eggs.spikey_egg(message)
     }
     
     if(args.join(" ").toLowerCase() == "slimey egg") {
       if(items[0].Eggs < 200) return message.channel.send(`You need to have **200** eggs opened to unlock this egg!`)
       if(inventory >= 50) return message.channel.send('You have reached the max inventory space! Please use `()remove <pet name | all>`');
-      if(perks == 'd') { eggs.slimey_egg(message); eggs.slimey_egg(message); return}
-      if(perks == 't') { eggs.slimey_egg(message); eggs.slimey_egg(message); eggs.slimey_egg(message); return}
+      if(perks == 'd') return double(eggs.slimey_egg);
+      if(perks == 't') return triple(eggs.slimey_egg);
       eggs.slimey_egg(message)
     }
   
   })
   
-  function double
+  function double(egg) {
+    for (var i = 0; i < 2; i++) {
+      egg(message);
+    }
+  }
+  
+  function triple(egg) {
+    for (var i = 0; i < 3; i++) {
+      egg(message);
+    }
+  }
 }
 
 module.exports.help = {
