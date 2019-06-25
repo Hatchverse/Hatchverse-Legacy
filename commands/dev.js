@@ -13,12 +13,6 @@ module.exports.run = async (bot, message, args) => {
   
   if(!devs.includes(message.author.id)) return;
   
-    let embed = new Discord.RichEmbed()
-      .addField('test','test', true)
-      .addField('test', 'test',true)
-      .addField('test', 'test',true)
-      .addField('test', 'test',true)
-  
   if(args[0].toLowerCase() == "gems") {
     db.run(`UPDATE Users SET Gems = '${args[2]}' WHERE Tag = '${args[1]}'`);
     message.channel.send(`Successfully set user **${args[1]}** Gems to **${args[2]}**`);
@@ -28,6 +22,11 @@ module.exports.run = async (bot, message, args) => {
     db.run(`UPDATE Users SET Eggs = '${args[2]}' WHERE Tag = '${args[1]}'`);
     message.channel.send(`Successfully set user **${args[1]}** Eggs to **${args[2]}**`)
   }
+  
+  if(args[0].toLowerCase() == "addpet") {
+    addpet(args[1], args[2]);  
+  }
+  
   if(args[0].toLowerCase() == "reset") {
     db.run('DELETE FROM Users')
     db.run('DROP TABLE Users')
