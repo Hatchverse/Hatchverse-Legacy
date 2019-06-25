@@ -16,7 +16,7 @@ module.exports.run = async (bot, message, args) => {
     usedCmd.add(message.author.id);
     setTimeout(() => {
       usedCmd.delete(message.author.id);
-    }, 1500)
+    }, 1)
   }
   
   db.all(`SELECT * FROM Users WHERE Tag = '${message.author.id}'`, (err, items) => {
