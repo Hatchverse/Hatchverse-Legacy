@@ -11,8 +11,10 @@ module.exports.run = async (bot, message, args) => {
   
   let embed = new Discord.RichEmbed()
   .setAuthor('Help/Commands', bot.user.displayAvatarURL) //aaa noima add it to the descript
-  .setDescription('`()open <egg name>`')
-  .addField('()eggs', '`()`')
+  .addField('Eggs', '`()open <egg name>` - Opens an egg\n`()eggs` - Sends a message with every egg and its requirements')
+  .addField('Inventory', '`()inventory` - Sends a message with your inventory\n`()remove <pet name | all>` - Removes a all pets or pets with a name')
+  .addField('Shop', '`()shop` - Sends a message with the available perks/boosts you can buy\n`()buy <perk/boost name>` - Purchases the perk/boost')
+  .addField('Stats\Info', '`()leaderboard <eggs | gems>` - Sends the specified leaderboard\n`()lookup <mention user>` - Sends the mentioned user\'s stats\n`()info` - Sends a message with Hatchverse info\n\nIf you run into any bugs DM `Krxnky#1824` or `Syntax#1588`.')
   .setColor('#9c13f7')
   .setFooter(bot.user.username)
   .setTimestamp()
