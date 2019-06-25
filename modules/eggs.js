@@ -269,9 +269,9 @@ function rainbow_egg(message) {
         addpet('<:Rainbow_Dragon:592428298940841985>', message.author.id)
       }
     }, {
-      p: '27%',
+      p: '44.914%',
       f: () => {
-        message.reply(` <:Rainbow_Egg:592425391004844032> you just hatched a Common **Rainbow Butterfly**! (**27%**) <:Rainbow_Butterfly:592428298894573589>`);
+        message.reply(` <:Rainbow_Egg:592425391004844032> you just hatched a Common **Rainbow Butterfly**! (**44.914%**) <:Rainbow_Butterfly:592428298894573589>`);
         addpet('<:Rainbow_Butterfly:592428298894573589>', message.author.id)
       }
     })
