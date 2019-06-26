@@ -17,18 +17,21 @@ module.exports.run = async (bot, message, args) => {
     if(args[0].toLowerCase() == 'all') {
       db.run("UPDATE Users SET Inventory = '' WHERE Tag = ?", message.author.id)
       message.channel.send(`Successfully removed **${inventory.length}** pets!`);
-    } else {
-      
-      const pet = args.join('_');
-      const petReg = new RegExp(pet, 'i');
-      
-      const petFilter = inventory.filter(pet => pet.match(petReg));
-      if(petFilter.length == 0) return message.channel.send(`You don't own a **${args.join(" ")}**!`);
-      
-      const newInv = inventory.remove(petFilter[0]);
-      db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", newInv.join(", "), message.author.id)
-      message.channel.send(`Successfuly removed **${petFilter.length}** pets!`);
     }
+    if(args[0].toLowerCase() == '1') {
+      
+    }
+    
+      
+    const pet = args.join('_');
+    const petReg = new RegExp(pet, 'i');
+
+    const petFilter = inventory.filter(pet => pet.match(petReg));
+    if(petFilter.length == 0) return message.channel.send(`You don't own a **${args.join(" ")}**!`);
+
+    const newInv = inventory.remove(petFilter[0]);
+    db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", newInv.join(", "), message.author.id)
+    message.channel.send(`Successfuly removed **${petFilter.length}** pets!`);
   })
 }
 
