@@ -36,6 +36,11 @@ module.exports.run = async (bot, message, args) => {
     message.channel.send(`Successfully added **${args[1]}** to **${args[3]}**'s inventory`)
   }
   
+  if(args[0].toLowerCase() == "perks") {
+    db.run(`UPDATE Users SET Perks = '${args[1]}' WHERE Tag = '${args[2]}'`);
+    message.channel.send(`Successfully added perk **${args[1]}** to **${args[2]}**`);
+  }
+  
   if(args[0].toLowerCase() == "reset") {
     if(args[1]) {
       db.run(`UPDATE Users SET Gems = '0' WHERE Tag = '${args[1]}'`)
