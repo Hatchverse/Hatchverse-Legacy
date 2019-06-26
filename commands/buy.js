@@ -32,8 +32,7 @@ module.exports.run = async (bot, message, args) => {
         .then(collected => {
           const reaction = collected.first();
           
-          console.log(reaction.name)
-          if (reaction.name = "✅") {
+          if (reaction.emoji.name = "✅") {
             db.run("UPDATE Users SET Perks = ? WHERE Tag = ?", 'd', chat.author.id)
             db.run("UPDATE Users SET Gems = ? WHERE Tag = ?", gems - 1000, chat.author.id)
             message.channel.send('Successfully bought **Double Egg** perk!')
@@ -68,7 +67,8 @@ module.exports.run = async (bot, message, args) => {
         .then(collected => {
           const reaction = collected.first();
           
-          if (reaction.name = "✅") {
+          console.log(reaction.emoji.name)
+          if (reaction.emoji.name = "✅") {
             db.run("UPDATE Users SET Perks = ? WHERE Tag = ?", 't', chat.author.id)
             db.run("UPDATE Users SET Gems = ? WHERE Tag = ?", gems - 10000, chat.author.id)
             message.channel.send('Successfully bought **Triple Egg** perk!')
