@@ -30,9 +30,9 @@ module.exports.run = async (bot, message, args) => {
             const receiveReg = new RegExp(receivePet);
             const receiverOwn = receiverInv.filter(pet => pet.match(receiveReg));
           
-            console.log(receiverOwn)
-          
             if(receiverOwn.length == 0) return message.channel.send(`${mention} does not own **${receivePet}**`);
+          //ill work more on this once landon gets back
+          //ok
           })
         })
       })
