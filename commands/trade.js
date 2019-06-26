@@ -63,15 +63,20 @@ module.exports.run = async (bot, message, args) => {
                 const reaction = collected.first();
 
                 if (reaction.emoji.name == "✅") {
+                               console.log('this is gay1')
                   // we need to update the inventory arrays and then upload them to the Database.
                   const senderRemove = remove(senderInv, senderOwn[0]);
                   const receiverRemove = remove(receiverInv, receiverOwn[0])
                   
+                  console.log('this is gay')
+                  
                   const senderNewInv = senderRemove.push(receiverOwn[0]); //
                   const receiverNewInv = receiverRemove.push(senderOwn[0]); // aaa dirty code this is beta rewrite later| also what is wrong with code? | not cool is it? :thinking:
                   
-                  db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", senderNewInv.toString().split(',').join(', '), senderId)
-                  db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", receiverNewInv.toString().split(',').join(', '), receiverId)
+                  console.log('this is gay2')
+                  
+                  db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", senderNewInv.split(',').join(', '), senderId)
+                  db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", receiverNewInv.split(',').join(', '), receiverId) // dont break my inventory nerd
                 } else {
                   return;
                 }
