@@ -15,8 +15,8 @@ module.exports.run = async (bot, message, args) => {
     // ()trade @whatehrerh :doggy: :kitty:
       const senderInv = sender[0].Inventory.split(', ');
       const receiverInv = receiver[0].Inventory.split(', ');
-      console.log(senderInv)
-      const reg = new RegExp('/' + args[1] + '+/');
+      const reg = new RegExp('/' + args[1] + '/g');
+      console.log(reg)
       message.channel.send(senderInv.filter(pet => reg));
     })
   })
