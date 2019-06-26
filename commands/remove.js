@@ -12,19 +12,24 @@ module.exports.run = async (bot, message, args) => {
   //Krxnky: May redo this with regex and filter
   
   db.all(`SELECT Inventory FROM Users WHERE Tag = '${message.author.id}'`, (err, items) => {
-    if (args[0].toLowerCase() == 'all') {
+    const inventory = items[0].Inventory.split(', ');
+    
+    if(args[0].toLowerCase() == 'all') {
       db.run("UPDATE Users SET Inventory = '' WHERE Tag = ?", message.author.id)
-      message.channel.send(`Successfully removed **${items[0].Inventory.split(', ').length}** pets!`)
+      message.channel.send(`Successfully removed **${inventory.split(', ').length}** pets!`);
     } else {
-      let pets = items[0].Inventory.split(', ') || items[0].Inventory;
-      pets.forEach(pet => {
-        if(pet.includes(`<:${args.join("_")}:`)) {
-          pets.remove(pet);
-          message.channel.send(`Successfuly removed all pets with the name of **${args.join(" ")}**`)
-          db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", pets.toString().split(',').join(', ') , message.author.id)
-        }
-      })
       
+      const pet = args.join('_');
+      const petReg = new RegExp(pet);
+      
+      const petFilter = inventory.filter(pet => pet.match(petReg));
+      if(petFilter.length == 0) return message.channel.send(`You don't own a **${args.join(" ")}**!`);
+      
+      console.log(petFilter)
+      
+      const newInv = inventory.remove(petFilter[0]);
+      db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", newInv.join(", "), message.author.id)
+      message.channel.send(`Successfuly removed **${petFilter.length}** pets!`);
     }
   })
 }
