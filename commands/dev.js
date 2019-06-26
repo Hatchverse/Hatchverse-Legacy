@@ -31,7 +31,8 @@ module.exports.run = async (bot, message, args) => {
   }
   
   if(args[0].toLowerCase() == "addpet") {
-    addpet(args[1], args[2]);  
+    const petId = `<:${args[1]}:${args[2]}>`
+    addpet(petId, args[3]);
   }
   
   if(args[0].toLowerCase() == "reset") {

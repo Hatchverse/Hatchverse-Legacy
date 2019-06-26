@@ -25,8 +25,6 @@ module.exports.run = async (bot, message, args) => {
       const petFilter = inventory.filter(pet => pet.match(petReg));
       if(petFilter.length == 0) return message.channel.send(`You don't own a **${args.join(" ")}**!`);
       
-      console.log(petFilter)
-      
       const newInv = inventory.remove(petFilter[0]);
       db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", newInv.join(", "), message.author.id)
       message.channel.send(`Successfuly removed **${petFilter.length}** pets!`);

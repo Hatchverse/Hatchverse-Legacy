@@ -290,8 +290,8 @@ function hack_week_egg(message) {
     const hackweekegg = new probability({
       p: '0.001%',
       f: () => {
-        message.reply(` <:HackWeekEgg:591827213570277385> you just hatched a Discord **Discord Wumpus**! (**0.001%**) <:Discord_Wumpus:593532095360663592>`);
-        addpet('<:Discord_Wumpus:593532095360663592>', message.author.id)
+        message.reply(` <:HackWeekEgg:591827213570277385> you just hatched a Discord **Wumpus**! (**0.001%**) <:Wumpus:593533855458263040>`);
+        addpet('<:Wumpus:593533855458263040>', message.author.id)
         addgems(300, message.author.id)
       }
     }, {
