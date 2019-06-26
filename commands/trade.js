@@ -25,7 +25,7 @@ module.exports.run = async (bot, message, args) => {
       const receiver = rinv[0].Inventory.split(', ');
       const receiverId = mentions.id;
       
-      const sendReg = new RegExp(args.slice(1).join("_"))
+      const sendReg = new RegExp(args.slice(1).join("_"), 'i')
       const senderOwn = sender.filter(pet => pet.match(sendReg))
 
       if(senderOwn.length == 0) return message.channel.send(`You don't own a **${args.slice(1).join(" ")}**`);
@@ -37,7 +37,7 @@ module.exports.run = async (bot, message, args) => {
         if(typeof collected == 'undefined') return;
         const collectedArgs = collected.first().content.split(" ");
         
-        const receiveReg = new RegExp(collectedArgs.join("_"));
+        const receiveReg = new RegExp(collectedArgs.join("_"), 'i');
         const receiverOwn = receiver.filter(pet => pet.match(receiveReg));
         
         if(receiverOwn.length == 0) return message.channel.send(`${mentions} does not own a **${collectedArgs.join(" ")}**`);
@@ -59,7 +59,8 @@ module.exports.run = async (bot, message, args) => {
         .setColor('#9c13f7')
         .setFooter('React with ✅ to accept or ❌ to decline')
         .setTimestamp()
-
+        
+        try {
         await mentions.send(incomingtrade).then((message) => {
           message.react('✅');
           message.react('❌');
@@ -70,24 +71,26 @@ module.exports.run = async (bot, message, args) => {
           message.awaitReactions(filter, { max: 1, time: 60000, errors: ["time"] }).then((collected) => {
             if (typeof collected == 'undefined') return;
             const reaction = collected.first();
-            console.log(reaction.emoji.name == '✅')
             if(reaction.emoji.name == '✅') {
               const sendRemove = remove(sender, senderOwn[0]);
               const senderNewInv = sendRemove.push(receiverOwn[0]);
-              console.log(sendRemove)
               db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", sendRemove.join(', '), senderId)
               
               const receiverRemove = remove(receiver, receiverOwn[0]);
               const receiverNewInv = receiverRemove.push(senderOwn[0]);
               db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", receiverRemove.join(', '), receiverId)
-              message.channel.send(':white_check_mark: **Confirmed!**')
+              message.channel.send(':white_check_mark: **Accepted!!**')
               senderSend.send(`**${mentions.tag}** has accepted your trade request!`);
             } else {
-              return;
+              message.channel.send(':x: **Declined!**')
+              senderSend.send(`**${mentions.tag}** has declined your trade request!`);
             }
           })
-        }).catch((err) => { return message.channel.send(`${mentions} does not have their **DMs** open!`) })
-        message.channel.send(senttraderequest)
+        })
+        message.channel.send(senttraderequest) 
+        } catch (error) {
+          message.channel.send(`${mentions} does not have their **DMs** open!`)
+        }
       })
     })
   });
