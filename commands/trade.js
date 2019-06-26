@@ -20,7 +20,9 @@ module.exports.run = async (bot, message, args) => {
       if (rinv[0].Inventory.length == 0) return message.channel.send(`${mentions} has no **pets** to trade!`)
       
       const sender = sinv[0].Inventory.split(', ');
+      const senderId = message.author.id;
       const receiver = rinv[0].Inventory.split(', ');
+      const receiverId = mentions.id;
       
       const sendReg = new RegExp(args.slice(1).join("_"))
       const senderOwn = sender.filter(pet => pet.match(sendReg))
@@ -58,13 +60,44 @@ module.exports.run = async (bot, message, args) => {
 
         message.channel.send(senttraderequest)
         mentions.send(incomingtrade).then((message) => {
-          message.react('✅').then(() => message.react("❌"))
+          message.react('✅');
+          message.react('❌');
+          
+          const filter = (reaction, user) => {
+            return ['✅', '❌'].includes(reaction.emoji.name) && user.id === message.author.id;
+          }
+          message.awaitReactions(filter, { max: 1, time: 10000, errors: ["time"] }).then((collected) => {
+            const reaction = collected.first();
+            console.log(reaction.emoji.name)
+            if(reaction.emoji.name == '✅') {
+              const sendRemove = remove(sender, senderOwn[0]);
+              const senderNewInv = sendRemove.push(receiverOwn[0]);
+              db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", senderNewInv.join(', '), senderId)
+              
+              const receiverRemove = remove(receiver, receiverOwn[0]);
+              const receiverNewInv = receiverRemove.push(senderOwn[0]);
+              db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", receiverNewInv.join(', '), receiverId)
+              message.channel.send('Confirmed! :white_check_mark:')
+            } else {
+              return;
+            }
+          }).catch(err => { return })
         })
         
         
       }).catch(err => { return })
+      
     })
-  }); 
+  });
+}
+
+function remove(array, search) {
+  let index = array.indexOf(search);
+  if (index !== -1) {
+    array.splice(index, 1);
+  }
+  
+  return array;
 }
 
 module.exports.help = {
