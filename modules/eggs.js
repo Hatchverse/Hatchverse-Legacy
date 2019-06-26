@@ -288,6 +288,13 @@ module.exports.rainbow_egg = rainbow_egg;
 //Events
 function hack_week_egg(message) {
     const hackweekegg = new probability({
+      p: '0.001%',
+      f: () => {
+        message.reply(` <:HackWeekEgg:591827213570277385> you just hatched a Discord **Discord Wumpus**! (**0.001%**) <:Discord_Wumpus:593532095360663592>`);
+        addpet('<:Discord_Wumpus:593532095360663592>', message.author.id)
+        addgems(300, message.author.id)
+      }
+    }, {
       p: '0.004%',
       f: () => {
         message.reply(` <:HackWeekEgg:591827213570277385> you just hatched a Secret **Blurple Doggy**! (**0.004%**) <:Blurple_Doggy:591827146649894913>`);
@@ -333,9 +340,9 @@ function hack_week_egg(message) {
         addpet('<:Hacked_Mouse:591844476826419212>', message.author.id)
       }
     }, {
-      p: '42.114%',
+      p: '42.113%',
       f: () => {
-        message.reply(` <:HackWeekEgg:591827213570277385> you just hatched a Common **Hacked Bunny**! (**42.114%**) <:Hacked_Bunny:591833301669642241>`);
+        message.reply(` <:HackWeekEgg:591827213570277385> you just hatched a Common **Hacked Bunny**! (**42.113%**) <:Hacked_Bunny:591833301669642241>`);
         addpet('<:Hacked_Bunny:591833301669642241>', message.author.id)
       }
     })

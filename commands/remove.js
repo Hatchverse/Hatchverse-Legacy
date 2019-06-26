@@ -20,7 +20,7 @@ module.exports.run = async (bot, message, args) => {
     } else {
       
       const pet = args.join('_');
-      const petReg = new RegExp(pet);
+      const petReg = new RegExp(pet, 'i');
       
       const petFilter = inventory.filter(pet => pet.match(petReg));
       if(petFilter.length == 0) return message.channel.send(`You don't own a **${args.join(" ")}**!`);
