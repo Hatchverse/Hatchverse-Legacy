@@ -32,6 +32,7 @@ module.exports.run = async (bot, message, args) => {
         .then(collected => {
           const reaction = collected.first();
           
+          console.log(reaction.name)
           if (reaction.name = "✅") {
             db.run("UPDATE Users SET Perks = ? WHERE Tag = ?", 'd', chat.author.id)
             db.run("UPDATE Users SET Gems = ? WHERE Tag = ?", gems - 1000, chat.author.id)

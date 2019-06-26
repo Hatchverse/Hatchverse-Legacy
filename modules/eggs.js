@@ -147,7 +147,7 @@ function spikey_egg(message) {
   }, {
     p: '20%',
     f: () => {
-      message.reply(` <:Spikey_Egg:592443923998441475> you just hatched a Unique **Ruby Golem**! (**20%**) <:Frost_Wolf:592448891497218068>`);
+      message.reply(` <:Spikey_Egg:592443923998441475> you just hatched a Unique **Ruby Golem**! (**20%**) <:Ruby_Golem:592443924111425536>`);
       addpet('<:Ruby_Golem:592443924111425536>', message.author.id)
     }
   }, {
