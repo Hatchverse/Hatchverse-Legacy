@@ -16,6 +16,9 @@ module.exports.run = async (bot, message, args) => {
       const senderInv = sender[0].Inventory.split(', ');
       const receiverInv = receiver[0].Inventory.split(', ');
       
+      const senderId = message.author.id;
+      const receiverId = mention.id;
+      
       const sendPet = args.slice(1).join('_');
       const sendReg = new RegExp(sendPet);
       const senderOwn = senderInv.filter(pet => pet.match(sendReg))
@@ -45,16 +48,38 @@ module.exports.run = async (bot, message, args) => {
           
             let incomingtrade = new Discord.RichEmbed()
             .setAuthor('Trade', message.author.displayAvatarURL)
-            .setDescription(`Incoming Trade Request from <@${message.author.id}>`)
+            .setDescription(`Incoming Trade Request from <@${message.author.id}>`) // stop cursing this a christian server
             .addField('You give', receiverOwn[0], true)
             .addField('You receive', senderOwn[0], true)
             .setColor('#9c13f7')
-            .setFooter(bot.user.username)
+            .setFooter('React with ✅ to accept or ❌ to decline')
             .setTimestamp()
             
             mention.send(incomingtrade)
+            .then((message) => {
+              message.react('✅').then(() => message.react("❌"))
+              message.awaitReactions(filter, {max: 1, time: 10000, errors: ['time'] })
+              .then(collected => {
+                const reaction = collected.first();
+
+                if (reaction.emoji.name == "✅") {
+                  // we need to update the inventory arrays and then upload them to the Database.
+                  senderInv.remove(senderOwn[0]); // idk if this deletes all
+                  console.log(senderInv)
+                  // db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", , senderId)
+                } else {
+                  return;
+                }
+              })
+              setTimeout(() => { 
+                message.delete(); 
+              }, 10000);
+            })
           
-            //db stuff here
+            const filter = (reaction, user) => {
+              return ['✅', '❌'].includes(reaction.emoji.name) && user.id === message.author.id;
+            }
+            
           })
         })
       })
