@@ -64,10 +64,14 @@ module.exports.run = async (bot, message, args) => {
 
                 if (reaction.emoji.name == "✅") {
                   // we need to update the inventory arrays and then upload them to the Database.
-                  const senderNewInv = remove(senderInv, senderOwn[0]);
-                  const recieverNewInv = remove(receiverInv, receiverOwn[0])
+                  const senderRemove = remove(senderInv, senderOwn[0]);
+                  const receiverRemove = remove(receiverInv, receiverOwn[0])
                   
-                  db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", senderNewInv, senderId)
+                  const senderNewInv = senderRemove.push(receiverOwn[0]); //
+                  const receiverNewInv = receiverRemove.push(senderOwn[0]); // aaa dirty code this is beta rewrite later| also what is wrong with code? | not cool is it? :thinking:
+                  
+                  db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", senderNewInv.toString().split(',').join(', '), senderId)
+                  db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", receiverNewInv.toString().split(',').join(', '), receiverId)
                 } else {
                   return;
                 }
