@@ -64,16 +64,14 @@ module.exports.run = async (bot, message, args) => {
 
                 if (reaction.emoji.name == "✅") {
                   // we need to update the inventory arrays and then upload them to the Database.
-                  senderInv.remove(senderOwn[0]); // idk if this deletes all
-                  console.log(senderInv)
-                  // db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", , senderId)
+                  const senderNewInv = remove(senderInv, senderOwn[0]);
+                  const recieverNewInv = remove(receiverInv, receiverOwn[0])
+                  
+                  db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", senderNewInv, senderId)
                 } else {
                   return;
                 }
               })
-              setTimeout(() => { 
-                message.delete(); 
-              }, 10000);
             })
           
             const filter = (reaction, user) => {
@@ -86,16 +84,14 @@ module.exports.run = async (bot, message, args) => {
   })
 }
 
-Array.prototype.remove = function() {
-    var what, a = arguments, L = a.length, ax;
-    while (L && this.length) {
-        what = a[--L];
-        while ((ax = this.indexOf(what)) !== -1) {
-            this.splice(ax, 1);
-        }
-    }
-    return this;
-};
+function remove(array, search) {
+  let index = array.indexOf(search);
+  if (index !== -1) {
+    array.splice(index, 1);
+  }
+  
+  return array;
+}
 
 module.exports.help = {
   name: "trade"
