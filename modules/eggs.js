@@ -318,7 +318,7 @@ function hack_week_egg(message) {
       p: '10%',
       f: () => {
         message.reply(` <:HackWeekEgg:591827213570277385> you just hatched a Rare **Hacked Angel**! (**10%**) <:Hacked_Angel:591836197723045898`);
-        addpet('<:Hacked_Angel:591836197723045898', message.author.id)
+        addpet('<:Hacked_Angel:591836197723045898>', message.author.id)
       }
     }, {
       p: '15.772%',
