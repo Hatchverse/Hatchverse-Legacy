@@ -10,7 +10,7 @@ module.exports.run = async (bot, message, args) => {
   if(!message.content.startsWith(config.prefix)) return;
   
   db.all(`SELECT * FROM Users WHERE Tag = ${message.author.id}`, (err, items) => {
-    if(items == '') return message.channel.send('You have no pets! Use `()open Beginner Egg` to get started')
+    if(items[0].length == 0) return message.channel.send('You have no pets! Use `()open Beginner Egg` to get started')
     let perks = 'None';
     if (items[0].Perks == 'd') perks = 'Double Egg';
     if (items[0].Perks == 't') perks = 'Triple Egg';
