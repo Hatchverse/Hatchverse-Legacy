@@ -15,9 +15,16 @@ module.exports.run = async (bot, message, args) => {
     // ()trade @whatehrerh :doggy: :kitty:
       const senderInv = sender[0].Inventory.split(', ');
       const receiverInv = receiver[0].Inventory.split(', ');
-      const reg = new RegExp('/' + args[1] + '/g');
-      console.log(reg)
-      message.channel.send(senderInv.filter(pet => reg));
+      
+      const sendPet = args.slice(1).join('_');
+      const receivePet = args.slice(2).join('_');
+      
+      const reg = new RegExp(pet);
+      const senderOwn = senderInv.filter(pet => pet.match(reg))
+      const receiverOwn = receiverInv.filter(pet => pet.match(reg))
+      
+      if(senderOwn.length == 0) return message.channel.send(`You don't own **${pet}**`);
+      if(receiverOwn.length == 0) return message.channel.send(`${mention} does not own ${}`)
     })
   })
 }
