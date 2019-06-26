@@ -21,6 +21,7 @@ module.exports.run = async (bot, message, args) => {
       
       const sender = sinv[0].Inventory.split(', ');
       const senderId = message.author.id;
+      const senderSend = message.author;
       const receiver = rinv[0].Inventory.split(', ');
       const receiverId = mentions.id;
       
@@ -64,20 +65,23 @@ module.exports.run = async (bot, message, args) => {
           message.react('❌');
           
           const filter = (reaction, user) => {
-            return ['✅', '❌'].includes(reaction.emoji.name) && user.id === message.author.id;
+            return ['✅', '❌'].includes(reaction.emoji.name) && user.id === mentions.id;
           }
-          message.awaitReactions(filter, { max: 1, time: 10000, errors: ["time"] }).then((collected) => {
+          message.awaitReactions(filter, { max: 1, time: 60000, errors: ["time"] }).then((collected) => {
+            
             const reaction = collected.first();
-            console.log(reaction.emoji.name)
+            console.log(reaction.emoji.name == '✅')
             if(reaction.emoji.name == '✅') {
               const sendRemove = remove(sender, senderOwn[0]);
               const senderNewInv = sendRemove.push(receiverOwn[0]);
-              db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", senderNewInv.join(', '), senderId)
+              console.log(sendRemove)
+              db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", sendRemove.join(', '), senderId)
               
               const receiverRemove = remove(receiver, receiverOwn[0]);
               const receiverNewInv = receiverRemove.push(senderOwn[0]);
-              db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", receiverNewInv.join(', '), receiverId)
-              message.channel.send('Confirmed! :white_check_mark:')
+              db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", receiverRemove.join(', '), receiverId)
+              message.channel.send(':white_check_mark: **Confirmed!**')
+              senderSend.send(`**${mentions.tag}** has accepted your trade request!`);
             } else {
               return;
             }
