@@ -16,7 +16,7 @@ module.exports.run = async (bot, message, args) => {
     
     if(args[0].toLowerCase() == 'all') {
       db.run("UPDATE Users SET Inventory = '' WHERE Tag = ?", message.author.id)
-      message.channel.send(`Successfully removed **${inventory.split(', ').length}** pets!`);
+      message.channel.send(`Successfully removed **${inventory.length}** pets!`);
     } else {
       
       const pet = args.join('_');

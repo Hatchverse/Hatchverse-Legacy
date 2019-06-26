@@ -14,6 +14,8 @@ module.exports.run = async (bot, message, args) => {
     let perks = 'None';
     if (items[0].Perks == 'd') perks = 'Double Egg';
     if (items[0].Perks == 't') perks = 'Triple Egg';
+    
+    const space = (items[0].Inventory == '') ? 0 : items[0].Inventory.split(', ').length;
   
     try {
       let embed = new Discord.RichEmbed()
@@ -21,7 +23,7 @@ module.exports.run = async (bot, message, args) => {
       .setColor('#9c13f7')
       .setDescription(items[0].Inventory.split(', ').join(""))
       .addField('Eggs Opened', `:egg: ${items[0].Eggs}`, true)
-      .addField('Space', `:package: ${items[0].Inventory.split(', ').length}/50`, true)
+      .addField('Space', `:package: ${space}/50`, true)
       .addField('Gems', `<:Gem:592857805380255745> ${items[0].Gems}`, true)
       .addField('Perks', `:arrow_up: ${perks}`, true)
       .setFooter(bot.user.username)
