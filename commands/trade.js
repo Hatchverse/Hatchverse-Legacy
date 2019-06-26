@@ -43,6 +43,17 @@ module.exports.run = async (bot, message, args) => {
             
             message.channel.send(senttraderequest)
           
+            let incomingtrade = new Discord.RichEmbed()
+            .setAuthor('Trade', message.author.displayAvatarURL)
+            .setDescription(`Incoming Trade Request from <@${message.author.id}>`)
+            .addField('You give', receiverOwn[0], true)
+            .addField('You receive', senderOwn[0], true)
+            .setColor('#9c13f7')
+            .setFooter(bot.user.username)
+            .setTimestamp()
+            
+            mention.send(incomingtrade)
+          
             //db stuff here
           })
         })
