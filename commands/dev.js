@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+ const Discord = require('discord.js');
 const config = require('../config.json');
 const fs = module.require("fs")
 const dbFile = global.db;
