@@ -75,8 +75,8 @@ module.exports.run = async (bot, message, args) => {
                   
                   console.log('this is gay2')
                   
-                  db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", senderNewInv.split(',').join(', '), senderId)
-                  db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", receiverNewInv.split(',').join(', '), receiverId) // dont break my inventory nerd
+                  db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", senderNewInv.join(', '), senderId)
+                  db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", receiverNewInv.join(', '), receiverId) // dont break my inventory nerd
                 } else {
                   return;
                 }
