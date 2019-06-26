@@ -33,7 +33,7 @@ module.exports.run = async (bot, message, args) => {
       message.channel.send('You **receive**?').then(m => m.delete(10000));
       
       const filter = m => m.author.id === message.author.id;
-      message.channel.awaitMessages(filter, { max: 1, time: 10000}).then((collected) => {
+      message.channel.awaitMessages(filter, { max: 1, time: 10000}).then(async (collected) => {
         if(typeof collected == 'undefined') return;
         const collectedArgs = collected.first().content.split(" ");
         
@@ -53,16 +53,14 @@ module.exports.run = async (bot, message, args) => {
         
         let incomingtrade = new Discord.RichEmbed()
         .setAuthor('Trade', message.author.displayAvatarURL)
-        .setDescription(`Incoming Trade Request from <@${message.author.id}>`) // stop cursing this a christian server
+        .setDescription(`Incoming Trade Request from <@${message.author.id}>`)
         .addField('You give', receiverOwn[0], true)
         .addField('You receive', senderOwn[0], true)
         .setColor('#9c13f7')
         .setFooter('React with ✅ to accept or ❌ to decline')
         .setTimestamp()
 
-        message.channel.send(senttraderequest)
-        var chat = message.channel
-        mentions.send(incomingtrade).then((message) => {
+        await mentions.send(incomingtrade).then((message) => {
           message.react('✅');
           message.react('❌');
           
@@ -70,7 +68,7 @@ module.exports.run = async (bot, message, args) => {
             return ['✅', '❌'].includes(reaction.emoji.name) && user.id === mentions.id;
           }
           message.awaitReactions(filter, { max: 1, time: 60000, errors: ["time"] }).then((collected) => {
-            if (typ)
+            if (typeof collected == 'undefined') return;
             const reaction = collected.first();
             console.log(reaction.emoji.name == '✅')
             if(reaction.emoji.name == '✅') {
@@ -87,10 +85,10 @@ module.exports.run = async (bot, message, args) => {
             } else {
               return;
             }
-          }).catch(err => { return })
-        }) 
+          })
+        }).catch((err) => { return message.channel.send(`${mentions} does not have their **DMs** open!`) })
+        message.channel.send(senttraderequest)
       })
-      
     })
   });
 }
