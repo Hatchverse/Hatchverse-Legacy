@@ -6,7 +6,7 @@ This bot is automatically hosted, and does not require to be hosted by Discord. 
 Since this is a Glitch project, its easy to get up and running. In order to start your setup, you need to first `remix` the project. To remix click [here](https://glitch.com/edit/#!/remix/hatchverse). Once you have finished doing that, go to your `.env` file. It should have a key next to it. Once you have found it, you should see `TOKEN=`. This is where the bot token will go. Copy and paste your bot token into the `.env` file. It should look something like `TOKEN=mydiscordbottoken`. Tada! Just like that your bot is up and ready!
 # Info 
 ****
-- Prefix: `()` | Supposted to look like an egg.
+- Prefix: `()` | Supposed to look like an egg.
 - Started Project: `June 24th, 2019`
 - Help Command: `()help`
 - Current Version: `1.7.4`
