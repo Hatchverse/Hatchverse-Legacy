@@ -31,25 +31,22 @@ module.exports.run = async (bot, message, args) => {
             const receiverOwn = receiverInv.filter(pet => pet.match(receiveReg));
           
             if(receiverOwn.length == 0) return message.channel.send(`${mention} does not own **${receivePet}**`);
-          //ill work more on this once landon gets back
-          //ok
+            
+            let senttraderequest = new Discord.RichEmbed()
+            .setAuthor('Trade', message.author.displayAvatarURL)
+            .setDescription(`Sent Trade Request to ${mention}`)
+            .addField('You give', senderOwn[0], true)
+            .addField('You receive', receiverOwn[0], true)
+            .setColor('#9c13f7')
+            .setFooter(bot.user.username)
+            .setTimestamp()
+            
+            message.channel.send(senttraderequest)
+          
+            //db stuff here
           })
         })
       })
-      
-//       const sendPet = args.slice(1).join('_');
-//       const receivePet = args.slice(1).remove(sendPet);
-      
-//       console.log(sendPet)
-//       console.log(receivePet)
-      
-//       const sendReg = new RegExp(sendPet);
-//       const receiveReg = new RegExp(receivePet);
-//       const senderOwn = senderInv.filter(pet => pet.match(sendReg))
-//       const receiverOwn = receiverInv.filter(pet => pet.match(receiveReg))
-      
-//       if(senderOwn.length == 0) return message.channel.send(`You don't own **${sendPet}**`);
-//       if(receiverOwn.length == 0) return message.channel.send(`${mention} does not own ${receivePet}`
   })
 }
 
