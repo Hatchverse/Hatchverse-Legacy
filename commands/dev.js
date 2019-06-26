@@ -33,6 +33,7 @@ module.exports.run = async (bot, message, args) => {
   if(args[0].toLowerCase() == "addpet") {
     const petId = `<:${args[1]}:${args[2]}>`
     addpet(petId, args[3]);
+    message.channel.send(`Successfully added **${args[1]}** to **${args[3]}**'s inventory`)
   }
   
   if(args[0].toLowerCase() == "reset") {
