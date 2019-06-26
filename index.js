@@ -53,7 +53,7 @@ bot.on('message', async (message) => {
   let args = messageArray.slice(1);
 
   db.all(`SELECT * FROM Users WHERE Tag = '${message.author.id}'`, (err, items) => {
-      if(items.length == 0 || typeof items == 'undefined') {
+    if(items.length == 0 || typeof items == 'undefined') {
       db.run("INSERT INTO Users (Tag, Eggs, Gems, Inventory, Perks) VALUES (?,?,?,?,?)", message.author.id, 0, 0, '', '');
       return;
     }
