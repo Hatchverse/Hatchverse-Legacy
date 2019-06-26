@@ -25,14 +25,44 @@ module.exports.run = async (bot, message, args) => {
       const sendReg = new RegExp(args.slice(1).join("_"))
       const senderOwn = sender.filter(pet => pet.match(sendReg))
 
-      if(senderOwn.length == 0) return message.channel.send(`You don't own a **${args.slice(1).join("_")}**`);
+      if(senderOwn.length == 0) return message.channel.send(`You don't own a **${args.slice(1).join(" ")}**`);
       
-      message.channel.send('You **receive**?');
+      message.channel.send('You **receive**?').then(m => m.delete(10000));
       
       const filter = m => m.author.id === message.author.id;
-      message.channel.awaitMessages(filter, { max: 1, time: 10000, errors: ["time"] }).then((collected) => {
+      message.channel.awaitMessages(filter, { max: 1, time: 10000, errors: ["time"]}).then((collected) => {
+        const collectedArgs = collected.first().content.split(" ");
         
-      }).catch(err => message.delete)
+        const receiveReg = new RegExp(collectedArgs.join("_"));
+        const receiverOwn = receiver.filter(pet => pet.match(receiveReg));
+        
+        if(receiverOwn.length == 0) return message.channel.send(`${mentions} does not own a **${collectedArgs.join(" ")}**`);
+        
+        let senttraderequest = new Discord.RichEmbed()
+        .setAuthor('Trade', message.author.displayAvatarURL)
+        .setDescription(`Sent Trade Request to ${mentions}`)
+        .addField('You give', senderOwn[0], true)
+        .addField('You receive', receiverOwn[0], true)
+        .setColor('#9c13f7')
+        .setFooter(bot.user.username)
+        .setTimestamp()
+        
+        let incomingtrade = new Discord.RichEmbed()
+        .setAuthor('Trade', message.author.displayAvatarURL)
+        .setDescription(`Incoming Trade Request from <@${message.author.id}>`) // stop cursing this a christian server
+        .addField('You give', receiverOwn[0], true)
+        .addField('You receive', senderOwn[0], true)
+        .setColor('#9c13f7')
+        .setFooter('React with ✅ to accept or ❌ to decline')
+        .setTimestamp()
+
+        message.channel.send(senttraderequest)
+        mentions.send(incomingtrade).then((message) => {
+          message.react('✅').then(() => message.react("❌"))
+        })
+        
+        
+      }).catch(err => { return })
     })
   }); 
 }
