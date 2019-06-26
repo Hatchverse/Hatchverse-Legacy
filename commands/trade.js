@@ -15,7 +15,8 @@ module.exports.run = async (bot, message, args) => {
     // ()trade @whatehrerh :doggy: :kitty:
       const senderInv = sender[0].Inventory.split(', ');
       const receiverInv = receiver[0].Inventory.split(', ');
-      if(senderInv.includes(``)) return message.channel.send('Found gay mom')
+      const reg = new regexp('*.' + args[1] + '*.');
+      message.channel.send(senderInv.filter(pet => ));
     })
   })
 }
