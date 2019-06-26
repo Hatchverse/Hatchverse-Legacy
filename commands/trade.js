@@ -33,7 +33,8 @@ module.exports.run = async (bot, message, args) => {
       message.channel.send('You **receive**?').then(m => m.delete(10000));
       
       const filter = m => m.author.id === message.author.id;
-      message.channel.awaitMessages(filter, { max: 1, time: 10000, errors: ["time"]}).then((collected) => {
+      message.channel.awaitMessages(filter, { max: 1, time: 10000}).then((collected) => {
+        if(typeof collected == 'undefined') return;
         const collectedArgs = collected.first().content.split(" ");
         
         const receiveReg = new RegExp(collectedArgs.join("_"));
@@ -60,6 +61,7 @@ module.exports.run = async (bot, message, args) => {
         .setTimestamp()
 
         message.channel.send(senttraderequest)
+        var chat = message.channel
         mentions.send(incomingtrade).then((message) => {
           message.react('✅');
           message.react('❌');
@@ -68,7 +70,7 @@ module.exports.run = async (bot, message, args) => {
             return ['✅', '❌'].includes(reaction.emoji.name) && user.id === mentions.id;
           }
           message.awaitReactions(filter, { max: 1, time: 60000, errors: ["time"] }).then((collected) => {
-            
+            if (typ)
             const reaction = collected.first();
             console.log(reaction.emoji.name == '✅')
             if(reaction.emoji.name == '✅') {
@@ -86,10 +88,8 @@ module.exports.run = async (bot, message, args) => {
               return;
             }
           }).catch(err => { return })
-        })
-        
-        
-      }).catch(err => { return })
+        }) 
+      })
       
     })
   });
