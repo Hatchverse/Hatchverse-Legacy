@@ -17,18 +17,22 @@ module.exports.run = async (bot, message, args) => {
       const receiverInv = receiver[0].Inventory.split(', ');
       
       const sendPet = args.slice(1).join('_');
-      let receivePet;
-    
       const sendReg = new RegExp(sendPet);
-      const receiveReg = new RegExp(receivePet)
       const senderOwn = senderInv.filter(pet => pet.match(sendReg))
       
       if(senderOwn.length == 0) return message.channel.send(`You don't own **${sendPet}**`);
       
       message.channel.send('You receive?').then(() => {
-        message.channel.awaitMessages(response => message.content, { max: 1, time: 10000, erros: ['time'] })
+        message.channel.awaitMessages(response => message.content, { max: 1, time: 10000, errors: ['time'] })
           .then((collected) => {
-            
+            const collectedArgs = collected.first().content.split(" ");
+            const receivePet = collectedArgs.join("_");
+            const receiveReg = new RegExp(receivePet);
+            const receiverOwn = receiverInv.filter(pet => pet.match(receiveReg));
+          
+            console.log(receiverOwn)
+          
+            if(receiverOwn.length == 0) return message.channel.send(`${mention} does not own **${receivePet}**`);
           })
         })
       })
@@ -45,8 +49,7 @@ module.exports.run = async (bot, message, args) => {
 //       const receiverOwn = receiverInv.filter(pet => pet.match(receiveReg))
       
 //       if(senderOwn.length == 0) return message.channel.send(`You don't own **${sendPet}**`);
-//       if(receiverOwn.length == 0) return message.channel.send(`${mention} does not own ${receivePet}`)
-    })
+//       if(receiverOwn.length == 0) return message.channel.send(`${mention} does not own ${receivePet}`
   })
 }
 
