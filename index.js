@@ -67,7 +67,10 @@ bot.on('message', async (message) => {
 
 })
 
+bot.on("guildMemberAdd", member => {
+  bot.setActivity(`${bot.users.size} eggheads 🥚`, {type: "WATCHING"})
+})
+
 bot.login(process.env.TOKEN)
 
-var listener = app.listen(process.env.PORT, function() {
-});
+app.listen(process.env.PORT)
