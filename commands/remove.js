@@ -25,18 +25,18 @@ module.exports.run = async (bot, message, args) => {
       const petReg = new RegExp(pet, 'i');
 
       const petFilter = inventory.find(pet => pet.match(petReg));
-      if(!petFilter) return message.channel.send(`You don't own a **${args.slice(1).join(" ")}**!`);
+      if(!petFilter) return message.channel.send(`\`Error:\` You don't own a **${args.slice(1).join(" ")}**!`);
 
       const newInv = remove(inventory, petFilter);
       db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", newInv.join(", "), message.author.id)
-      message.channel.send(`Successfuly removed **${1}** pets!`);
+      message.channel.send(`Successfuly removed **1** pet!`);
     } else {
       //Remove all pet names
       const pet = args.join('_');
       const petReg = new RegExp(pet, 'i');
 
       const petFilter = inventory.filter(pet => pet.match(petReg));
-      if(petFilter.length == 0) return message.channel.send(`You don't own a **${args.join(" ")}**!`);
+      if(petFilter.length == 0) return message.channel.send(`\`Error:\` You don't own a **${args.join(" ")}**!`);
 
       const newInv = inventory.remove(petFilter[0]);
       db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", newInv.join(", "), message.author.id)

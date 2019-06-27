@@ -7,7 +7,8 @@ const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database(dbFile);
 
 module.exports.run = async (bot, message, args) => {
-  if(!message.content.startsWith(config.prefix)) return;  
+  if(!message.content.startsWith(config.prefix)) return;
+  if(!args[0])
   let i = 1;
   
   if(args[0].toLowerCase() == 'eggs') {

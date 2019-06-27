@@ -10,9 +10,9 @@ module.exports.run = async (bot, message, args) => {
   if(!message.content.startsWith(config.prefix)) return;
   
   //Trading if statments
-  if(!message.mentions.users.first()) return message.channel.send('Please mention a **user**!');
-  if(message.mentions.users.first().id == message.author.id) return message.channel.send("You can not trade **yourself**!");
-  if(!args[1]) return message.channel.send('Please specify a **pet** to give!');
+  if(!message.mentions.users.first()) return message.channel.send('`Syntax Error:` ()trade **<mention user>** <pet name to give>');
+  if(message.mentions.users.first().id == message.author.id) return message.channel.send("`Error:` You can not trade **yourself**!");
+  if(!args[1]) return message.channel.send('`Syntax Error:` ()trade <mention user> **<pet name to give>**');
 
   //Mention const
   const mentions = message.mentions.users.first();
@@ -21,8 +21,8 @@ module.exports.run = async (bot, message, args) => {
   db.all(`SELECT Inventory FROM Users WHERE Tag = '${message.author.id}'`, (err, sinv) => {
     db.all(`SELECT Inventory FROM Users WHERE Tag = '${mentions.id}'`, (err, rinv) => {
       //Trading if statments
-      if (sinv[0].Inventory.length == 0) return message.channel.send('You have no **pets** to trade!')
-      if (rinv[0].Inventory.length == 0) return message.channel.send(`${mentions} has no **pets** to trade!`)
+      if (sinv[0].Inventory.length == 0) return message.channel.send('`Error:` You have no **pets** to trade!')
+      if (rinv[0].Inventory.length == 0) return message.channel.send(`\`Error:\` ${mentions} has no **pets** to trade!`)
       
       //Consts
       const sender = sinv[0].Inventory.split(', ');
@@ -34,7 +34,7 @@ module.exports.run = async (bot, message, args) => {
       const sendReg = new RegExp(args.slice(1).join("_"), 'i')
       const senderOwn = sender.filter(pet => pet.match(sendReg))
 
-      if(senderOwn.length == 0) return message.channel.send(`You don't own a **${args.slice(1).join(" ")}**`);
+      if(senderOwn.length == 0) return message.channel.send(`\`Error:\` You don't own a **${args.slice(1).join(" ")}**`);
       
       message.channel.send('You **receive**?').then(m => m.delete(10000));
       
@@ -48,7 +48,7 @@ module.exports.run = async (bot, message, args) => {
         const receiverOwn = receiver.filter(pet => pet.match(receiveReg));
         
         //If does not own return
-        if(receiverOwn.length == 0) return message.channel.send(`${mentions} does not own a **${collectedArgs.join(" ")}**`);
+        if(receiverOwn.length == 0) return message.channel.send(`\`Error:\` ${mentions} does not own a **${collectedArgs.join(" ")}**`);
         
         //Sent request embed
         let senttraderequest = new Discord.RichEmbed()
@@ -100,7 +100,7 @@ module.exports.run = async (bot, message, args) => {
         })
         message.channel.send(senttraderequest) 
         } catch (error) {
-          message.channel.send(`${mentions} does not have their **DMs** open!`)
+          message.channel.send(`\`Error:\` ${mentions} does not have their **DMs** open!`)
         }
       })
     })
