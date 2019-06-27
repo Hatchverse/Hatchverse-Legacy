@@ -15,6 +15,7 @@ module.exports.run = async (bot, message, args) => {
     if (items.length == 0) return message.channel.send(`${message.mentions.users.first()} has no **stats**!`);
     
     const pets = (items[0].Inventory == '') ? 0 : items[0].Inventory.split(', ').length;
+    const vouches = (items[0].Vouches == '') ? 0 : items[0].Vouches.split(', ').length;
   
     let embed = new Discord.RichEmbed()
     .setAuthor(`${message.mentions.users.first().username}'s Stats`, message.mentions.users.first().displayAvatarURL)
@@ -22,6 +23,7 @@ module.exports.run = async (bot, message, args) => {
     .addField('Eggs Opened', `:egg: ${items[0].Eggs}`, true)
     .addField('Gems', `<:Gem:592857805380255745> ${items[0].Gems}`, true)
     .addField('Pets', `:dog: ${pets}`, true)
+    .addField('Vouches', `:ballot_box_with_check: ${vouches}`, true)
     .setFooter(bot.user.username)
     .setTimestamp()
     
