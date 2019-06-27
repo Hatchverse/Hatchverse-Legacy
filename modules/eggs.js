@@ -283,6 +283,18 @@ module.exports.rainbow_egg = rainbow_egg;
 
 
 
+function stonks_egg(message) {
+const stonksegg = new probability({
+      p: '100%',
+      f: () => {
+        message.reply(` <:Stonks:593601567450464267> you just hatched a Stonk **Stonks**! (**0.001%**) <:Stonks:593601567450464267>`);
+        addpet('<:Stonks:593601567450464267>', message.author.id)
+      }
+    })
+  
+  return hackweekegg();
+}
+
 
 
 //Events
