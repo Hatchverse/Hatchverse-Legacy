@@ -9,6 +9,7 @@ const db = new sqlite3.Database(dbFile);
 module.exports.run = async (bot, message, args) => {
   if(!message.content.startsWith(config.prefix)) return;
   
+  //Help message
   let embed = new Discord.RichEmbed()
   .setAuthor('Help/Commands', bot.user.displayAvatarURL)
   .addField('Eggs', '`()open <egg name>` - Opens an egg\n`()eggs` - Sends a message with every egg and its requirements')

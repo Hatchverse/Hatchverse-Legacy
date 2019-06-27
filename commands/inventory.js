@@ -9,12 +9,16 @@ const db = new sqlite3.Database(dbFile);
 module.exports.run = async (bot, message, args) => {
   if(!message.content.startsWith(config.prefix)) return;
   
+  //DB select
   db.all(`SELECT * FROM Users WHERE Tag = ${message.author.id}`, (err, items) => {
-    if(items[0].length == 0) return message.channel.send('You have no pets! Use `()open Beginner Egg` to get started')
+    if(items[0].length == 0) return message.channel.send('You have no pets! Use `()open Beginner Egg` to get started');
+    
+    //Perks
     let perks = 'None';
     if (items[0].Perks == 'd') perks = 'Double Egg';
     if (items[0].Perks == 't') perks = 'Triple Egg';
     
+    const perks = (items[0].Perks == 'd') ? 'Double Egg' : ()
     const space = (items[0].Inventory == '') ? 0 : items[0].Inventory.split(', ').length;
     const vouches = (items[0].Vouches == '') ? 0 : items[0].Vouches.split(', ').length;
   

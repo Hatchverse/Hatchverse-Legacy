@@ -57,8 +57,8 @@ module.exports.run = async (bot, message, args) => {
       message.channel.send(`Successfully reset user **${args[1]}**`)
       return;
     } else {
-    db.run('DELETE FROM Users')
-    message.channel.send(`Successfully reset Hatchverse DB`)
+      db.run('DELETE FROM Users')
+      message.channel.send(`Successfully reset Hatchverse DB`)
     }
   }
   if(args[0].toLowerCase() == "js") {

@@ -10,7 +10,10 @@ module.exports.run = async (bot, message, args) => {
   if(!message.content.startsWith(config.prefix)) return;
   
   db.all(`SELECT * FROM Users WHERE Tag = '${message.author.id}'`, (err, items) => {
+    //DB const
     const eggs = parseInt(items[0].Eggs);
+    
+    //If's for unlock emoji
     const beginneregg = eggs >= 0 ? ':unlock:' : ':lock:';
     const spottedegg = eggs >= 50 ? ':unlock:' : ':lock:';
     const iceshardegg = eggs >= 100 ? ':unlock:' : ':lock:';
