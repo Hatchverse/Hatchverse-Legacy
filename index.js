@@ -52,13 +52,12 @@ bot.on('message', async (message) => {
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
-
-  console.log('bruh')
-  await db.all(`SELECT * FROM Users WHERE Tag = '${message.author.id}'`, (err, items) => {
+  
+  db.all(`SELECT * FROM Users WHERE Tag = '${message.author.id}'`, (err, items) => {
     if(message.author.bot) return;
+    console.log(items.length)
     if(items.length == 0 || typeof items == 'undefined') {
       db.run("INSERT INTO Users (Tag, Eggs, Gems, Inventory, Perks, Vouches, TradePending) VALUES (?,?,?,?,?,?,?)", message.author.id, 0, 0, '', '', '', false);
-      return;
     }
   })
   
