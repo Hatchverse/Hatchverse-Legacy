@@ -281,24 +281,17 @@ function rainbow_egg(message) {
 
 module.exports.rainbow_egg = rainbow_egg;
 
+//New Egg Here
 
 
-function stonks_egg(message) {
-const stonksegg = new probability({
-      p: '100%',
-      f: () => {
-        message.reply(` <:Stonks_Egg:593603648181764117> you just hatched a Stonk **Stonks**! (**100%**) <:Stonks:593601567450464267>`);
-        addpet('<:Stonks:593601567450464267>', message.author.id)
-      }
-    })
-  
-  return stonksegg();
-}
-
-module.exports.stonks_egg = stonks_egg;
 
 
-//Events
+
+
+
+
+
+//Event Eggs
 function hack_week_egg(message) {
     const hackweekegg = new probability({
       p: '0.001%',

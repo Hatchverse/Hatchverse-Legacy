@@ -37,30 +37,14 @@ module.exports.run = async (bot, message, args) => {
   }
   
   if(args[0].toLowerCase() == "perks") { // disgusting clean up please 
-    var triples = [
-      'triple egg',
-      'triple',
-      't'
-    ]
-    var doubles = [
-      'double egg',
-      'double',
-      'd'
-    ]
-    
-    if(triples.includes(args[1].toLowerCase())) var perks = 't'
-    if(doubles.includes(args[1].toLowerCase())) var perks = 'd'
-    if(args[1] === 'remove') var perks = ''
-    if (perks === 't') var display = 'Triple Egg'
-    if (perks === 'd') var display = 'Double Egg'
-    
-    
-    db.run(`UPDATE Users SET Perks = '${perks}' WHERE Tag = '${args[2]}'`);
-   if(perks === 't' || perks === 'd') {
-     message.channel.send(`Successfully added perk **${display}** to user **${args[2]}**`);
-   } else if(perks === '') {
-     message.channel.send(`Successfully removed perks from user **${args[2]}**`)
-   }
+    switch (args[1].toLowerCase()) {
+      case 'triple':
+        db.run(`UPDATE Users SET Perks = 't' WHERE Tag = '${args[2]}'`);
+        break;
+      case 'double':
+        db.run(`UPDATE Users SET Perks = 'd' WHERE Tag = '${args[2]}'`)
+        break;
+    }
   }
   
   if(args[0].toLowerCase() == "reset") {

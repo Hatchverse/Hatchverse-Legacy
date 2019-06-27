@@ -16,8 +16,10 @@ module.exports.run = async (bot, message, args) => {
 
     
     if(args.join(" ").toLowerCase() == 'double egg') {
+      //
       if(perks == 'd' || perks == "t") return message.channel.send('You already own **Double Egg** perk!');
       if(gems < 1000) return message.channel.send(`Not enough **Gems** <:Gem:592857805380255745>! You need **${1000 - gems}** more!`);
+      
       let embed = new Discord.RichEmbed()
       .setAuthor('Buy', bot.user.displayAvatarURL)
       .setDescription('Are you sure you want to buy **Double Egg** for <:Gem:592857805380255745> **1000**?')
