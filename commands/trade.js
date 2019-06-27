@@ -18,10 +18,10 @@ module.exports.run = async (bot, message, args) => {
   const mentions = message.mentions.users.first();
 
   //DB
-  db.all(`SELECT Inventory FROM Users WHERE Tag = '${message.author.id}'`, (err, sinv) => {
-    if(sinv[0].TradePending == true) return message.channel.send('`Error:` You already have a trade **pending**!');
-    db.all(`SELECT Inventory FROM Users WHERE Tag = '${mentions.id}'`, (err, rinv) => {
+  db.all(`SELECT * FROM Users WHERE Tag = '${message.author.id}'`, (err, sinv) => {
+    db.all(`SELECT * FROM Users WHERE Tag = '${mentions.id}'`, (err, rinv) => {
       //Trading if statments
+      if(sinv[0].TradePending == true) return message.channel.send('`Error:` You already have a trade **pending**!');
       if (sinv[0].Inventory.length == 0) return message.channel.send('`Error:` You have no **pets** to trade!')
       if (rinv[0].Inventory.length == 0) return message.channel.send(`\`Error:\` ${mentions} has no **pets** to trade!`)
       
@@ -81,7 +81,7 @@ module.exports.run = async (bot, message, args) => {
             return ['✅', '❌'].includes(reaction.emoji.name) && user.id === mentions.id;
           }
           
-          db.run("UPDATE Users SET TradePending = ? WHERE Tag = ?", 'true', senderId);
+          db.run("UPDATE Users SET TradePending = ? WHERE Tag = ?", true, senderId);
           
           message.awaitReactions(filter, { max: 1, time: 60000, errors: ["time"] }).then((collected) => {
             if (typeof collected == 'undefined') return;
