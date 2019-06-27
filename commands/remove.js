@@ -10,12 +10,16 @@ module.exports.run = async (bot, message, args) => {
   if(!message.content.startsWith(config.prefix)) return;
   
   db.all(`SELECT Inventory FROM Users WHERE Tag = '${message.author.id}'`, (err, items) => {
+    //DB consts
     const inventory = items[0].Inventory.split(', ');
     
+    //Remove all
     if(args[0].toLowerCase() == 'all') {
       db.run("UPDATE Users SET Inventory = '' WHERE Tag = ?", message.author.id)
       message.channel.send(`Successfully removed **${inventory.length}** pets!`);
     }
+    
+    //Remove single
     if(args[0].toLowerCase() == 'single') {
       const pet = args.slice(1).join('_');
       const petReg = new RegExp(pet, 'i');
@@ -27,6 +31,7 @@ module.exports.run = async (bot, message, args) => {
       db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", newInv.join(", "), message.author.id)
       message.channel.send(`Successfuly removed **${1}** pets!`);
     } else {
+      //Remove all pet names
       const pet = args.join('_');
       const petReg = new RegExp(pet, 'i');
 
@@ -51,6 +56,7 @@ Array.prototype.remove = function() {
   }
   return this;
 };
+
 //Array removing functions
 function remove(array, search) {
   let index = array.indexOf(search);

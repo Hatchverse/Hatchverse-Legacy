@@ -8,17 +8,23 @@ const db = new sqlite3.Database(dbFile);
 
 module.exports.run = async (bot, message, args) => {
   if(!message.content.startsWith(config.prefix)) return;
+  
+  //Trading if statments
   if(!message.mentions.users.first()) return message.channel.send('Please mention a **user**!');
   if(message.mentions.users.first().id == message.author.id) return message.channel.send("You can not trade **yourself**!");
   if(!args[1]) return message.channel.send('Please specify a **pet** to give!');
 
+  //Mention const
   const mentions = message.mentions.users.first();
 
+  //DB
   db.all(`SELECT Inventory FROM Users WHERE Tag = '${message.author.id}'`, (err, sinv) => {
     db.all(`SELECT Inventory FROM Users WHERE Tag = '${mentions.id}'`, (err, rinv) => {
+      //Trading if statments
       if (sinv[0].Inventory.length == 0) return message.channel.send('You have no **pets** to trade!')
       if (rinv[0].Inventory.length == 0) return message.channel.send(`${mentions} has no **pets** to trade!`)
       
+      //Consts
       const sender = sinv[0].Inventory.split(', ');
       const senderId = message.author.id;
       const senderSend = message.author;
@@ -34,14 +40,17 @@ module.exports.run = async (bot, message, args) => {
       
       const filter = m => m.author.id === message.author.id;
       message.channel.awaitMessages(filter, { max: 1, time: 10000}).then(async (collected) => {
+        //If statment
         if(typeof collected == 'undefined') return;
         const collectedArgs = collected.first().content.split(" ");
         
         const receiveReg = new RegExp(collectedArgs.join("_"), 'i');
         const receiverOwn = receiver.filter(pet => pet.match(receiveReg));
         
+        //If does not own return
         if(receiverOwn.length == 0) return message.channel.send(`${mentions} does not own a **${collectedArgs.join(" ")}**`);
         
+        //Sent request embed
         let senttraderequest = new Discord.RichEmbed()
         .setAuthor('Trade', message.author.displayAvatarURL)
         .setDescription(`Sent Trade Request to ${mentions}`)
@@ -51,6 +60,7 @@ module.exports.run = async (bot, message, args) => {
         .setFooter(bot.user.username)
         .setTimestamp()
         
+        //Incoming trade embed
         let incomingtrade = new Discord.RichEmbed()
         .setAuthor('Trade', message.author.displayAvatarURL)
         .setDescription(`Incoming Trade Request from <@${message.author.id}>`)
@@ -60,6 +70,7 @@ module.exports.run = async (bot, message, args) => {
         .setFooter('React with ✅ to accept or ❌ to decline')
         .setTimestamp()
         
+        //Try to send message, if dms closed return
         try {
         await mentions.send(incomingtrade).then((message) => {
           message.react('✅');
@@ -96,6 +107,7 @@ module.exports.run = async (bot, message, args) => {
   });
 }
 
+//array remove function
 function remove(array, search) {
   let index = array.indexOf(search);
   if (index !== -1) {
