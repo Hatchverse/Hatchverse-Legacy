@@ -3,6 +3,8 @@ const bot = new Discord.Client();
 const fs = require('fs');
 const express = require('express');
 const app = express();
+const pug = require('pug');
+app.set('view engine', 'pug')
   
 
 global.db = './.data/hatchverse.db'
@@ -11,9 +13,6 @@ const exists = fs.existsSync(dbFile);
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database(dbFile);
 
-app.get('/', (req, res) => {
-  res.send("Hatchverse Working V1.8");
-});
 
 db.serialize(function(){
   if (!exists) {
@@ -26,6 +25,10 @@ db.serialize(function(){
 const config = require('./config.json')
 
 bot.commands = new Discord.Collection();
+
+app.get('/', function (req, res) {
+  res.render('website', { users: bot.users.size + ' users.'});
+});
 
 fs.readdir('./commands/', (err, files) => {
   if (err) console.log(err);
