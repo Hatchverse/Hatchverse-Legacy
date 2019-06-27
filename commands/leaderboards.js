@@ -8,7 +8,7 @@ const db = new sqlite3.Database(dbFile);
 
 module.exports.run = async (bot, message, args) => {
   if(!message.content.startsWith(config.prefix)) return;
-  if(!args[0])
+  if(!args[0]) return message.channel.send('`Syntax Error:` ()leaderboard **<eggs | gems>**')
   let i = 1;
   
   if(args[0].toLowerCase() == 'eggs') {

@@ -8,6 +8,7 @@ const db = new sqlite3.Database(dbFile);
 
 module.exports.run = async (bot, message, args) => {
   if(!message.content.startsWith(config.prefix)) return;
+  if(!args[0]) return message.channel.send('`Syntax Error:` ()remove **<all | pet name>**')
   
   db.all(`SELECT Inventory FROM Users WHERE Tag = '${message.author.id}'`, (err, items) => {
     //DB consts

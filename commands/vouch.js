@@ -10,8 +10,8 @@ module.exports.run = async (bot, message, args) => {
   if(!message.content.startsWith(config.prefix)) return;
   
   //If statments
-  if(!message.mentions.users.first()) return message.channel.send('Please mention a **user** to vouch!');
-  if(message.mentions.users.first().id == message.author.id) return message.channel.send("You can not vouch **yourself**!");
+  if(!message.mentions.users.first()) return message.channel.send('`Syntax Error:` ()vouch **<mention user>**');
+  if(message.mentions.users.first().id == message.author.id) return message.channel.send("`Error:` You can not vouch **yourself**!");
 
   //Mention
   const mentions = message.mentions.users.first();
@@ -20,13 +20,13 @@ module.exports.run = async (bot, message, args) => {
   db.all(`SELECT * FROM Users WHERE Tag = ${mentions.id}`, (err, items) => {
     db.all(`SELECT * FROM Users WHERE Tag = ${message.author.id}`, (err, items) => {
       //If eggs is less than 50 return
-      if(items[0].Eggs < 50) return message.channel.send('You need to have **50** eggs opened to vouch a user!');
+      if(items[0].Eggs < 50) return message.channel.send('`Error:` You need to have **50** eggs opened to vouch a user!');
       
       const vouches = items[0].Vouches;
       const vouchesSplit = items[0].Vouches.split(', ');
       
       //If already vouched return
-      if(vouchesSplit.includes(message.author.id)) return message.channel.send(`You have already vouched **${mentions.tag}**!`);
+      if(vouchesSplit.includes(message.author.id)) return message.channel.send(`\`Error:\` You have already vouched **${mentions.tag}**!`);
 
       let newVouch = message.author.id;
       if(vouches.length > 0) {
