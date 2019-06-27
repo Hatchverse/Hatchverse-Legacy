@@ -27,7 +27,7 @@ const config = require('./config.json')
 bot.commands = new Discord.Collection();
 
 app.get('/', function (req, res) {
-  res.render('website', { users: bot.users.size + ' users.'});
+  res.render('website', { users: bot.users.size + ' users'});
 });
 
 fs.readdir('./commands/', (err, files) => {
