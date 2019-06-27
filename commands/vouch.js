@@ -14,9 +14,16 @@ module.exports.run = async (bot, message, args) => {
   const mentions = message.mentions.users.first();
   
   db.all(`SELECT * FROM Users WHERE Tag = ${mentions.id}`, (err, items) => {
-    const vouches = parseInt(items[0].Vouches);
+    const vouches = items[0].Vouches.split(', ');
+    console.log(vouches)
+    if(vouches.includes(message.author.id)) return message.channel.send(`You have already vouched **${mentions}**!`);
     
-    db.run(`UPDATE Users SET Vouches = '${vouches + 1}' WHERE Tag = '${mentions.id}'`);
+    let newVouch = message.author.id;
+    if(vouches.length > 0) {
+      newVouch = `${vouches}, ${message.author.id}`
+    }
+    
+    db.run(`UPDATE Users SET Vouches = '${newVouch.join('')}' WHERE Tag = '${mentions.id}'`);
     message.channel.send(`Succesfully vouched **${mentions}!**`);
   })
 }

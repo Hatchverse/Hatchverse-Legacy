@@ -16,6 +16,7 @@ module.exports.run = async (bot, message, args) => {
     if (items[0].Perks == 't') perks = 'Triple Egg';
     
     const space = (items[0].Inventory == '') ? 0 : items[0].Inventory.split(', ').length;
+    const vouches = (items[0].Vouches == '') ? 0 : items[0].Vouches.split(', ').length;
   
     try {
       let embed = new Discord.RichEmbed()
@@ -26,7 +27,8 @@ module.exports.run = async (bot, message, args) => {
       .addField('Space', `:package: ${space}/50`, true)
       .addField('Gems', `<:Gem:592857805380255745> ${items[0].Gems}`, true)
       .addField('Perks', `:arrow_up: ${perks}`, true)
-      .addField('Vouches', `:ballot_box_with_check: ${items[0].Vouches}`)
+      .addBlankField(true)
+      .addField('Vouches', `:ballot_box_with_check: ${vouches}`, true)
       .setFooter(bot.user.username)
       .setTimestamp()
     
