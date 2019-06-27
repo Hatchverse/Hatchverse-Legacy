@@ -19,6 +19,7 @@ module.exports.run = async (bot, message, args) => {
 
   //DB
   db.all(`SELECT Inventory FROM Users WHERE Tag = '${message.author.id}'`, (err, sinv) => {
+    if(sinv[0].TradePending == 'true') return message.channel.send('`Error:` You already have a trade **pending**!');
     db.all(`SELECT Inventory FROM Users WHERE Tag = '${mentions.id}'`, (err, rinv) => {
       //Trading if statments
       if (sinv[0].Inventory.length == 0) return message.channel.send('`Error:` You have no **pets** to trade!')
@@ -79,6 +80,9 @@ module.exports.run = async (bot, message, args) => {
           const filter = (reaction, user) => {
             return ['✅', '❌'].includes(reaction.emoji.name) && user.id === mentions.id;
           }
+          
+          db.run("UPDATE Users SET TradePending = ? WHERE Tag = ?", 'true', senderId);
+          
           message.awaitReactions(filter, { max: 1, time: 60000, errors: ["time"] }).then((collected) => {
             if (typeof collected == 'undefined') return;
             const reaction = collected.first();
@@ -90,6 +94,8 @@ module.exports.run = async (bot, message, args) => {
               const receiverRemove = remove(receiver, receiverOwn[0]);
               const receiverNewInv = receiverRemove.push(senderOwn[0]);
               db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", receiverRemove.join(', '), receiverId)
+              
+              db.run("UPDATE Users SET TradePending = ? WHERE Tag = ?", 'false', senderId);
               message.channel.send(':white_check_mark: **Accepted!!**')
               senderSend.send(`**${mentions.tag}** has accepted your trade request!`);
             } else {
