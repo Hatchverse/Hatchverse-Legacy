@@ -46,7 +46,8 @@ module.exports.run = async (bot, message, args) => {
         .setFooter(bot.user.username)
         .setTimestamp()
       
-      message.channel.send(receiveEmbed).then(m => m.delete(10000));
+      let editMsg;
+      message.channel.send(receiveEmbed).then(m => { m.delete(10000); editMsg = m });
       
       const filter = m => m.author.id === message.author.id;
       message.channel.awaitMessages(filter, { max: 1, time: 10000}).then(async (collected) => {
@@ -105,7 +106,7 @@ module.exports.run = async (bot, message, args) => {
               db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", receiverRemove.join(', '), receiverId)
               
               db.run("UPDATE Users SET TradePending = ? WHERE Tag = ?", false, senderId);
-              message.channel.send(':white_check_mark: **Accepted!!**')
+              message.channel.send(':white_check_mark: **Accepted!**')
               senderSend.send(`**${mentions.tag}** has accepted your trade request!`);
             } else {
               message.channel.send(':x: **Declined!**')
@@ -114,7 +115,7 @@ module.exports.run = async (bot, message, args) => {
             }
           })
         })
-        message.edit(senttraderequest) 
+        editMsg.edit(senttraderequest);
         } catch (error) {
           message.channel.send(`\`Error:\` ${mentions} does not have their **DMs** open!`)
         }
