@@ -40,9 +40,15 @@ module.exports.run = async (bot, message, args) => {
     switch (args[1].toLowerCase()) {
       case 'triple':
         db.run(`UPDATE Users SET Perks = 't' WHERE Tag = '${args[2]}'`);
+        message.channel.send(`Successfully added **Triple Egg** perk to **${args[2]}**`)
         break;
       case 'double':
         db.run(`UPDATE Users SET Perks = 'd' WHERE Tag = '${args[2]}'`)
+        message.channel.send(`Successfully added **Double Egg** perk to **${args[2]}**`)
+        break;
+      case 'none':
+        db.run(`UPDATE Users SET Perks = '' WHERE Tag = '${args[2]}'`)
+        message.channel.send(`Successfully set **${args[2]}**'s perks to **None**`)
         break;
     }
   }
