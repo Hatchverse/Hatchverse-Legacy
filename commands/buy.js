@@ -56,11 +56,11 @@ module.exports.run = async (bot, message, args) => {
     if(args.join(" ").toLowerCase() == 'triple egg') {
       //If statements
       if(perks == 't') return message.channel.send('You already own **Triple Egg** perk!');
-      if(gems < 10000) return message.channel.send(`Not enough **Gems** <:Gem:592857805380255745>! You need **${10000 - gems}** more!`);
+      if(gems < 15000) return message.channel.send(`Not enough **Gems** <:Gem:592857805380255745>! You need **${15000 - gems}** more!`);
       
       let embed = new Discord.RichEmbed()
       .setAuthor('Buy', bot.user.displayAvatarURL)
-      .setDescription('Are you sure you want to buy **Triple Egg** for <:Gem:592857805380255745> **10000**?')
+      .setDescription('Are you sure you want to buy **Triple Egg** for <:Gem:592857805380255745> **15000**?')
       .setThumbnail("https://i.imgur.com/peud2fR.png")
       .setFooter('React with ✅ or ❌')
       .setTimestamp()
@@ -81,7 +81,7 @@ module.exports.run = async (bot, message, args) => {
           
           if (reaction.emoji.name == "✅") {
             db.run("UPDATE Users SET Perks = ? WHERE Tag = ?", 't', chat.author.id)
-            db.run("UPDATE Users SET Gems = ? WHERE Tag = ?", gems - 10000, chat.author.id)
+            db.run("UPDATE Users SET Gems = ? WHERE Tag = ?", gems - 15000, chat.author.id)
             message.channel.send('Successfully bought **Triple Egg** perk!')
           } else {
             return;
