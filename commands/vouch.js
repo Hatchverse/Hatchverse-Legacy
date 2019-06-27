@@ -14,17 +14,20 @@ module.exports.run = async (bot, message, args) => {
   const mentions = message.mentions.users.first();
   
   db.all(`SELECT * FROM Users WHERE Tag = ${mentions.id}`, (err, items) => {
-    const vouches = items[0].Vouches;
-    const vouchesSplit = items[0].Vouches.split(', ');
-    if(vouchesSplit.includes(message.author.id)) return message.channel.send(`You have already vouched **${mentions.tag}**!`);
-    
-    let newVouch = message.author.id;
-    if(vouches.length > 0) {
-      newVouch = `${vouches}, ${message.author.id}`
-    }
-    
-    db.run(`UPDATE Users SET Vouches = '${newVouch}' WHERE Tag = '${mentions.id}'`);
-    message.channel.send(`Succesfully vouched **${mentions.tag}!**`);
+    db.all(`SELECT * FROM Users WHERE Tag = ${message.author.id}`, (err, items) => {
+      if(items[0].Eggs < 50) return message.channel.send('You need to have **50** eggs opened to vouch a user!');
+      const vouches = items[0].Vouches;
+      const vouchesSplit = items[0].Vouches.split(', ');
+      if(vouchesSplit.includes(message.author.id)) return message.channel.send(`You have already vouched **${mentions.tag}**!`);
+
+      let newVouch = message.author.id;
+      if(vouches.length > 0) {
+        newVouch = `${vouches}, ${message.author.id}`
+      }
+
+      db.run(`UPDATE Users SET Vouches = '${newVouch}' WHERE Tag = '${mentions.id}'`);
+      message.channel.send(`Succesfully vouched **${mentions.tag}!**`);
+    })
   })
 }
 
