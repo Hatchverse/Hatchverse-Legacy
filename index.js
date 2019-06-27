@@ -16,9 +16,9 @@ app.get('/', (req, res) => {
 });
 
 db.serialize(function(){
-  if (exists) {
+  if (!exists) {
     db.run("DROP TABLE Users")
-    db.run('CREATE TABLE Users (Tag TEXT, Eggs INT, Gems INT, Inventory TEXT, Perks TEXT, Vouches TEXT, TradePending TEXT)');
+    db.run('CREATE TABLE Users (Tag TEXT, Eggs INT, Gems INT, Inventory TEXT, Perks TEXT, Vouches TEXT)');
     console.log('New table Users created!');
   };
 });
@@ -56,7 +56,7 @@ bot.on('message', async (message) => {
   db.all(`SELECT * FROM Users WHERE Tag = '${message.author.id}'`, (err, items) => {
     if(message.author.bot) return;
     if(items.length == 0 || typeof items == 'undefined') {
-      db.run("INSERT INTO Users (Tag, Eggs, Gems, Inventory, Perks, Vouches, TradePending) VALUES (?,?,?,?,?,?,?)", message.author.id, 0, 0, '', '', '', 'false');
+      db.run("INSERT INTO Users (Tag, Eggs, Gems, Inventory, Perks, Vouches) VALUES (?,?,?,?,?,?)", message.author.id, 0, 0, '', '', '');
       return;
     }
   })
