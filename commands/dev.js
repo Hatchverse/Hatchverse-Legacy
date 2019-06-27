@@ -36,9 +36,31 @@ module.exports.run = async (bot, message, args) => {
     message.channel.send(`Successfully added **${args[1]}** to **${args[3]}**'s inventory`)
   }
   
-  if(args[0].toLowerCase() == "perks") {
-    db.run(`UPDATE Users SET Perks = '${args[1]}' WHERE Tag = '${args[2]}'`);
-    message.channel.send(`Successfully added perk **${args[1]}** to **${args[2]}**`);
+  if(args[0].toLowerCase() == "perks") { // disgusting clean up please 
+    var triples = [
+      'triple egg',
+      'triple',
+      't'
+    ]
+    var doubles = [
+      'double egg',
+      'double',
+      'd'
+    ]
+    
+    if(triples.includes(args[1].toLowerCase())) var perks = 't'
+    if(doubles.includes(args[1].toLowerCase())) var perks = 'd'
+    if(args[1] === 'remove') var perks = ''
+    if (perks === 't') var display = 'Triple Egg'
+    if (perks === 'd') var display = 'Double Egg'
+    
+    
+    db.run(`UPDATE Users SET Perks = '${perks}' WHERE Tag = '${args[2]}'`);
+   if(perks === 't' || perks === 'd') {
+     message.channel.send(`Successfully added perk **${display}** to user **${args[2]}**`);
+   } else if(perks === '') {
+     message.channel.send(`Successfully removed perks from user **${args[2]}**`)
+   }
   }
   
   if(args[0].toLowerCase() == "reset") {

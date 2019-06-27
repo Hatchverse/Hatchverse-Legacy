@@ -26,6 +26,7 @@ module.exports.run = async (bot, message, args) => {
       .addField('Space', `:package: ${space}/50`, true)
       .addField('Gems', `<:Gem:592857805380255745> ${items[0].Gems}`, true)
       .addField('Perks', `:arrow_up: ${perks}`, true)
+      .addField('Vouches', `:ballot_box_with_check: ${items[0].Vouches}`)
       .setFooter(bot.user.username)
       .setTimestamp()
     
