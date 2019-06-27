@@ -5,7 +5,6 @@ const express = require('express');
 const app = express();
 const pug = require('pug');
 app.set('view engine', 'pug')
-  
 
 global.db = './.data/hatchverse.db'
 const dbFile = global.db;
