@@ -9,8 +9,6 @@ const db = new sqlite3.Database(dbFile);
 module.exports.run = async (bot, message, args) => {
   if(!message.content.startsWith(config.prefix)) return;
   
-  //Krxnky: May redo this with regex and filter
-  
   db.all(`SELECT Inventory FROM Users WHERE Tag = '${message.author.id}'`, (err, items) => {
     const inventory = items[0].Inventory.split(', ');
     
@@ -42,17 +40,18 @@ module.exports.run = async (bot, message, args) => {
   })
 }
 
+//Array removing functions
 Array.prototype.remove = function() {
-    var what, a = arguments, L = a.length, ax;
-    while (L && this.length) {
-        what = a[--L];
-        while ((ax = this.indexOf(what)) !== -1) {
-            this.splice(ax, 1);
-        }
-    }
-    return this;
+  let what, a = arguments, L = a.length, ax;
+  while (L && this.length) {
+      what = a[--L];
+      while ((ax = this.indexOf(what)) !== -1) {
+          this.splice(ax, 1);
+      }
+  }
+  return this;
 };
-
+//Array removing functions
 function remove(array, search) {
   let index = array.indexOf(search);
   if (index !== -1) {

@@ -8,11 +8,11 @@ const db = new sqlite3.Database(dbFile);
 
 module.exports.run = async (bot, message, args) => {
   if(!message.content.startsWith(config.prefix)) return;  
+  let i = 1;
   
   if(args[0].toLowerCase() == 'eggs') {
     db.all("SELECT * FROM Users ORDER BY Eggs DESC LIMIT 25;", (err, items) => {
-      let i = 1;
-
+      //Eggs embed
       let embed = new Discord.RichEmbed()
       .setAuthor('Hatchverse Leaderboard (Eggs Opened)', bot.user.displayAvatarURL)
       .setDescription(items.map(item => `\`${i++}.\` **${bot.users.get(item.Tag).username + "#" + bot.users.get(item.Tag).discriminator}** :egg: **${item.Eggs}**`))
@@ -26,8 +26,7 @@ module.exports.run = async (bot, message, args) => {
   
   if (args[0].toLowerCase() == 'gems') {
     db.all("SELECT * FROM Users ORDER BY Gems DESC;", (err, items) => {
-      let i = 1;
-
+      //Gems embed
       let embed = new Discord.RichEmbed()
       .setAuthor('Hatchverse Leaderboard (Gems)', bot.user.displayAvatarURL)
       .setDescription(items.map(item => `\`${i++}.\` **${bot.users.get(item.Tag).username + "#" + bot.users.get(item.Tag).discriminator}** <:Gem:592857805380255745> **${item.Gems}**`))
