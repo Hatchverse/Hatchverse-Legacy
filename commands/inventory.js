@@ -12,7 +12,7 @@ module.exports.run = async (bot, message, args) => {
   //DB select
   db.all(`SELECT * FROM Users WHERE Tag = ${message.author.id}`, (err, items) => {
     //If statements
-    if(items[0].length == 0) return message.channel.send('You have no pets! Use `()open Beginner Egg` to get started');
+    if(items[0].Inventory.length == 0) return message.channel.send('`Error:` You have no **pets**! Use `()open Beginner Egg` to get **started**...');
     
     //DB consts
     const gems = items[0].Gems;
@@ -42,7 +42,7 @@ module.exports.run = async (bot, message, args) => {
       message.channel.send(embed)
     } catch (error) {
       //If error send you have too many pets
-      message.channel.send(`You have too many pets! (${items[0].Eggs})`)
+      message.channel.send(`\`Error:\` You have too many **pets**! (**${space}/50**)`)
     }
   
   })

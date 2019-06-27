@@ -17,8 +17,8 @@ module.exports.run = async (bot, message, args) => {
     //Double Egg
     if(args.join(" ").toLowerCase() == 'double egg') {
       //If statements
-      if(perks == 'd' || perks == "t") return message.channel.send('You already own **Double Egg** perk!');
-      if(gems < 1000) return message.channel.send(`Not enough **Gems** <:Gem:592857805380255745>! You need **${1000 - gems}** more!`);
+      if(perks == 'd' || perks == "t") return message.channel.send('`Error:` You already own the **Double Egg** perk!');
+      if(gems < 1000) return message.channel.send(`\`Error:\` Not enough <:Gem:592857805380255745> **Gems**! You need **${1000 - gems}** more...`);
       
       let embed = new Discord.RichEmbed()
       .setAuthor('Buy', bot.user.displayAvatarURL)
@@ -55,8 +55,8 @@ module.exports.run = async (bot, message, args) => {
     //Triple Egg
     if(args.join(" ").toLowerCase() == 'triple egg') {
       //If statements
-      if(perks == 't') return message.channel.send('You already own **Triple Egg** perk!');
-      if(gems < 15000) return message.channel.send(`Not enough **Gems** <:Gem:592857805380255745>! You need **${15000 - gems}** more!`);
+      if(perks == 't') return message.channel.send('`Error:` You already own the **Triple Egg** perk!');
+      if(gems < 15000) return message.channel.send(`\`Error:\` Not enough <:Gem:592857805380255745> **Gems**! You need **${15000 - gems}** more...`);
       
       let embed = new Discord.RichEmbed()
       .setAuthor('Buy', bot.user.displayAvatarURL)
