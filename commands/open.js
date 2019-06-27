@@ -72,9 +72,9 @@ module.exports.run = async (bot, message, args) => {
     
     if(args.join(" ").toLowerCase() == "stonks egg") {
       if(inventory >= 50) return message.channel.send('You have reached the max inventory space! Please use `()remove <pet name | all>`');
-      if(perks == 'd') return double(eggs.hack_week_egg);
-      if(perks == 't') return triple(eggs.hack_week_egg);
-      eggs.hack_week_egg(message)
+      if(perks == 'd') return double(eggs.stonks_egg);
+      if(perks == 't') return triple(eggs.stonks_egg);
+      eggs.stonks_egg(message)
     }
     
     if(args.join(" ").toLowerCase() == "hack week egg") {

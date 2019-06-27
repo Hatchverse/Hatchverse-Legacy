@@ -287,14 +287,15 @@ function stonks_egg(message) {
 const stonksegg = new probability({
       p: '100%',
       f: () => {
-        message.reply(` <:Stonks:593601567450464267> you just hatched a Stonk **Stonks**! (**0.001%**) <:Stonks:593601567450464267>`);
+        message.reply(` <:Stonks_Egg:593603648181764117> you just hatched a Stonk **Stonks**! (**100%**) <:Stonks:593601567450464267>`);
         addpet('<:Stonks:593601567450464267>', message.author.id)
       }
     })
   
-  return hackweekegg();
+  return stonksegg();
 }
 
+module.exports.stonks_egg = stonks_egg;
 
 
 //Events
