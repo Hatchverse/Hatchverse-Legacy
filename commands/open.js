@@ -23,8 +23,6 @@ module.exports.run = async (bot, message, args) => {
   }
   
   db.all(`SELECT * FROM Users WHERE Tag = '${message.author.id}'`, (err, items) => {
-    
-    console.log(items)
     //Db consts
     const inventory = items[0].Inventory.split(', ').length;
     const perks = items[0].Perks;

@@ -37,7 +37,16 @@ module.exports.run = async (bot, message, args) => {
 
       if(senderOwn.length == 0) return message.channel.send(`\`Error:\` You don't own a **${args.slice(1).join(" ")}**`);
       
-      message.channel.send('You **receive**?').then(m => m.delete(10000));
+      let receiveEmbed = new Discord.RichEmbed()
+        .setAuthor('Trade', message.author.displayAvatarURL)
+        .setDescription(`You receive? Reply with a **Pet Name** in ${mentions} inventory...`)
+        .addField('You give', senderOwn[0], true)
+        .addField('You receive', ':grey_question:', true)
+        .setColor('#9c13f7')
+        .setFooter(bot.user.username)
+        .setTimestamp()
+      
+      message.channel.send(receiveEmbed).then(m => m.delete(10000));
       
       const filter = m => m.author.id === message.author.id;
       message.channel.awaitMessages(filter, { max: 1, time: 10000}).then(async (collected) => {
@@ -100,11 +109,12 @@ module.exports.run = async (bot, message, args) => {
               senderSend.send(`**${mentions.tag}** has accepted your trade request!`);
             } else {
               message.channel.send(':x: **Declined!**')
+              db.run("UPDATE Users SET TradePending = ? WHERE Tag = ?", false, senderId);
               senderSend.send(`**${mentions.tag}** has declined your trade request!`);
             }
           })
         })
-        message.channel.send(senttraderequest) 
+        message.edit(senttraderequest) 
         } catch (error) {
           message.channel.send(`\`Error:\` ${mentions} does not have their **DMs** open!`)
         }

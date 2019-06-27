@@ -60,6 +60,7 @@ module.exports.run = async (bot, message, args) => {
       db.run(`UPDATE Users SET Perks = '' WHERE Tag = '${args[1]}'`)
       db.run(`UPDATE Users SET Vouches = '' WHERE Tag = '${args[1]}'`)
       db.run(`UPDATE Users SET Inventory = '' WHERE Tag = '${args[1]}'`)
+      db.run(`UPDATE Users SET TradePending = '${false}' WHERE Tag = '${args[1]}'`)
       message.channel.send(`Successfully reset user **${args[1]}**`)
       return;
     } else {
