@@ -18,20 +18,27 @@ module.exports.run = async (bot, message, args) => {
       db.run("UPDATE Users SET Inventory = '' WHERE Tag = ?", message.author.id)
       message.channel.send(`Successfully removed **${inventory.length}** pets!`);
     }
-    if(args[0].toLowerCase() == '1') {
-      
+    if(args[0].toLowerCase() == 'single') {
+      const pet = args.slice(1).join('_');
+      const petReg = new RegExp(pet, 'i');
+
+      const petFilter = inventory.find(pet => pet.match(petReg));
+      if(!petFilter) return message.channel.send(`You don't own a **${args.slice(1).join(" ")}**!`);
+
+      const newInv = remove(inventory, petFilter);
+      db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", newInv.join(", "), message.author.id)
+      message.channel.send(`Successfuly removed **${1}** pets!`);
+    } else {
+      const pet = args.join('_');
+      const petReg = new RegExp(pet, 'i');
+
+      const petFilter = inventory.filter(pet => pet.match(petReg));
+      if(petFilter.length == 0) return message.channel.send(`You don't own a **${args.join(" ")}**!`);
+
+      const newInv = inventory.remove(petFilter[0]);
+      db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", newInv.join(", "), message.author.id)
+      message.channel.send(`Successfuly removed **${petFilter.length}** pets!`); 
     }
-    
-      
-    const pet = args.join('_');
-    const petReg = new RegExp(pet, 'i');
-
-    const petFilter = inventory.filter(pet => pet.match(petReg));
-    if(petFilter.length == 0) return message.channel.send(`You don't own a **${args.join(" ")}**!`);
-
-    const newInv = inventory.remove(petFilter[0]);
-    db.run("UPDATE Users SET Inventory = ? WHERE Tag = ?", newInv.join(", "), message.author.id)
-    message.channel.send(`Successfuly removed **${petFilter.length}** pets!`);
   })
 }
 
@@ -45,6 +52,15 @@ Array.prototype.remove = function() {
     }
     return this;
 };
+
+function remove(array, search) {
+  let index = array.indexOf(search);
+  if (index !== -1) {
+    array.splice(index, 1);
+  }
+  
+  return array;
+}
 
 module.exports.help = {
   name: "remove"
