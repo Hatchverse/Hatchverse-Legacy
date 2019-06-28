@@ -16,7 +16,7 @@ module.exports.run = async (bot, message, args) => {
   .addField('Setup', 'To begin your egg opening journey, simply open the Beginner Egg. To do so use the open command with the egg name as `Beginner Egg`, ex. `()open Beginner Egg`')
   .addField('Developers', '@Krxnky#1824, @Epoch#1558, @Jullian#0001, @Syntax#1588, @Exists#9999')
   .addField('Credits', `Credits to Rumble Studios for pet/egg images`)
-  .addField('Changelog', '```6/27/2019\n- Updated error messages\n- Added a new check to trading commands```')
+  .addField('Changelog', '```6/28/19\n[!] - Public Release```') //preparing for release :)
   .setColor('#9c13f7')
   .setFooter(bot.user.username)
   .setTimestamp()
