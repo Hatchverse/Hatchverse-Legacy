@@ -9,7 +9,7 @@ Since this is a Glitch project, its easy to get up and running. In order to star
 - Prefix: `()` | Supposed to look like an egg.
 - Started Project: `June 24th, 2019`
 - Help Command: `()help`
-- Current Version: `1.7.4`
+- Current Version: `1.174`
 - Bugs: `Smashed`
 # Developers
 ****
