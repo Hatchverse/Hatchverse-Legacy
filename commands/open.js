@@ -85,7 +85,25 @@ module.exports.run = async (bot, message, args) => {
     
     
     
-    
+    //Special Eggs
+    if(args.join(" ").toLowerCase() == "tester egg") {
+      const testers = [
+        "256187890495782912",
+        "553029704177942528",
+        "403259630437793804",
+        "368186884108582914",
+        "253871855255945220",
+        "394162222340767745",
+        "302527751745961985",
+        "198135885118570497",
+        "374756186525794305",
+        "251123922005786624",
+        "302599378332549121"
+      ]
+      if(!testers.includes(message.author.id)) return;
+      if(inventory >= 50) return message.channel.send('`Error:` You have reached the **max** inventory space! Use `()remove <pet name | all>` to get rid of some unwanted **pets**...`');
+      eggs.tester_egg(message)
+    }
     
     //Event eggs
     if(args.join(" ").toLowerCase() == "hack week egg") {
