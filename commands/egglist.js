@@ -19,7 +19,7 @@ module.exports.run = async (bot, message, args) => {
     const iceshardegg = eggs >= 200 ? ':unlock:' : ':lock:';
     const spikeyegg = eggs >= 500 ? ':unlock:' : ':lock:';
     const slimeyegg = eggs >= 1500 ? ':unlock:' : ':lock:';
-    const rainbowegg = eggs >= 300 ? ':unlock:' : ':lock:';
+    const rainbowegg = eggs >= 3000 ? ':unlock:' : ':lock:';
     const hackweekegg = eggs >= 100 ? ':unlock:' : ':lock:';
     
     let embed = new Discord.RichEmbed()
