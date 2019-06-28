@@ -102,6 +102,8 @@ module.exports.run = async (bot, message, args) => {
       ]
       if(!testers.includes(message.author.id)) return;
       if(inventory >= 50) return message.channel.send('`Error:` You have reached the **max** inventory space! Use `()remove <pet name | all>` to get rid of some unwanted **pets**...`');
+      if(perks == 'd') return double(eggs.tester_egg);
+      if(perks == 't') return triple(eggs.tester_egg);
       eggs.tester_egg(message)
     }
     
