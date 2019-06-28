@@ -106,7 +106,7 @@ module.exports.run = async (bot, message, args) => {
     }
     
     //Event eggs
-    if(args.join(" ").toLowerCase() == "hack week egg") {
+    if(args.join(" ").toLowerCase() == "hack week egg" || args.join(" ").toLowerCase() == "hackweek egg") {
       if(egg < 50) return message.channel.send(`\`Error:\` You need to have **50** eggs opened to unlock this egg!`)
       if(inventory >= 50) return message.channel.send('`Error:` You have reached the **max** inventory space! Use `()remove <pet name | all>` to get rid of some unwanted **pets**...`');
       if(perks == 'd') return double(eggs.hack_week_egg);
