@@ -55,13 +55,17 @@ bot.on('message', async (message) => {
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
   
-  db.all(`SELECT * FROM Users WHERE Tag = '${message.author.id}'`, (err, items) => {
+  db.all(`SELECT * FROM Users WHERE Tag = '${message.author.id}'`, async (err, items) => {
     if(message.author.bot) return;
+    let cmdFile = bot.commands.get(cmd.slice(prefix.length));
+    
     if(items.length == 0 || typeof items == 'undefined') {
       db.run("INSERT INTO Users (Tag, Eggs, Gems, Inventory, Perks, Vouches, TradePending) VALUES (?,?,?,?,?,?,?)", message.author.id, 0, 0, '', '', '', false);
+      await sleep(500);
+      if(cmdFile) cmdFile.run(bot, message, args);
+    } else {
+      if(cmdFile) cmdFile.run(bot, message, args); 
     }
-    let cmdFile = bot.commands.get(cmd.slice(prefix.length));
-    if(cmdFile) cmdFile.run(bot, message, args);
   })
 
 })
@@ -69,6 +73,12 @@ bot.on('message', async (message) => {
 bot.on("guildMemberAdd", member => {
   bot.user.setActivity(`${bot.users.size} eggheads 🥚`, {type: "WATCHING"})
 })
+
+function sleep(ms){
+  return new Promise(resolve=>{
+      setTimeout(resolve,ms)
+  })
+}
 
 bot.login(process.env.TOKEN)
 

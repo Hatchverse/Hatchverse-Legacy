@@ -194,13 +194,13 @@ function slimey_egg(message) {
     }, {
       p: '3%',
       f: () => {
-        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Epic **Slimey Winged Horse**! (**3%**) <:Slimey_Winged_Horse:592429327266742279>`);
+        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched an Epic **Slimey Winged Horse**! (**3%**) <:Slimey_Winged_Horse:592429327266742279>`);
         addpet('<:Slimey_Winged_Horse:592429327266742279>', message.author.id)
       }
     }, {
       p: '7%',
       f: () => {
-        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Epic **Slimey T-Rex**! (**7%**) <:Slimey_TRex:592405034046717953>`);
+        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched an Epic **Slimey T-Rex**! (**7%**) <:Slimey_TRex:592405034046717953>`);
         addpet('<:Slimey_TRex:592405034046717953>', message.author.id)
       }
     }, {
