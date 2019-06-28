@@ -18,10 +18,7 @@ module.exports.run = async (bot, message, args) => {
     if(args[0].toLowerCase() == 'all') {
       db.run("UPDATE Users SET Inventory = '' WHERE Tag = ?", message.author.id)
       message.channel.send(`Successfully removed **${inventory.length}** pets!`);
-    }
-    
-    //Remove single
-    if(args[0].toLowerCase() == 'single') {
+    } else if(args[0].toLowerCase() == 'single') {
       const pet = args.slice(1).join('_');
       const petReg = new RegExp(pet, 'i');
 
