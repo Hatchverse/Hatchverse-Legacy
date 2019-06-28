@@ -67,7 +67,7 @@ bot.on('message', async (message) => {
 })
 
 bot.on("guildMemberAdd", member => {
-  bot.setActivity(`${bot.users.size} eggheads 🥚`, {type: "WATCHING"})
+  bot.user.setActivity(`${bot.users.size} eggheads 🥚`, {type: "WATCHING"})
 })
 
 bot.login(process.env.TOKEN)

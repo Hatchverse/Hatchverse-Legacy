@@ -12,7 +12,7 @@ module.exports.run = async (bot, message, args) => {
   let i = 1;
   
   if(args[0].toLowerCase() == 'eggs') {
-    db.all("SELECT * FROM Users ORDER BY Eggs DESC LIMIT 25;", (err, items) => {
+    db.all("SELECT * FROM Users ORDER BY Eggs DESC LIMIT 10;", (err, items) => {
       //Eggs embed
       let embed = new Discord.RichEmbed()
       .setAuthor('Hatchverse Leaderboard (Eggs Opened)', bot.user.displayAvatarURL)
@@ -26,7 +26,7 @@ module.exports.run = async (bot, message, args) => {
   }
   
   if (args[0].toLowerCase() == 'gems') {
-    db.all("SELECT * FROM Users ORDER BY Gems DESC;", (err, items) => {
+    db.all("SELECT * FROM Users ORDER BY Gems DESC LIMIT 10;", (err, items) => {
       //Gems embed
       let embed = new Discord.RichEmbed()
       .setAuthor('Hatchverse Leaderboard (Gems)', bot.user.displayAvatarURL)
