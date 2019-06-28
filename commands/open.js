@@ -49,7 +49,7 @@ module.exports.run = async (bot, message, args) => {
     
     //Ice shard egg
     if(args.join(" ").toLowerCase() == "ice shard egg") {
-      if(egg < 100) return message.channel.send(`\`Error:\` You need to have **100** eggs opened to unlock this egg!`)
+      if(egg < 200) return message.channel.send(`\`Error:\` You need to have **200** eggs opened to unlock this egg!`)
       if(inventory >= 50) return message.channel.send('`Error:` You have reached the **max** inventory space! Use `()remove <pet name | all>` to get rid of some unwanted **pets**...`');
       if(perks == 'd') return double(eggs.ice_shard_egg);
       if(perks == 't') return triple(eggs.ice_shard_egg);
@@ -58,7 +58,7 @@ module.exports.run = async (bot, message, args) => {
     
     //Spikey egg
     if(args.join(" ").toLowerCase() == "spikey egg") {
-      if(egg < 150) return message.channel.send(`\`Error:\` You need to have **150** eggs opened to unlock this egg!`)
+      if(egg < 500) return message.channel.send(`\`Error:\` You need to have **500** eggs opened to unlock this egg!`)
       if(inventory >= 50) return message.channel.send('`Error:` You have reached the **max** inventory space! Use `()remove <pet name | all>` to get rid of some unwanted **pets**...`');
       if(perks == 'd') return double(eggs.spikey_egg);
       if(perks == 't') return triple(eggs.spikey_egg);
@@ -67,7 +67,7 @@ module.exports.run = async (bot, message, args) => {
     
     //Slimey egg
     if(args.join(" ").toLowerCase() == "slimey egg") {
-      if(egg < 200) return message.channel.send(`\`Error:\` You need to have **200** eggs opened to unlock this egg!`)
+      if(egg < 1500) return message.channel.send(`\`Error:\` You need to have **1500** eggs opened to unlock this egg!`)
       if(inventory >= 50) return message.channel.send('`Error:` You have reached the **max** inventory space! Use `()remove <pet name | all>` to get rid of some unwanted **pets**...`');
       if(perks == 'd') return double(eggs.slimey_egg);
       if(perks == 't') return triple(eggs.slimey_egg);
@@ -76,7 +76,7 @@ module.exports.run = async (bot, message, args) => {
     
     //Rainbow egg
     if(args.join(" ").toLowerCase() == "rainbow egg") {
-      if(egg < 250) return message.channel.send(`\`Error:\` You need to have **250** eggs opened to unlock this egg!`)
+      if(egg < 3000) return message.channel.send(`\`Error:\` You need to have **3000** eggs opened to unlock this egg!`)
       if(inventory >= 50) return message.channel.send('`Error:` You have reached the **max** inventory space! Use `()remove <pet name | all>` to get rid of some unwanted **pets**...`');
       if(perks == 'd') return double(eggs.rainbow_egg);
       if(perks == 't') return triple(eggs.rainbow_egg);
@@ -102,14 +102,12 @@ module.exports.run = async (bot, message, args) => {
       ]
       if(!testers.includes(message.author.id)) return;
       if(inventory >= 50) return message.channel.send('`Error:` You have reached the **max** inventory space! Use `()remove <pet name | all>` to get rid of some unwanted **pets**...`');
-      if(perks == 'd') return double(eggs.tester_egg);
-      if(perks == 't') return triple(eggs.tester_egg);
       eggs.tester_egg(message)
     }
     
     //Event eggs
     if(args.join(" ").toLowerCase() == "hack week egg" || args.join(" ").toLowerCase() == "hackweek egg") {
-      if(egg < 50) return message.channel.send(`\`Error:\` You need to have **50** eggs opened to unlock this egg!`)
+      if(egg < 100) return message.channel.send(`\`Error:\` You need to have **100** eggs opened to unlock this egg!`)
       if(inventory >= 50) return message.channel.send('`Error:` You have reached the **max** inventory space! Use `()remove <pet name | all>` to get rid of some unwanted **pets**...`');
       if(perks == 'd') return double(eggs.hack_week_egg);
       if(perks == 't') return triple(eggs.hack_week_egg);
