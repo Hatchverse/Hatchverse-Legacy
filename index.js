@@ -49,6 +49,7 @@ fs.readdir('./commands/', (err, files) => {
 
 bot.on('ready', async () => {
   console.log('Hatchverse has started!');
+  db.run(`UPDATE Users SET TradePending = '${false}'`);
   bot.user.setActivity(`${bot.users.size} eggheads 🥚`, { type: 'WATCHING' })
 })
 
