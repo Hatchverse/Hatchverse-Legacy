@@ -19,13 +19,6 @@ module.exports.run = async (bot, message, args) => {
   ]
   
   if(!devs.includes(message.author.id)) return;
-   db.all(`SELECT * FROM Users`, (err, items) => {
-    fs.writeFile('asynchronous.txt', 'asynchronous write!', (err) => {
-  if (err) throw err;
-  console.log('The file has been saved!');
-});
-}); 
-  })
   
   if(args[0].toLowerCase() == "gems") {
     db.run(`UPDATE Users SET Gems = '${args[2]}' WHERE Tag = '${args[1]}'`);
