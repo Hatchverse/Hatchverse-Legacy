@@ -52,7 +52,7 @@ module.exports.run = async (bot, message, args) => {
       const filter = m => m.author.id === message.author.id;
       message.channel.awaitMessages(filter, { max: 1, time: 10000}).then(async (collected) => {
         //If statment
-        if(typeof collected == 'undefined') return;
+        if(typeof collected.first() == 'undefined') return;
         const collectedArgs = collected.first().content.split(" ");
         
         const receiveReg = new RegExp(collectedArgs.join("_"), 'i');
@@ -94,7 +94,7 @@ module.exports.run = async (bot, message, args) => {
           db.run("UPDATE Users SET TradePending = ? WHERE Tag = ?", true, senderId);
           
           message.awaitReactions(filter, { max: 1, time: 60000, errors: ["time"] }).then((collected) => {
-            if (typeof collected == 'undefined') return;
+            if (typeof collected.first() == 'undefined') return;
             const reaction = collected.first();
             if(reaction.emoji.name == '✅') {
               const sendRemove = remove(sender, senderOwn[0]);
