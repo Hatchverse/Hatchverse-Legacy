@@ -180,9 +180,9 @@ function slimey_egg(message) {
     }, {
       p: '0.04%',
       f: () => {
-        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Legendary **Slimey Marshmallow**! (**0.04%**) <:Slime_Marshmallow:591832045806813186>`);
-        addpet('<:Slime_Marshmallow:591832045806813186>', message.author.id)
-        addgems(75)
+        message.reply(` <:SlimeyEgg:592424933217271809> you just hatched a Legendary **Slimey Marshmallow**! (**0.04%**) <:Slimey_Marshmallow:591832045806813186>`);
+        addpet('<:Slimey_Marshmallow:591832045806813186>', message.author.id)
+        addgems(75, message.author.id)
       }
     }, {
       p: '0.65%',
@@ -241,7 +241,7 @@ function rainbow_egg(message) {
       f: () => {
         message.reply(` <:Rainbow_Egg:592425391004844032> you just hatched a Legendary **Pixie**! (**0.01%**)  <:Pixie:592425899517804554>`);
         addpet(' <:Pixie:592425899517804554>', message.author.id)
-        addgems(100)
+        addgems(100, message.author.id)
       }
     }, {
       p: '0.03%',
@@ -324,7 +324,7 @@ function hack_week_egg(message) {
       f: () => {
         message.reply(` <:HackWeekEgg:591827213570277385> you just hatched a Legendary **Hacked Overlord**! (**0.01%**) <:Hacked_Overlord:591827107051733013>`);
         addpet('<:Hacked_Overlord:591827107051733013>', message.author.id)
-        addgems(100)
+        addgems(100, message.author.id)
       }
     }, {
       p: '0.01%',
