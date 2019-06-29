@@ -12,7 +12,7 @@ module.exports.run = async (bot, message, args) => {
   //Shop embed
   let embed = new Discord.RichEmbed()
   .setAuthor('Shop', bot.user.displayAvatarURL)
-  .addField('Perks', `<:2xegg:592877627543388170> Double Egg - <:Gem:592857805380255745> **1000**\n<:3xegg:592878254654881802> Triple Egg - <:Gem:592857805380255745> **15000**`, true)
+  .addField('Perks', `<:2xegg:592877627543388170> Double Egg - <:Gem:592857805380255745> **12500**\n<:3xegg:592878254654881802> Triple Egg - <:Gem:592857805380255745> **25000**`, true)
   .addBlankField(true)
   .setColor('#9c13f7')
   .addField('Boosts', `*Coming soon...*`, true)
