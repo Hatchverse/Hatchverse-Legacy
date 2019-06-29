@@ -94,7 +94,6 @@ module.exports.run = async (bot, message, args) => {
           db.run("UPDATE Users SET TradePending = ? WHERE Tag = ?", true, senderId);
           
           message.awaitReactions(filter, { max: 1, time: 60000, errors: ["time"] }).then((collected) => {
-            if (typeof collected.first() == 'undefined') return;
             const reaction = collected.first();
             if(reaction.emoji.name == '✅') {
               const sendRemove = remove(sender, senderOwn[0]);
