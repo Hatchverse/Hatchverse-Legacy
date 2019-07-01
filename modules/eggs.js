@@ -293,7 +293,7 @@ function tester_egg(message) {
     const testeregg = new probability({
       p: '100%',
       f: () => {
-        message.reply(` <:Tester_Egg:594196230503137280> you just hatched a Secret **Hatchverse TV**! (**100%**) <:Hatchverse_TV:594021935688450058>`);
+        message.reply(` <:Tester_Egg:594196230503137280> you just hatched a Legendary **Hatchverse TV**! (**100%**) <:Hatchverse_TV:594021935688450058>`);
         addpet('<:Hatchverse_TV:594021935688450058>', message.author.id)
       }
     })
