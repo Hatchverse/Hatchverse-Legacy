@@ -65,7 +65,7 @@ bot.on('message', async (message) => {
     
     if(cmdFile) {
       if(items.length == 0 || typeof items == 'undefined') {
-        db.run("INSERT INTO Users (Tag, Eggs, Gems, Inventory, LockedPets, Perks, Vouches, TradePending) VALUES (?,?,?,?,?,?,?,?)", message.author.id, 0, 0, '', '', '', '', false);
+        db.run("INSERT INTO Users (Tag, Eggs, Gems, Inventory, Perks, Vouches, TradePending) VALUES (?,?,?,?,?,?,?)", message.author.id, 0, 0, '', '', '', false);
         await sleep(500);
         cmdFile.run(bot, message, args);
       } else {
