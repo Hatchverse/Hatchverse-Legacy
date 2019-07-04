@@ -52,7 +52,7 @@ bot.on('ready', async () => {
   // db.all("SELECT * FROM Users", (err, items) => {
   //   console.log(items[0])
   // })
-  // db.run(`UPDATE Users SET TradePending = '${false}'`);
+  db.run(`UPDATE Users SET TradePending = '${false}'`);
   bot.user.setActivity(`${bot.users.size} eggheads 🥚`, { type: 'WATCHING' })
 })
 
