@@ -19,12 +19,14 @@ module.exports.run = async (bot, message, args) => {
     usedCmd.add(message.author.id);
     setTimeout(() => {
       usedCmd.delete(message.author.id);
-    }, 1500)
+    }, 3000) //whats this faggot FREAKING MAKE REBALACNE ION THERE SO WE CAN UPATE WHA IF I DON'T  THEN WE BAN BAN WHO YOPUOYOOYOU YOU
   }
   
   db.all(`SELECT * FROM Users WHERE Tag = '${message.author.id}'`, (err, items) => {
     //Db consts
-    const inventory = items[0].Inventory.split(', ').length;
+    const inventoryspace = (items[0].Inventory == '') ? 0 : items[0].Inventory.split(', ').length;
+    const lockpetspace = (items[0].LockedPets == '') ? 0 : items[0].LockedPets.split(', ').length;
+    const inventory = inventoryspace + lockpetspace;
     const perks = items[0].Perks;
     const egg = items[0].Eggs;
     
@@ -40,7 +42,7 @@ module.exports.run = async (bot, message, args) => {
     
     //Spotted egg
     if(args.join(" ").toLowerCase() == "spotted egg") {
-      if(egg < 50) return message.channel.send(`\`Error:\` You need to have **50** eggs opened to unlock this egg!`)
+      if(egg < 100) return message.channel.send(`\`Error:\` You need to have **100** eggs opened to unlock this egg!`)
       if(inventory >= 50) return message.channel.send('`Error:` You have reached the **max** inventory space! Use `()remove <pet name | all>` to get rid of some unwanted **pets**...`');
       if(perks == 'd') return double(eggs.spotted_egg);
       if(perks == 't') return triple(eggs.spotted_egg);
@@ -49,7 +51,7 @@ module.exports.run = async (bot, message, args) => {
     
     //Ice shard egg
     if(args.join(" ").toLowerCase() == "ice shard egg") {
-      if(egg < 200) return message.channel.send(`\`Error:\` You need to have **200** eggs opened to unlock this egg!`)
+      if(egg < 400) return message.channel.send(`\`Error:\` You need to have **400** eggs opened to unlock this egg!`)
       if(inventory >= 50) return message.channel.send('`Error:` You have reached the **max** inventory space! Use `()remove <pet name | all>` to get rid of some unwanted **pets**...`');
       if(perks == 'd') return double(eggs.ice_shard_egg);
       if(perks == 't') return triple(eggs.ice_shard_egg);
@@ -58,7 +60,7 @@ module.exports.run = async (bot, message, args) => {
     
     //Spikey egg
     if(args.join(" ").toLowerCase() == "spikey egg") {
-      if(egg < 500) return message.channel.send(`\`Error:\` You need to have **500** eggs opened to unlock this egg!`)
+      if(egg < 1275) return message.channel.send(`\`Error:\` You need to have **1275** eggs opened to unlock this egg!`)
       if(inventory >= 50) return message.channel.send('`Error:` You have reached the **max** inventory space! Use `()remove <pet name | all>` to get rid of some unwanted **pets**...`');
       if(perks == 'd') return double(eggs.spikey_egg);
       if(perks == 't') return triple(eggs.spikey_egg);
@@ -67,7 +69,7 @@ module.exports.run = async (bot, message, args) => {
     
     //Slimey egg
     if(args.join(" ").toLowerCase() == "slimey egg") {
-      if(egg < 1500) return message.channel.send(`\`Error:\` You need to have **1500** eggs opened to unlock this egg!`)
+      if(egg < 4000) return message.channel.send(`\`Error:\` You need to have **4000** eggs opened to unlock this egg!`)
       if(inventory >= 50) return message.channel.send('`Error:` You have reached the **max** inventory space! Use `()remove <pet name | all>` to get rid of some unwanted **pets**...`');
       if(perks == 'd') return double(eggs.slimey_egg);
       if(perks == 't') return triple(eggs.slimey_egg);
@@ -76,13 +78,30 @@ module.exports.run = async (bot, message, args) => {
     
     //Rainbow egg
     if(args.join(" ").toLowerCase() == "rainbow egg") {
-      if(egg < 3000) return message.channel.send(`\`Error:\` You need to have **3000** eggs opened to unlock this egg!`)
+      if(egg < 8250) return message.channel.send(`\`Error:\` You need to have **8250** eggs opened to unlock this egg!`)
       if(inventory >= 50) return message.channel.send('`Error:` You have reached the **max** inventory space! Use `()remove <pet name | all>` to get rid of some unwanted **pets**...`');
       if(perks == 'd') return double(eggs.rainbow_egg);
       if(perks == 't') return triple(eggs.rainbow_egg);
       eggs.rainbow_egg(message)
     }
     
+    //Golden Egg
+    if(args.join(" ").toLowerCase() == "golden egg") {
+      if(egg < 14500) return message.channel.send(`\`Error:\` You need to have **14500** eggs opened to unlock this egg!`)
+      if(inventory >= 50) return message.channel.send('`Error:` You have reached the **max** inventory space! Use `()remove <pet name | all>` to get rid of some unwanted **pets**...`');
+      if(perks == 'd') return double(eggs.golden_egg);
+      if(perks == 't') return triple(eggs.golden_egg);
+      eggs.golden_egg(message)
+    }
+    
+    //Dominus Egg
+    if(args.join(" ").toLowerCase() == "dominus egg") {
+      if(egg < 18000) return message.channel.send(`\`Error:\` You need to have **18000** eggs opened to unlock this egg!`)
+      if(inventory >= 50) return message.channel.send('`Error:` You have reached the **max** inventory space! Use `()remove <pet name | all>` to get rid of some unwanted **pets**...`');
+      if(perks == 'd') return double(eggs.dominus_egg);
+      if(perks == 't') return triple(eggs.dominus_egg);
+      eggs.dominus_egg(message)
+    }
     
     
     //Special Eggs
@@ -106,13 +125,7 @@ module.exports.run = async (bot, message, args) => {
     }
     
     //Event eggs
-    if(args.join(" ").toLowerCase() == "hack week egg" || args.join(" ").toLowerCase() == "hackweek egg") {
-      if(egg < 100) return message.channel.send(`\`Error:\` You need to have **100** eggs opened to unlock this egg!`)
-      if(inventory >= 50) return message.channel.send('`Error:` You have reached the **max** inventory space! Use `()remove <pet name | all>` to get rid of some unwanted **pets**...`');
-      if(perks == 'd') return double(eggs.hack_week_egg);
-      if(perks == 't') return triple(eggs.hack_week_egg);
-      eggs.hack_week_egg(message)
-    }
+    
     //End of egg if statments
   })
   

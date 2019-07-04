@@ -1,6 +1,5 @@
 // COPYRIGHT UROMASTYX, 2019
 
-
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 const fs = require('fs');
@@ -14,12 +13,11 @@ const dbFile = global.db;
 const exists = fs.existsSync(dbFile);
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database(dbFile);
-
-
+asdfsadfsadf
 db.serialize(function(){
   if (!exists) {
     db.run("DROP TABLE Users")
-    db.run('CREATE TABLE Users (Tag TEXT, Eggs INT, Gems INT, Inventory TEXT, Perks TEXT, Vouches TEXT, TradePending TEXT)');
+    db.run('CREATE TABLE Users (Tag TEXT, Eggs INT, Gems INT, Inventory TEXT, LockedPets TEXT, Perks TEXT, Vouches TEXT, TradePending TEXT)');
     console.log('New table Users created!');
   };
 });
@@ -49,7 +47,12 @@ fs.readdir('./commands/', (err, files) => {
 
 bot.on('ready', async () => {
   console.log('Hatchverse has started!');
-  db.run(`UPDATE Users SET TradePending = '${false}'`);
+  // db.run("ALTER Table Users ADD COLUMN LockedPets TEXT");
+  // db.run("UPDATE Users SET LockedPets = ''")
+  // db.all("SELECT * FROM Users", (err, items) => {
+  //   console.log(items[0])
+  // })
+  // db.run(`UPDATE Users SET TradePending = '${false}'`);
   bot.user.setActivity(`${bot.users.size} eggheads 🥚`, { type: 'WATCHING' })
 })
 
@@ -58,21 +61,21 @@ bot.on('message', async (message) => {
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
+  let cmdFile = bot.commands.get(cmd.slice(prefix.length));
   
-  db.all(`SELECT * FROM Users WHERE Tag = '${message.author.id}'`, async (err, items) => {
-    if(message.author.bot) return;
-    let cmdFile = bot.commands.get(cmd.slice(prefix.length));
-    
-    if(cmdFile) {
-      if(items.length == 0 || typeof items == 'undefined') {
-        db.run("INSERT INTO Users (Tag, Eggs, Gems, Inventory, Perks, Vouches, TradePending) VALUES (?,?,?,?,?,?,?)", message.author.id, 0, 0, '', '', '', false);
+  if(cmdFile) {
+    db.all(`SELECT EXISTS(SELECT 1 FROM Users WHERE Tag = '${message.author.id}' LIMIT 1)`, async (err, items) => {
+      const exists = items[0][Object.keys(items[0])[0]];
+      
+      if(exists == false) {
+        db.run("INSERT INTO Users (Tag, Eggs, Gems, Inventory, LockedPets, Perks, Vouches, TradePending) VALUES (?,?,?,?,?,?,?,?)", message.author.id, 0, 0, '', '', '', '', false);
         await sleep(500);
         cmdFile.run(bot, message, args);
       } else {
-        cmdFile.run(bot, message, args); 
+        cmdFile.run(bot, message, args);
       }
-    }
-  })
+    })
+  }
 
 })
 
