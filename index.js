@@ -57,6 +57,8 @@ bot.on('ready', async () => {
   setInterval(() => {
     let statuses = [`${bot.users.size} eggheads 🥚`, `${bot.guilds.size} servers 💻`]      
     let status = statuses[Math.floor(Math.random()*statuses.length)];
+    
+    bot.user.setActivity(status, { type: 'WATCHING' })
   }, 15000)
 })
 
