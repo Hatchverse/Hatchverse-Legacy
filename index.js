@@ -85,9 +85,6 @@ bot.on('message', async (message) => {
 
 })
 
-bot.on("guildMemberAdd", member => {
-  bot.user.setActivity(`${bot.users.size} eggheads 🥚`, {type: "WATCHING"})
-})
 
 function sleep(ms){
   return new Promise(resolve=>{
