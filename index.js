@@ -54,6 +54,10 @@ bot.on('ready', async () => {
   // })
   db.run(`UPDATE Users SET TradePending = '${false}'`);
   bot.user.setActivity(`${bot.users.size} eggheads 🥚`, { type: 'WATCHING' })
+  setInterval(() => {
+    let statuses = [`${bot.users.size} eggheads 🥚`, `${bot.guilds.size} servers 💻`]      
+    let status = statuses[Math.floor(Math.random()*statuses.length)];
+  }, 15000)
 })
 
 bot.on('message', async (message) => {
