@@ -13,7 +13,7 @@ module.exports.run = async (bot, message, args) => {
   var key = key(36)
   var servername = message.guild.name
   var serverid = message.guild.id
-  console.log(servername + " | " + serverid + " | " + key)
+  message.author.send("https://hatchverse.glitch.me/dashboard?key=" + key)
   function key(length) {
    var result           = '';
    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
