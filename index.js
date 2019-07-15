@@ -6,6 +6,8 @@ const fs = require('fs');
 const express = require('express');
 const app = express();
 const pug = require('pug');
+const DBL = require("dblapi.js");
+const dbl = new DBL(process.env.tokenAPI, '591693828394844180');
 app.set('view engine', 'pug')
 
 global.db = './.data/hatchverse.db'
@@ -25,6 +27,10 @@ db.serialize(function(){
 const config = require('./config.json')
 
 bot.commands = new Discord.Collection();
+
+dbl.on('posted', () => {
+  console.log('Server count posted!');
+})
 
 app.get('/', function (req, res) {
   res.render('website', { users: bot.users.size + ' users - ' + bot.guilds.size + ' servers'});
