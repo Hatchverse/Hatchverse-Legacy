@@ -7,7 +7,7 @@ const express = require('express');
 const app = express();
 const pug = require('pug');
 const DBL = require("dblapi.js");
-const dbl = new DBL(process.env.tokenAPI, '591693828394844180');
+const dbl = new DBL(process.env.API, bot);
 app.set('view engine', 'pug')
 
 global.db = './.data/hatchverse.db'
