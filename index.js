@@ -50,7 +50,6 @@ fs.readdir('./commands/', (err, files) => {
     bot.commands.set(props.help.name, props);
   })
 })
-
 bot.on('ready', async () => {
   console.log('Hatchverse has started!');
   // db.run("ALTER Table Users ADD COLUMN LockedPets TEXT");
@@ -58,9 +57,9 @@ bot.on('ready', async () => {
   // db.all("SELECT * FROM Users", (err, items) => {
   //   console.log(items[0])
   // })
+  bot.user.setActivity(`hatch.glitch.me/join 🥚`, { type: 'WATCHING' })
   db.run(`UPDATE Users SET TradePending = '${false}'`);
   
-  bot.user.setActivity(`${bot.users.size} eggheads 🥚`, { type: 'WATCHING' })
 //  setInterval(() => {
  //   let statuses = [`${bot.users.size} eggheads 🥚`, `${bot.guilds.size} servers 💻`]      
 //    let status = statuses[Math.floor(Math.random()*statuses.length)];
