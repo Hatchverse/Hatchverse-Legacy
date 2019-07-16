@@ -60,7 +60,7 @@ bot.on('ready', async () => {
   db.run(`UPDATE Users SET TradePending = '${false}'`);
   
  setInterval(() => {
-   let statuses = [`${bot.users.size} eggheads 🥚`, `${bot.guilds.size} servers 💻`, `hatch.glitch.me/join 🥚`]      
+   let statuses = [`${bot.users.size} eggheads 🥚`, `${bot.guilds.size} servers 💻`, `hatch.glitch.me/join 🥚`, `hatch.glitch.me/invite 🐶`]      
    let status = statuses[Math.floor(Math.random()*statuses.length)];
    
    bot.user.setActivity(status, { type: 'WATCHING' })
