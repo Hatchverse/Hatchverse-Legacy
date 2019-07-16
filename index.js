@@ -57,15 +57,14 @@ bot.on('ready', async () => {
   // db.all("SELECT * FROM Users", (err, items) => {
   //   console.log(items[0])
   // })
-  bot.user.setActivity(`hatch.glitch.me/join 🥚`, { type: 'WATCHING' })
   db.run(`UPDATE Users SET TradePending = '${false}'`);
   
-//  setInterval(() => {
- //   let statuses = [`${bot.users.size} eggheads 🥚`, `${bot.guilds.size} servers 💻`]      
-//    let status = statuses[Math.floor(Math.random()*statuses.length)];
-//    
- //   bot.user.setActivity(status, { type: 'WATCHING' })
-//  }, 15000)
+ setInterval(() => {
+   let statuses = [`${bot.users.size} eggheads 🥚`, `${bot.guilds.size} servers 💻`, `hatch.glitch.me/join 🥚`]      
+   let status = statuses[Math.floor(Math.random()*statuses.length)];
+   
+   bot.user.setActivity(status, { type: 'WATCHING' })
+ }, 15000)
 })
 
 bot.on('message', async (message) => {
