@@ -19,13 +19,11 @@ const DiscordBotListAPI = require('dbl-api');
 const hatchhook = new Discord.WebhookClient("600942113643036693", "P82LUqSKAzGF86po5EpZD02y79VFYHCitWcxuiMFGZKe8f7k547_hRSnmaJbA1WGlVnb");
 const api = new DiscordBotListAPI();
 api.on('unvote', (user, bot) => {
-  let guild = bot.guilds.get('591720572250226730'),
-  USER_ID = user;
-
-  if (guild.member(USER_ID)) {
-    hatchhook.send(':ballot_box: <@' + user + "> just voted for <@591693828394844180>! They got the Supporter role for 12h!")
+  console.log(user + " just upvoted!")
+  if (guild.members.get(USER_ID)) {
+    hatchhook.send(':ballot_box: <@' + user + "> just voted for <@591693828394844180>! They got the Supporter role for 12h! :white_check_mark:")
   } else {
-    hatchhook.send(':ballot_box: <@' + user + "> just voted! Does not seem like they are in this server though,")
+    hatchhook.send(':ballot_box: <@' + user + "> just voted! Does not seem like they are in this server though... :x:")
   }
 });
 app.post('/dblwebhook', api.handler);
