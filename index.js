@@ -16,8 +16,18 @@ const exists = fs.existsSync(dbFile);
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database(dbFile);
 const DiscordBotListAPI = require('dbl-api');
+const hatchhook = new Discord.WebhookClient("600942113643036693", "P82LUqSKAzGF86po5EpZD02y79VFYHCitWcxuiMFGZKe8f7k547_hRSnmaJbA1WGlVnb");
 const api = new DiscordBotListAPI();
-api.on('unvote', (user, bot) => console.log(`Unvote by ${user} for bot ${bot}`));
+api.on('unvote', (user, bot) => {
+  let guild = bot.guilds.get('591720572250226730'),
+  USER_ID = user;
+
+  if (guild.member(USER_ID)) {
+    hatchhook.send(':ballot_box: <@' + user + "> just voted for <@591693828394844180>! They got the Supporter role for 12h!")
+  } else {
+    hatchhook.send(':ballot_box: <@' + user + "> just voted! Does not seem like they are in this server though,")
+  }
+});
 app.post('/dblwebhook', api.handler);
 
 db.serialize(function(){
