@@ -8,7 +8,6 @@ const app = express();
 const pug = require('pug');
 const DBL = require("dblapi.js");
 const dbl = new DBL(process.env.API, bot);
-const dblweb = new DBL(process.env.API, { webhookPort: 5000, webhookAuth: 'hatch872verse012' });
 app.set('view engine', 'pug')
 
 global.db = './.data/hatchverse.db'
@@ -17,15 +16,11 @@ const exists = fs.existsSync(dbFile);
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database(dbFile);
 
-dblweb.webhook.on('ready', hook => {
-  console.log(`Webhook running at http://${hook.hostname}:${hook.port}${hook.path}`);
+app.post('/dblwebhook', function(req, res) {
+  if (req.headers.authorization == "hatch872verse012") {
+    console.log(req)
+  }
 });
-dblweb.webhook.on('vote', vote => {
-  console.log(`User with ID ${vote.user} just voted!`);
-});
-app.post('/',function(req,res) {
-  console.log(req)
-})
 db.serialize(function(){
   if (!exists) {
     db.run("DROP TABLE Users")
