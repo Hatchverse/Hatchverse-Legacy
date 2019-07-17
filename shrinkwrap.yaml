@@ -1,4 +1,5 @@
 dependencies:
+  dbl-api: 1.2.1
   dblapi.js: 2.3.0
   discord.js: 11.5.1
   express: 4.17.1
@@ -327,6 +328,12 @@ packages:
       node: '>=0.10'
     resolution:
       integrity: sha1-hTz6D3y+L+1d4gMmuN1YEDX24vA=
+  /dbl-api/1.2.1:
+    dependencies:
+      snekfetch: 3.6.4
+    dev: false
+    resolution:
+      integrity: sha512-kBScgc/8CyQGKIJH8tLqvTjYe3wn5dqYoFcyAddDaXpxbSdf4hPS5YC4kNQ9KxVMhoecKx2by/nrTACsqzhoaw==
   /dblapi.js/2.3.0:
     dev: false
     resolution:
@@ -1820,6 +1827,7 @@ registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
+  dbl-api: ^1.2.1
   dblapi.js: ^2.3.0
   discord.js: ^11.5.1
   express: ^4.16.4

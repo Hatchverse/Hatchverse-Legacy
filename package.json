@@ -12,7 +12,8 @@
     "sqlite3": "^4.0.8",
     "showdown": "^1.9.0",
     "pug": "^2.0.3",
-    "dblapi.js": "^2.3.0"
+    "dblapi.js": "^2.3.0",
+    "dbl-api": "^1.2.1"
   },
   "engines": {
     "node": "8.x"

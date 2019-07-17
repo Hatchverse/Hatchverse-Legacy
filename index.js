@@ -15,12 +15,11 @@ const dbFile = global.db;
 const exists = fs.existsSync(dbFile);
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database(dbFile);
+const DiscordBotListAPI = require('dbl-api');
+const api = new DiscordBotListAPI();
+api.on('unvote', (user, bot) => console.log(`Unvote by ${user} for bot ${bot}`));
+app.post('/dblwebhook', api.handler);
 
-app.post('/dblwebhook', function(req, res) {
-  if (req.headers.authorization == "hatch872verse012") {
-    console.log(req)
-  }
-});
 db.serialize(function(){
   if (!exists) {
     db.run("DROP TABLE Users")
