@@ -54,14 +54,14 @@ fs.readdir('./commands/', (err, files) => {
   })
 })
 bot.on('ready', async () => {
+  
   let role = bot.guilds.get('591720572250226730').roles.find(r => r.name === "Supporter");
   console.log('Hatchverse has started!');
   api.on('unvote', function (user) {
   console.log(user + " just upvoted!");
   hatchhook.send(':ballot_box: <@' + user + "> just voted for <@591693828394844180>! They got the Supporter role for 12h! :white_check_mark:").then(function(message) {
-    bot.fetchUser(user).addRole('600968402487738389')
   })
-  
+  bot.guilds.get('591720572250226730').members.get(user).addRole(role)
 });
 
 app.post('/dblwebhook', api.handler);
