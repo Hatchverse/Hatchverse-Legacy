@@ -53,15 +53,14 @@ fs.readdir('./commands/', (err, files) => {
     bot.commands.set(props.help.name, props);
   })
 })
-let role;
 bot.on('ready', async () => {
-  role = bot.guilds.get('591720572250226730').roles.find(r => r.name === "Supporter");
+  let role = bot.guilds.get('591720572250226730').roles.find(r => r.name === "Supporter");
   console.log('Hatchverse has started!');
-  api.on('unvote', function (user, bot) {
+  api.on('unvote', function (user) {
   console.log(user + " just upvoted!");
   console.log(bot.fetchUser(user))
-  giveRole(user)
   hatchhook.send(':ballot_box: <@' + user + "> just voted for <@591693828394844180>! They got the Supporter role for 12h! :white_check_mark:");
+  bot.fetchUser(user).addRole(role).catch(hatchhook.send(":x: ^ This user does not appear to be in our discord. :thinking:"));
 });
 
 app.post('/dblwebhook', api.handler);
