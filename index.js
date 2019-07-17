@@ -58,9 +58,11 @@ bot.on('ready', async () => {
   console.log('Hatchverse has started!');
   api.on('unvote', function (user) {
   console.log(user + " just upvoted!");
-  console.log(bot.fetchUser(user))
-  hatchhook.send(':ballot_box: <@' + user + "> just voted for <@591693828394844180>! They got the Supporter role for 12h! :white_check_mark:");
-  bot.fetchUser(user).addRole(role).catch(hatchhook.send(":x: ^ This user does not appear to be in our discord. :thinking:"));
+  hatchhook.send(':ballot_box: <@' + user + "> just voted for <@591693828394844180>! They got the Supporter role for 12h! :white_check_mark:").then(function(message) {
+    console.log(message)
+    message.guild.members.get(user).addRole(role)
+  })
+  
 });
 
 app.post('/dblwebhook', api.handler);
