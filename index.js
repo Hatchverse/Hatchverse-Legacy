@@ -59,8 +59,7 @@ bot.on('ready', async () => {
   api.on('unvote', function (user) {
   console.log(user + " just upvoted!");
   hatchhook.send(':ballot_box: <@' + user + "> just voted for <@591693828394844180>! They got the Supporter role for 12h! :white_check_mark:").then(function(message) {
-    console.log(message)
-    message.guild.members.get(user).addRole(role)
+    bot.fetchUser(user).addRole('600968402487738389')
   })
   
 });
