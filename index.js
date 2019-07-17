@@ -16,16 +16,8 @@ const exists = fs.existsSync(dbFile);
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database(dbFile);
 const DiscordBotListAPI = require('dbl-api');
-let guild = bot.guilds.get('591720572250226730');
-let role = guild.roles.get("264410914592129025");
 const hatchhook = new Discord.WebhookClient("600942113643036693", "P82LUqSKAzGF86po5EpZD02y79VFYHCitWcxuiMFGZKe8f7k547_hRSnmaJbA1WGlVnb");
 const api = new DiscordBotListAPI();
-api.on('unvote', function (user, bot) {
-  console.log(user + " just upvoted!");
-  hatchhook.send(':ballot_box: <@' + user + "> just voted for <@591693828394844180>! They got the Supporter role for 12h! :white_check_mark:")
-  bot.fetchUser(user).addRole(role).catch(hatchhook.send(":x: ^ This user does not appear to be in our discord. :thinking:"));
-});
-app.post('/dblwebhook', api.handler);
 
 db.serialize(function(){
   if (!exists) {
@@ -61,8 +53,19 @@ fs.readdir('./commands/', (err, files) => {
     bot.commands.set(props.help.name, props);
   })
 })
+let role;
 bot.on('ready', async () => {
+  role = bot.guilds.get('591720572250226730').roles.find(r => r.name === "Supporter");
   console.log('Hatchverse has started!');
+  api.on('unvote', function (user, bot) {
+  console.log(user + " just upvoted!");
+  console.log(bot.fetchUser(user))
+  giveRole(user)
+  hatchhook.send(':ballot_box: <@' + user + "> just voted for <@591693828394844180>! They got the Supporter role for 12h! :white_check_mark:");
+});
+
+app.post('/dblwebhook', api.handler);
+  
   // db.run("ALTER Table Users ADD COLUMN LockedPets TEXT");
   // db.run("UPDATE Users SET LockedPets = ''")
   // db.all("SELECT * FROM Users", (err, items) => {
