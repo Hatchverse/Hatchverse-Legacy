@@ -23,7 +23,9 @@ dblweb.webhook.on('ready', hook => {
 dblweb.webhook.on('vote', vote => {
   console.log(`User with ID ${vote.user} just voted!`);
 });
-
+app.post('/',function(req,res) {
+  console.log(req)
+})
 db.serialize(function(){
   if (!exists) {
     db.run("DROP TABLE Users")
