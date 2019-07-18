@@ -61,7 +61,11 @@ bot.on('ready', async () => {
   console.log(user + " just upvoted!");
   hatchhook.send(':ballot_box: <@' + user + "> just voted for <@591693828394844180>! They got the Supporter role for 12h! :white_check_mark:").then(function(message) {
   })
-  bot.guilds.get('591720572250226730').members.get(user).addRole(role)
+  bot.guilds.get('591720572250226730').members.get(user).addRole(role).then(function(){
+    setTimeout(function(){
+      bot.guilds.get('591720572250226730').members.get(user).removeRole(role)
+      }, 43200000);
+    })
 });
 
 app.post('/dblwebhook', api.handler);
