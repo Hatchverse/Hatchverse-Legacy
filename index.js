@@ -64,7 +64,7 @@ bot.on('ready', async () => {
   bot.guilds.get('591720572250226730').members.get(user).addRole(role).then(function(){
     setTimeout(function(){
       bot.guilds.get('591720572250226730').members.get(user).removeRole(role)
-      }, 43200000);
+      }, 43164000);
     })
 });
 
