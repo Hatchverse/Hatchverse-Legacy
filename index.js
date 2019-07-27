@@ -92,6 +92,8 @@ bot.on('message', async (message) => {
   let args = messageArray.slice(1);
   let cmdFile = bot.commands.get(cmd.slice(prefix.length));
   
+  if(message.author.bot) return;
+  
   if(cmdFile) {
     db.all(`SELECT EXISTS(SELECT 1 FROM Users WHERE Tag = '${message.author.id}' LIMIT 1)`, async (err, items) => {
       const exists = items[0][Object.keys(items[0])[0]];
