@@ -385,7 +385,7 @@ function dominus_egg(message) {
     }, {
       p: '25%',
       f: () => {
-        message.reply(` <:Dominus_Egg:596175646862999574> you just hatched a Unique **Rainbow Butterfly**! (**25%**) <:Grape_Dominus:596175651724197899>`);
+        message.reply(` <:Dominus_Egg:596175646862999574> you just hatched a Unique **Grape Dominus**! (**25%**) <:Grape_Dominus:596175651724197899>`);
         addpet('<:Grape_Dominus:596175651724197899>', message.author.id)
       }
     }, {
