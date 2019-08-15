@@ -16,7 +16,7 @@
     "discord.js": "^11.5.1"
   },
   "engines": {
-    "node": "8.x"
+    "node": "10.x"
   },
   "repository": {
     "url": "https://glitch.com/edit/#!/hatchverse"
