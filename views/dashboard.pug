@@ -1,0 +1,59 @@
+script(src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js")
+h1= name
+title= name
+label Language
+br
+select(id='language')
+  option(value=current)= current
+  option(value='English') English
+  option(value='Spanish') Spanish
+  option(value='Russian') Russian
+  option(value='Swedish') Swedish
+  option(value='Italian') Italian
+  option(value='Chinese') Chinese
+  option(value='Japanese') Japanese
+  option(value='Polish') Polish
+  option(value='Portuguese') Portuguese
+  option(value='French') French
+  option(value='German') German
+  option(value='Czech') Czech
+  option(value='Greek') Greek
+  option(value='Turkish') Turkish
+br
+h3(style="display: inline-block;")=invite
+|  
+a(style="display: inline-block;" href="https://hatch.glitch.me/invite") (Invite Link) 
+br
+button(id="save" onclick="save()") Save
+h4(id='Info')
+h1(id='response')
+script.
+  let params = (new URL(document.location)).searchParams;
+  let token = params.get('t');
+  let s = params.get('server');
+  function save() {
+  var yourSelect = document.getElementById( "language" );
+  var selected = yourSelect.options[ yourSelect.selectedIndex ].value
+  console.log({"language": selected})
+  document.getElementById('Info').textContent = "Saving..."
+    $.ajax({
+    url: "/save?t=" + token + "&s=" + s,
+    type: "POST",
+    dataType: "json",
+    data: {"language": selected},
+    complete: function() {
+      //called when complete
+      console.log('process complete');
+    },
+
+    success: function(data) {
+    document.getElementById('Info').textContent = data.textContent
+   },
+
+    error: function(data) {
+      document.getElementById('Info').textContent = data.responseText
+      console.log('process done');
+      console.log(data.responseText)
+    },
+  });
+  }
