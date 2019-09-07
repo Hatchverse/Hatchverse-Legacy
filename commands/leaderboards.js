@@ -13,11 +13,11 @@ module.exports.run = async (bot, message, args) => {
   
   if(args[0].toLowerCase() == 'eggs') {
     db.all("SELECT * FROM Users ORDER BY Eggs DESC LIMIT 10;", (err, items) => {
-      console.log(bot.users.get(items[0].Tag))
+      console.log(items.map(item => bot.users.get(item.Tag).id))
       //Eggs embed
       let embed = new Discord.RichEmbed()
       .setAuthor('Hatchverse Leaderboard (Eggs Opened)', bot.user.displayAvatarURL)
-      .setDescription(items.map(item => `\`${i++}.\` **${bot.users.get(item.Tag).tag}** :egg: **${item.Eggs}**`))
+      .setDescription(items.map(item => `\`${i++}.\` **${bot.users.get(item.Tag).username + "#" + bot.users.get(item.Tag).discriminator}** :egg: **${item.Eggs}**`))
       .setTimestamp()
       .setColor('#9c13f7')
       .setFooter(bot.user.username)
@@ -42,5 +42,5 @@ module.exports.run = async (bot, message, args) => {
 }
 
 module.exports.help = {
-  name: "leaderboard"
+  name: "leaderboarddisabled"
 }
