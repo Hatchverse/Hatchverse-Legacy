@@ -13,7 +13,8 @@
     "pug": "^2.0.3",
     "dblapi.js": "^2.3.0",
     "dbl-api": "^1.2.1",
-    "discord.js": "^11.5.1"
+    "discord.js": "^11.5.1",
+    "node-fetch": "^2.6.0"
   },
   "engines": {
     "node": "10.x"

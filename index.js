@@ -39,6 +39,9 @@ app.get('/', function (req, res) {
   res.render('website', { users: bot.users.size + ' users - ' + bot.guilds.size + ' servers'});
 });
 
+
+
+
 fs.readdir('./commands/', (err, files) => {
   if (err) console.log(err);
   
@@ -70,6 +73,16 @@ bot.on('ready', async () => {
 
 app.post('/dblwebhook', api.handler);
   
+const fetch = require('node-fetch');
+    fetch(`https://crystalbotlist.uk/api/bot/${bot.user.id}`, {
+            method: 'POST',
+            headers: {
+                'Authorization': '867480386e9b35fc07dea8150a9592a328d3d4769b43b386cabf51a1e1bb4eeb2080be262a6fecd0e92b1bf691453e3657239f5bb9a2c16ccd9dc095e8f4eb1f',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({server_count: bot.guilds.size})
+        }).then(() => console.log('Posted server count to crystalbotlist.uk!'))
+        .catch(err => console.log('Posting to crystalbotlist.uk failed!\n' + err.message));
   // db.run("ALTER Table Users ADD COLUMN LockedPets TEXT");
   // db.run("UPDATE Users SET LockedPets = ''")
   // db.all("SELECT * FROM Users", (err, items) => {
