@@ -9,7 +9,7 @@ const db = new sqlite3.Database(dbFile);
 module.exports.run = async (bot, message, args) => {
   if(!message.content.startsWith(config.prefix)) return;
   
-  return message.
+  return message.channel.send(`\`Error:\` The ()leaderboard command is currently disabled.`)
   
   if(!args[0]) return message.channel.send('`Syntax Error:` ()leaderboard **<eggs | gems>**')
   let i = 1;
@@ -45,5 +45,5 @@ module.exports.run = async (bot, message, args) => {
 }
 
 module.exports.help = {
-  name: "leaderboarddisabled"
+  name: "leaderboard"
 }
