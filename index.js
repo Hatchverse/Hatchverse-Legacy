@@ -1,7 +1,7 @@
 // COPYRIGHT UROMASTYX, 2019
 
 const Discord = require('discord.js');
-const bot = new Discord.Client();
+const bot = new Discord.Client({ disableEveryone: true });
 const fs = require('fs');
 const express = require('express');
 const app = express();
