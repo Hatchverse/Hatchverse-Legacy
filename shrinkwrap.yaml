@@ -1,11 +1,13 @@
 dependencies:
   axios: 0.19.0
+  body-parser: 1.19.0
   btoa: 1.2.1
   dbl-api: 1.2.1
   dblapi.js: 2.3.0
   discord.js: 11.5.1
   express: 4.17.1
   fetch: 1.1.0
+  jsdiscordperms: github.com/PgBiel/jsdiscordperms/61a7bc02536bf2381f2e41cdb39e672c35428986
   node-fetch: 2.6.0
   pug: 2.0.4
   showdown: 1.9.0
@@ -1908,17 +1910,26 @@ packages:
     dev: false
     resolution:
       integrity: sha1-9+572FfdfB0tOMDnTvvWgdFDH9E=
+  github.com/PgBiel/jsdiscordperms/61a7bc02536bf2381f2e41cdb39e672c35428986:
+    dev: false
+    name: jsdiscordperms
+    resolution:
+      registry: 'https://registry.npmjs.org/'
+      tarball: 'https://codeload.github.com/PgBiel/jsdiscordperms/tar.gz/61a7bc02536bf2381f2e41cdb39e672c35428986'
+    version: 1.2.0
 registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
   axios: ^0.19.0
+  body-parser: ^1.19.0
   btoa: ^1.2.1
   dbl-api: ^1.2.1
   dblapi.js: ^2.3.0
   discord.js: ^11.5.1
   express: ^4.16.4
   fetch: ^1.1.0
+  jsdiscordperms: 'github:PgBiel/jsdiscordperms'
   node-fetch: ^2.6.0
   pug: ^2.0.3
   showdown: ^1.9.0

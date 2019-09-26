@@ -4,6 +4,7 @@ const Discord = require('discord.js');
 const bot = new Discord.Client({ disableEveryone: true });
 const fs = require('fs');
 const express = require('express');
+var bodyParser = require('body-parser')
 const app = express();
 const pug = require('pug');
 const btoa = require("btoa")
@@ -45,7 +46,26 @@ dbl.on('posted', () => {
 app.get('/', function (req, res) {
   res.render('website', { users: bot.users.size + ' users - ' + bot.guilds.size + ' servers'});
 });
+app.use(bodyParser.urlencoded({ extended: false }))
 
+async function checkExists(id) {
+  return new Promise(async (resolve, reject) => {
+    db.each(`SELECT NOT EXISTS(SELECT 1 FROM Config WHERE Id = '${id}' LIMIT 1)`, async (err, items) => {
+      console.log(items)
+      const exists = items[Object.keys(items)[0]];
+
+      if(exists == true) {
+        console.log("true");
+      }
+      if(exists == false) {
+        console.log("false");
+
+      }
+      
+      resolve(exists)
+    });
+  })
+}
 
 
 
@@ -144,7 +164,7 @@ app.listen(process.env.PORT)
 app.get('/connect', catchAsync(async (req, res) => {
   const code = req.query.code;
   const creds = btoa(`${process.env.id}:${process.env.secret}`);
-  const response = await fetch(`https://discordapp.com/api/oauth2/token?grant_type=authorization_code&code=${code}&redirect_uri=https%3A%2F%2Fchambray-spot.glitch.me%2Fconnect&scope=identify%20guilds`,
+  const response = await fetch(`https://discordapp.com/api/oauth2/token?grant_type=authorization_code&code=${code}&redirect_uri=https%3A%2F%2Fhatchverse.glitch.me%2Fconnect&scope=identify%20guilds`,
     {
       method: 'POST',
       headers: {
@@ -152,6 +172,7 @@ app.get('/connect', catchAsync(async (req, res) => {
       },
     });
   const json = await response.json();
+  console.log(json)
   res.redirect("/dashboard?t=" + json.access_token);
 }));
 app.get('/dashboard', (req, res) => {
@@ -178,7 +199,6 @@ app.get('/dashboard', (req, res) => {
                     res.send(html);
                   })
                   .catch(function (error) {
-                    console.log(error);
                   });
   } else {
     // Check if user has the Server
