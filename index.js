@@ -225,19 +225,31 @@ app.get('/dashboard', (req, res) => {
                   if (!servers.includes(req.query.server)) {
                     res.send('Invalid Server/No Permission')
                   } else {
-                    var invite = ""
-                    if (bot.guilds.get(req.query.server).id ==! undefined) {
-                      invite = "You are good to go! Hatchverse is in this server!"
-                    } else {
-                      invite = "Hatchverse not found! Please invite Hatchverse to your server!"
-                    }
                       const exists = await checkExists(req.query.server)
                       if (exists == false) {
                         db.get(`SELECT Language FROM Config WHERE Id = ${req.query.server}`, function (err,items) {
                           console.log(items)
+                          var invite = ""
+                    try {
+                    if (bot.guilds.get(req.query.server).id == undefined) {
+                      invite = "Hatchverse not found! Please invite Hatchverse to your server!"
+                    } else {
+                      invite = "You are good to go! Hatchverse is in this server!"
+                    } } catch(err) {
+                      invite = "Hatchverse not found! Please invite Hatchverse to your server!"
+                    }
                         res.render('dashboard', { name: name, current: items.Language, invite: invite});
                         })
                       } else {
+                        var invite = ""
+                    try {
+                    if (bot.guilds.get(req.query.server).id == undefined) {
+                      invite = "Hatchverse not found! Please invite Hatchverse to your server!"
+                    } else {
+                      invite = "You are good to go! Hatchverse is in this server!"
+                    } } catch(err) {
+                      invite = "Hatchverse not found! Please invite Hatchverse to your server!"
+                    }
                         res.render('dashboard', { name: name, current: 'English', invite: invite});
                       }
                   }
