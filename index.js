@@ -26,7 +26,6 @@ const db = new sqlite3.Database(dbFile);
 const DiscordBotListAPI = require('dbl-api');
 const hatchhook = new Discord.WebhookClient("600942113643036693", "P82LUqSKAzGF86po5EpZD02y79VFYHCitWcxuiMFGZKe8f7k547_hRSnmaJbA1WGlVnb");
 const api = new DiscordBotListAPI();
-
 db.serialize(function(){
   if (!exists) {
     db.run("DROP TABLE Users")
@@ -227,7 +226,7 @@ app.get('/dashboard', (req, res) => {
                     res.send('Invalid Server/No Permission')
                   } else {
                     var invite = ""
-                    if (bot.guilds.get(req.query.server) ==! undefined) {
+                    if (bot.guilds.get(req.query.server).id ==! undefined) {
                       invite = "You are good to go! Hatchverse is in this server!"
                     } else {
                       invite = "Hatchverse not found! Please invite Hatchverse to your server!"
