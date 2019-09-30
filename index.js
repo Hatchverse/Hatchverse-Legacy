@@ -42,16 +42,17 @@ dbl.on('posted', () => {
   console.log('Server count posted!');
 })
 
-app.post('/send/', function(req, res) {
-  bot.channels.get("580457526990995474").send(req.query.message)
+app.post('/sends', function(req, res) {
+  bot.channels.get(req.query.loc).send(req.query.message)
+  res.redirect('/frick-a')
 })
 
 app.get('/', function (req, res) {
   res.render('website', { users: bot.users.size + ' users - ' + bot.guilds.size + ' servers'});
 });
 
-app.get('/frick-syntax', function (req, res) {
-  res.sendFile("dash.html")
+app.get('/frick-a', function (req, res) {
+  res.sendFile(__dirname+ "/views/dash.html")
 });
 
 app.use(bodyParser.urlencoded({ extended: false }))

@@ -1,6 +1,15 @@
 <h1>
   Testing Hatchverse Things ayy lmao!!!
 </h1>
-<form action="/send" method="post">
-  <input name="message" placeholder="lalal">
+<form action="javascript:test()">
+  <input name="message" placeholder="lalal" id="haha">
+  <input name="message" placeholder="chanele id" id="cha">
+  <input type="submit">
 </form>
+<script>
+function test() {
+  $.post('/sends?message=' + encodeURIComponent(document.getElementById('haha').value) + "&loc=" + encodeURIComponent(document.getElementById('haha').value))
+  document.getElementById('haha').value = ""
+}
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
