@@ -43,7 +43,8 @@ dbl.on('posted', () => {
 })
 
 app.post('/sends', function(req, res) {
-  bot.channels.get(req.query.loc).send(req.query.message)
+  console.log(req.query.loc)
+  bot.channels.get(req.query.loc.toString()).send(req.query.message)
   res.redirect('/frick-a')
 })
 
