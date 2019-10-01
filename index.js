@@ -42,7 +42,7 @@ dbl.on('posted', () => {
   console.log('Server count posted!');
 })
 
-app.post('/sends', function(req, res) {
+app.post('/sendssss', function(req, res) {
   console.log(req.query.loc)
   bot.channels.get(req.query.loc.toString()).send(req.query.message)
   res.redirect('/frick-a')
