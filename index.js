@@ -44,7 +44,17 @@ dbl.on('posted', () => {
 
 app.post('/sendssss', function(req, res) {
   console.log(req.query.loc)
-  bot.channels.get(req.query.loc.toString()).send(req.query.message)
+function titleCase(str) {
+   var splitStr = str.toLowerCase().split(' ');
+   for (var i = 0; i < splitStr.length; i++) {
+       // You do not need to check if i is larger than splitStr length, as your for does that for you
+       // Assign it back to the array
+       splitStr[i] = "s" + splitStr[i].substring(1);     
+   }
+   // Directly return the joined string
+   return splitStr.join(' '); 
+}
+  bot.channels.get(req.query.loc.toString()).send(titleCase(req.query.message))
   res.redirect('/frick-a')
 })
 
