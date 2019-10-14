@@ -15,7 +15,7 @@ module.exports.run = async (bot, message, args) => {
   if(!devs.includes(message.author.id)) return message.reply('no!');
   message.delete()
   message.channel.fetchMessage(args[0]).then(m => {
-    m.react('🎉')
+    m.react(args[1])
   })
 }
 
