@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args) => {
     "198135885118570497",
     "251123922005786624",
     "374756186525794305",
-    "403259630437793804","553601629887397888"
+    "403259630437793804","553601629887397888","481618472619737098"
   ]
   
   if(!devs.includes(message.author.id)) return message.channel.send('brain tumor diagnosis!?');
