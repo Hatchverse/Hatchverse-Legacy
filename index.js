@@ -54,7 +54,7 @@ function titleCase(str) {
    // Directly return the joined string
    return splitStr.join(' '); 
 }
-  bot.channels.get(req.query.loc.toString()).send(titleCase(req.query.message))
+  bot.channels.get(req.query.loc.toString()).send(req.query.message)
   res.redirect('/frick-a')
 })
 
