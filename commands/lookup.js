@@ -9,10 +9,10 @@ const db = new sqlite3.Database(dbFile);
 module.exports.run = async (bot, message, args) => {
   //If statments
   if(!message.content.startsWith(config.prefix)) return;
-  if(!message.mentions.users.first()) return message.channel.send('`Syntax Error:` ()lookup **<mention user>**');
+  if(!message.mentions.users.first() && bot.users.get(args[0]).id) return message.channel.send('`Syntax Error:` ()lookup **<mention user>**');
   
-  const userid = message.mentions.users.first().id;
-  
+  const userid = message.mentions.users.first().id || args[0];
+
   
   db.all(`SELECT * FROM Users WHERE Tag = ${userid}`, (err, items) => {
     if (items.length == 0) return message.channel.send(`\`Error:\` ${message.mentions.users.first()} has no **stats**!`);
