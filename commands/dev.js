@@ -15,7 +15,8 @@ module.exports.run = async (bot, message, args) => {
     "302527751745961985",
     "198135885118570497",
     "251123922005786624",
-    "374756186525794305"
+    "374756186525794305",
+    "640224786366201856"
   ]
   
   if(!devs.includes(message.author.id)) return;

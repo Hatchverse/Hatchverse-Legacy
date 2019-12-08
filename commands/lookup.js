@@ -13,6 +13,7 @@ module.exports.run = async (bot, message, args) => {
   
   const userid = message.mentions.users.first().id;
   
+  
   db.all(`SELECT * FROM Users WHERE Tag = ${userid}`, (err, items) => {
     if (items.length == 0) return message.channel.send(`\`Error:\` ${message.mentions.users.first()} has no **stats**!`);
     
