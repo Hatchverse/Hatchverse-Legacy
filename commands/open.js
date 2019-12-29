@@ -118,7 +118,8 @@ module.exports.run = async (bot, message, args) => {
         "374756186525794305",
         "251123922005786624",
         "302599378332549121",
-        "640224786366201856"
+        "640224786366201856",
+        "204594629662867456"
       ]
       if(!testers.includes(message.author.id)) return;
       if(inventory >= 50) return message.channel.send('`Error:` You have reached the **max** inventory space! Use `()remove <pet name | all>` to get rid of some unwanted **pets**...`');
