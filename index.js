@@ -181,7 +181,7 @@ bot.login(process.env.TOKEN)
 
 app.listen(process.env.PORT)
 
-app.get("/just-work-please.txt", (req, res) => {
+app.get("/just-work-please.db", (req, res) => {
   res.sendFile(__dirname+ "/.data/hatchverse.db")
 })
 
