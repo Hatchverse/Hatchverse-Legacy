@@ -177,6 +177,10 @@ function sleep(ms){
   })
 }
 
+app.get("/idk-yay-yay-yay-yay-yay-4_3s8f70-s8fUgAFD9sd+j3w", (req, res) => {
+  res
+})
+
 bot.login(process.env.TOKEN)
 
 app.listen(process.env.PORT)
