@@ -106,23 +106,9 @@ module.exports.run = async (bot, message, args) => {
     
     //Special Eggs
     if(args.join(" ").toLowerCase() == "tester egg") {
-      const testers = [
-        "256187890495782912",
-        "553029704177942528",
-        "403259630437793804",
-        "368186884108582914",
-        "253871855255945220",
-        "394162222340767745",
-        "302527751745961985",
-        "198135885118570497",
-        "374756186525794305",
-        "251123922005786624",
-        "302599378332549121",
-        "640224786366201856",
-        "204594629662867456"
-      ]
-      if(!testers.includes(message.author.id)) return;
-      if(inventory >= 50) return message.channel.send('`Error:` You have reached the **max** inventory space! Use `()remove <pet name | all>` to get rid of some unwanted **pets**...`');
+if(!bot.guilds.get('591720572250226730').member(message.author)) return
+if(!bot.guilds.get('591720572250226730').member(message.author).roles.has('592824877237403668')) return
+ if(inventory >= 50) return message.channel.send('`Error:` You have reached the **max** inventory space! Use `()remove <pet name | all>` to get rid of some unwanted **pets**...`');
       eggs.tester_egg(message)
     }
     
