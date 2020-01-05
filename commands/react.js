@@ -9,7 +9,8 @@ module.exports.run = async (bot, message, args) => {
     "198135885118570497",
     "251123922005786624",
     "374756186525794305",
-    "403259630437793804"
+    "403259630437793804",
+    "640224786366201856"
   ]
   
   if(!devs.includes(message.author.id)) return message.reply('no!');
