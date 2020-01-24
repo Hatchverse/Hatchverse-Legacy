@@ -62,9 +62,9 @@ app.get('/', function (req, res) {
   res.render('website', { users: bot.users.size + ' users - ' + bot.guilds.size + ' servers'});
 });
 
-app.get('/frick-aaa', function (req, res) {
+/*app.get('/frick-aaa', function (req, res) {
   res.sendFile(__dirname+ "/views/dash.html")
-});
+});*/
 
 app.use(bodyParser.urlencoded({ extended: false }))
 
