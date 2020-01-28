@@ -15,16 +15,11 @@ const devs = [
 module.exports.run = async (bot, message, args) => {
   if(!message.content.startsWith(config.prefix)) return;
   
-  if(!devs.includes(message.author.id)) {
-  return message.channel.send(`\`Error:\` The ()leaderboard command is currently disabled.`)
-  }
-  
   if(!args[0]) return message.channel.send('`Syntax Error:` ()leaderboard **<eggs | gems>**')
   
   if(args[0].toLowerCase() == 'eggs') {
     db.all("SELECT * FROM Users ORDER BY Eggs DESC LIMIT 10;", (err, items) => {
       //Eggs embed
-      console.log(items)
       let embed = new Discord.RichEmbed()
       .setAuthor('Hatchverse Leaderboard (Eggs Opened)', bot.user.displayAvatarURL)
       .setDescription(items.map((item, i) => `\`${i+1}.\` **${bot.users.get(item.Tag.toString()).username + "#" + bot.users.get(item.Tag.toString()).discriminator}** :egg: **${item.Eggs}**`))
@@ -39,8 +34,6 @@ module.exports.run = async (bot, message, args) => {
   if (args[0].toLowerCase() == 'gems') {
     db.all("SELECT * FROM Users ORDER BY Gems DESC LIMIT 10;", (err, items) => {
       //Gems embed
-      console.log(items)
-      console.log(items.map((item, index) => `${bot.user.get(item.Tag)} ${index}`))
       let embed = new Discord.RichEmbed()
       .setAuthor('Hatchverse Leaderboard (Gems)', bot.user.displayAvatarURL)
       .setDescription(items.map((item, i) => `\`${i+1}.\` **${bot.users.get(item.Tag.toString()).username + "#" + bot.users.get(item.Tag.toString()).discriminator}** <:Gem:592857805380255745> **${item.Gems}**`))
