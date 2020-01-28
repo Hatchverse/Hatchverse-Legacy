@@ -20,15 +20,14 @@ module.exports.run = async (bot, message, args) => {
   }
   
   if(!args[0]) return message.channel.send('`Syntax Error:` ()leaderboard **<eggs | gems>**')
-  let i = 1;
   
   if(args[0].toLowerCase() == 'eggs') {
     db.all("SELECT * FROM Users ORDER BY Eggs DESC LIMIT 10;", (err, items) => {
-     console.log(items.map(item => bot.users.get(item.Tag).id))
       //Eggs embed
+      console.log(items.map(item => bot.users.get(item.Tag.toString())))
       let embed = new Discord.RichEmbed()
       .setAuthor('Hatchverse Leaderboard (Eggs Opened)', bot.user.displayAvatarURL)
-      .setDescription(items.map(item => `\`${i++}.\` **${bot.users.get(item.Tag).username + "#" + bot.users.get(item.Tag).discriminator}** :egg: **${item.Eggs}**`))
+      .setDescription(items.map((item, i) => `\`${i++}.\` **${bot.users.get(item.Tag.toString()).username + "#" + bot.users.get(item.Tag).discriminator}** :egg: **${item.Eggs}**`))
       .setTimestamp()
       .setColor('#9c13f7')
       .setFooter(bot.user.username)
@@ -42,7 +41,7 @@ module.exports.run = async (bot, message, args) => {
       //Gems embed
       let embed = new Discord.RichEmbed()
       .setAuthor('Hatchverse Leaderboard (Gems)', bot.user.displayAvatarURL)
-      .setDescription(items.map(item => `\`${i++}.\` **${bot.users.get(item.Tag).username + "#" + bot.users.get(item.Tag).discriminator}** <:Gem:592857805380255745> **${item.Gems}**`))
+      .setDescription(items.map((item, i) => `\`${i++}.\` **${bot.users.get(item.Tag).username + "#" + bot.users.get(item.Tag).discriminator}** <:Gem:592857805380255745> **${item.Gems}**`))
       .setTimestamp()
       .setColor('#9c13f7')
       .setFooter(bot.user.username, bot.user.displayAvatarURL)
