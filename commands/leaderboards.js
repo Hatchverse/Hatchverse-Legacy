@@ -5,18 +5,26 @@ const dbFile = global.db;
 const exists = fs.existsSync(dbFile);
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database(dbFile);
+const devs = [
+    "302599378332549121",
+    "302527751745961985",
+    "198135885118570497",
+    "640224786366201856"
+    ]
 
 module.exports.run = async (bot, message, args) => {
   if(!message.content.startsWith(config.prefix)) return;
   
+  if(!devs.includes(message.author.id)) {
   return message.channel.send(`\`Error:\` The ()leaderboard command is currently disabled.`)
+  }
   
   if(!args[0]) return message.channel.send('`Syntax Error:` ()leaderboard **<eggs | gems>**')
   let i = 1;
   
   if(args[0].toLowerCase() == 'eggs') {
     db.all("SELECT * FROM Users ORDER BY Eggs DESC LIMIT 10;", (err, items) => {
-      console.log(items.map(item => bot.users.get(item.Tag).id))
+     console.log(items.map(item => bot.users.get(item.Tag).id))
       //Eggs embed
       let embed = new Discord.RichEmbed()
       .setAuthor('Hatchverse Leaderboard (Eggs Opened)', bot.user.displayAvatarURL)
