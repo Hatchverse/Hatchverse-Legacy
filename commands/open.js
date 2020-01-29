@@ -109,6 +109,8 @@ module.exports.run = async (bot, message, args) => {
 if(!bot.guilds.get('591720572250226730').member(message.author)) return
 if(!bot.guilds.get('591720572250226730').member(message.author).roles.has('592824877237403668')) return
  if(inventory >= 50) return message.channel.send('`Error:` You have reached the **max** inventory space! Use `()remove <pet name | all>` to get rid of some unwanted **pets**...`');
+      if(perks == 'd') return double(eggs.tester_egg);
+      if(perks == 't') return triple(eggs.tester_egg);
       eggs.tester_egg(message)
     }
     
