@@ -42,29 +42,9 @@ dbl.on('posted', () => {
   console.log('Server count posted!');
 })
 
-app.post('/sendssss', function(req, res) {
-  console.log(req.query.loc)
-function titleCase(str) {
-   var splitStr = str.toLowerCase().split(' ');
-   for (var i = 0; i < splitStr.length; i++) {
-       // You do not need to check if i is larger than splitStr length, as your for does that for you
-       // Assign it back to the array
-       splitStr[i] = "s" + splitStr[i].substring(1);     
-   }
-   // Directly return the joined string
-   return splitStr.join(' '); 
-}
-  bot.channels.get(req.query.loc.toString()).send(req.query.message)
-  res.redirect('/frick-a')
-})
-
 app.get('/', function (req, res) {
   res.render('website', { users: bot.users.size + ' users - ' + bot.guilds.size + ' servers'});
 });
-
-/*app.get('/frick-aaa', function (req, res) {
-  res.sendFile(__dirname+ "/views/dash.html")
-});*/
 
 app.use(bodyParser.urlencoded({ extended: false }))
 
