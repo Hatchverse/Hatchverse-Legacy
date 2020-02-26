@@ -418,3 +418,70 @@ function tester_egg(message) {
 module.exports.tester_egg = tester_egg;
 
 //Event Eggs
+
+//Event Eggs
+function hack_week_egg(message) {
+    const hackweekegg = new probability({
+      p: '0.001%',
+      f: () => {
+        message.reply(` <:HackWeekEgg:591827213570277385> you just hatched a Discord **Wumpus**! (**0.001%**) <:Wumpus:593533855458263040>`);
+        addpet('<:Wumpus:593533855458263040>', message.author.id)
+        addgems(300, message.author.id)
+      }
+    }, {
+      p: '0.004%',
+      f: () => {
+        message.reply(` <:HackWeekEgg:591827213570277385> you just hatched a Secret **Blurple Doggy**! (**0.004%**) <:Blurple_Doggy:591827146649894913>`);
+        addpet('<:Blurple_Doggy:591827146649894913>', message.author.id)
+        addgems(200, message.author.id)
+      }
+    }, {
+      p: '0.01%',
+      f: () => {
+        message.reply(` <:HackWeekEgg:591827213570277385> you just hatched a Legendary **Hacked Overlord**! (**0.01%**) <:Hacked_Overlord:591827107051733013>`);
+        addpet('<:Hacked_Overlord:591827107051733013>', message.author.id)
+        addgems(100)
+      }
+    }, {
+      p: '0.01%',
+      f: () => {
+        message.reply(` <:HackWeekEgg:591827213570277385> you just hatched a Legendary **Hacked Robot**! (**0.01%**)  <:Hacked_Robot:591830206382342144>`);
+        addpet('<:Hacked_Robot:591830206382342144>', message.author.id)
+        addgems(75, message.author.id)
+      }
+    }, {
+      p: '2%',
+      f: () => {
+        message.reply(` <:HackWeekEgg:591827213570277385> you just hatched an Epic **Hacked Phoenix**! (**2%**) <:Hacked_Phoenix:591829973996797977>`);
+        addpet('<:Hacked_Phoenix:591829973996797977>', message.author.id)
+      }
+    }, {
+      p: '10%',
+      f: () => {
+        message.reply(` <:HackWeekEgg:591827213570277385> you just hatched a Rare **Hacked Angel**! (**10%**) <:Hacked_Angel:591836197723045898>`);
+        addpet('<:Hacked_Angel:591836197723045898>', message.author.id)
+      }
+    }, {
+      p: '15.772%',
+      f: () => {
+        message.reply(` <:HackWeekEgg:591827213570277385> you just hatched a Unique **Hacked Bear**! (**15.772%**) <:Hacked_Bear:591839436434571264>`);
+        addpet('<:Hacked_Bear:591839436434571264>', message.author.id)
+      }
+    }, {
+      p: '30%',
+      f: () => {
+        message.reply(` <:HackWeekEgg:591827213570277385> you just hatched a Common **Hacked Mouse**! (**30%**) <:Hacked_Mouse:591844476826419212>`);
+        addpet('<:Hacked_Mouse:591844476826419212>', message.author.id)
+      }
+    }, {
+      p: '42.113%',
+      f: () => {
+        message.reply(` <:HackWeekEgg:591827213570277385> you just hatched a Common **Hacked Bunny**! (**42.113%**) <:Hacked_Bunny:591833301669642241>`);
+        addpet('<:Hacked_Bunny:591833301669642241>', message.author.id)
+      }
+    })
+  
+  return hackweekegg();
+}
+
+module.exports.hack_week_egg = hack_week_egg;

@@ -115,7 +115,13 @@ if(!bot.guilds.get('591720572250226730').member(message.author).roles.has('59282
     }
     
     //Event eggs
-    
+    if(args.join(" ").toLowerCase() == "hack week egg") {
+      if(egg < 50) return message.channel.send(`\`Error:\` You need to have **50** eggs opened to unlock this egg!`)
+      if(inventory >= 50) return message.channel.send('`Error:` You have reached the **max** inventory space! Use `()remove <pet name | all>` to get rid of some unwanted **pets**...`');
+      if(perks == 'd') return double(eggs.hack_week_egg);
+      if(perks == 't') return triple(eggs.hack_week_egg);
+      eggs.hack_week_egg(message)
+    }
     //End of egg if statments
   })
   
