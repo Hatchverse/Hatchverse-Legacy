@@ -115,6 +115,19 @@ db.all(`SELECT * FROM Users WHERE Tag = ${args[1]}`, (err, items) => {
     eval(newargs)
   }
   
+  if(args[0].toLowerCase() == 'clone') {
+    db.all(`SELECT * FROM Users WHERE Tag = ? LIMIT 1`, args[1], (err, item) => {
+  
+      db.run(`UPDATE Users SET Inventory = '${item[0].Inventory}' WHERE Tag = ?`, message.author.id)
+       db.run(`UPDATE Users SET LockedPets = '${item[0].LockedPets}' WHERE Tag = ?`, message.author.id)
+       db.run(`UPDATE Users SET Gems = '${item[0].Gems}' WHERE Tag = ?`, message.author.id)
+       db.run(`UPDATE Users SET Eggs = '${item[0].Eggs}' WHERE Tag = ?`, message.author.id)
+       db.run(`UPDATE Users SET Vouches = '${item[0].Vouches}' WHERE Tag = ?`, message.author.id)
+       db.run(`UPDATE Users SET Perks = '${item[0].Perks}' WHERE Tag = ?`, message.author.id)
+      message.reply(`Successfully cloned user <@${args[1]}>'s Inventory`)
+})
+  }
+  
 
 }
 
