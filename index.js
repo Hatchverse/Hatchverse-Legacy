@@ -134,12 +134,9 @@ bot.on('message', async (message) => {
   
   if(message.author.bot) return;
   
- /*db.all(`SELECT * FROM Blacklist WHERE Tag = ?`, message.author.id, (err, items) => {
-   console.error(err)
-   console.log(items);
-      const exists = items[0];
-    if(!exists) return
-  });*/
+ db.all(`SELECT * FROM Blacklist WHERE Tag = ?`, message.author.id, (err, items) => {
+   if(items[0] !== undefined) return
+  });
       
   
   if(cmdFile) {
