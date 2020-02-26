@@ -20,7 +20,7 @@ module.exports.run = async (bot, message, args) => {
   if(!devs.includes(message.author.id)) return message.reply('You cannot blacklist!');
   if(args[0]) {
     db.all(`SELECT * FROM Blacklist WHERE Tag = ?`, args[0], (err, item) => {
-      if(item[0].Tag === args[0]) {
+      if(item[0] !== undefined) {
         //remove from blacklist
         db.run(`DELETE FROM Blacklist WHERE Tag = ?`, args[0])
         message.channel.send("*Unblacklisted user!*")

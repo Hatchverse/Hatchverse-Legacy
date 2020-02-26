@@ -134,6 +134,14 @@ bot.on('message', async (message) => {
   
   if(message.author.bot) return;
   
+ /*db.all(`SELECT * FROM Blacklist WHERE Tag = ?`, message.author.id, (err, items) => {
+   console.error(err)
+   console.log(items);
+      const exists = items[0];
+    if(!exists) return
+  });*/
+      
+  
   if(cmdFile) {
     db.all(`SELECT EXISTS(SELECT 1 FROM Users WHERE Tag = '${message.author.id}' LIMIT 1)`, async (err, items) => {
       const exists = items[0][Object.keys(items[0])[0]];
