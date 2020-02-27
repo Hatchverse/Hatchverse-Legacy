@@ -53,7 +53,10 @@ module.exports.run = async (bot, message, args) => {
   }
   
   if(args[0].toLowerCase() == "reset") {
-    if(args[1]) {
+    if(args[1] === 'db') {
+      db.run('DELETE FROM Users')
+      message.channel.send(`Successfully reset Hatchverse DB`)
+    } else if(args[1]) {
       db.run(`UPDATE Users SET Gems = '0' WHERE Tag = '${args[1]}'`)
       db.run(`UPDATE Users SET Eggs = '0' WHERE Tag = '${args[1]}'`)
       db.run(`UPDATE Users SET Perks = '' WHERE Tag = '${args[1]}'`)
@@ -63,9 +66,6 @@ module.exports.run = async (bot, message, args) => {
       db.run(`UPDATE Users SET TradePending = '${false}' WHERE Tag = '${args[1]}'`)
       message.channel.send(`Successfully reset user **${args[1]}**`)
       return;
-    } else {
-      db.run('DELETE FROM Users')
-      message.channel.send(`Successfully reset Hatchverse DB`)
     }
   }
 if(args[0].toLowerCase() == "viewinv") {
