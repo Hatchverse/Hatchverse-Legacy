@@ -17,7 +17,7 @@ const sep = "D|||IF||ER||ENT"
 const DBL = require("dblapi.js");
 const dbl = new DBL(process.env.API, bot);
 app.set('view engine', 'pug')
-
+//Any idea what it is?
 global.db = './.data/hatchverse.db'
 const dbFile = global.db;
 const exists = fs.existsSync(dbFile);
