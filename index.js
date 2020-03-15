@@ -1,4 +1,5 @@
 // COPYRIGHT UROMASTYX, 2019
+// 43
 
 const Discord = require('discord.js');
 const bot = new Discord.Client({ disableEveryone: true });
@@ -126,6 +127,7 @@ const fetch = require('node-fetch');
 })
 
 bot.on('message', async (message) => {
+  console.log("bruh")
   let prefix = config.prefix;
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
