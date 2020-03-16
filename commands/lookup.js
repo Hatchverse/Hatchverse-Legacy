@@ -27,7 +27,7 @@ module.exports.run = async (bot, message, args) => {
     const vouches = (items[0].Vouches == '') ? 0 : items[0].Vouches.split(', ').length;
   
     //Stats embed
-    let embed = new Discord.RichEmbed()
+    let embed = new Discord.MessageEmbed()
     .setAuthor(`${message.mentions.users.first().username}'s Stats`, message.mentions.users.first().displayAvatarURL)
     .setColor('#9c13f7')
     .addField('Eggs Opened', `:egg: ${eggs}`, true)

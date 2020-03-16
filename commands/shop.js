@@ -10,7 +10,7 @@ module.exports.run = async (bot, message, args) => {
   if(!message.content.startsWith(config.prefix)) return;
   
   //Shop embed
-  let embed = new Discord.RichEmbed()
+  let embed = new Discord.MessageEmbed()
   .setAuthor('Shop', bot.user.displayAvatarURL)
   .addField('Perks', `<:2xegg:592877627543388170> Double Egg - <:Gem:592857805380255745> **12500**\n<:3xegg:592878254654881802> Triple Egg - <:Gem:592857805380255745> **25000**`, true)
   .addBlankField(true)

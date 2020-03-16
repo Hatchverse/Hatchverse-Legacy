@@ -37,7 +37,7 @@ module.exports.run = async (bot, message, args) => {
 
       if(senderOwn.length == 0) return message.channel.send(`\`Error:\` You don't own a **${args.slice(1).join(" ")}**`);
       
-      let receiveEmbed = new Discord.RichEmbed()
+      let receiveEmbed = new Discord.MessageEmbed()
         .setAuthor('Trade', message.author.displayAvatarURL)
         .setDescription(`You receive? Reply with a **Pet Name** in ${mentions} inventory...`)
         .addField('You give', senderOwn[0], true)
@@ -62,7 +62,7 @@ module.exports.run = async (bot, message, args) => {
         if(receiverOwn.length == 0) return message.channel.send(`\`Error:\` ${mentions} does not own a **${collectedArgs.join(" ")}**`);
         
         //Sent request embed
-        let senttraderequest = new Discord.RichEmbed()
+        let senttraderequest = new Discord.MessageEmbed()
         .setAuthor('Trade', message.author.displayAvatarURL)
         .setDescription(`Sent Trade Request to ${mentions}`)
         .addField('You give', senderOwn[0], true)
@@ -72,7 +72,7 @@ module.exports.run = async (bot, message, args) => {
         .setTimestamp()
         
         //Incoming trade embed
-        let incomingtrade = new Discord.RichEmbed()
+        let incomingtrade = new Discord.MessageEmbed()
         .setAuthor('Trade', message.author.displayAvatarURL)
         .setDescription(`Incoming Trade Request from <@${message.author.id}>`)
         .addField('You give', receiverOwn[0], true)

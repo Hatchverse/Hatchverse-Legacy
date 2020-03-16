@@ -20,7 +20,7 @@ module.exports.run = async (bot, message, args) => {
   if(args[0].toLowerCase() == 'eggs') {
     db.all("SELECT * FROM Users ORDER BY Eggs DESC LIMIT 10;", (err, items) => {
       //Eggs embed
-      let embed = new Discord.RichEmbed()
+      let embed = new Discord.MessageEmbed()
       .setAuthor('Hatchverse Leaderboard (Eggs Opened)', bot.user.displayAvatarURL)
       .setDescription(items.map((item, i) => `\`${i+1}.\` **${bot.users.get(item.Tag.toString()).username + "#" + bot.users.get(item.Tag.toString()).discriminator}** :egg: **${item.Eggs}**`))
       .setTimestamp()
@@ -34,7 +34,7 @@ module.exports.run = async (bot, message, args) => {
   if (args[0].toLowerCase() == 'gems') {
     db.all("SELECT * FROM Users ORDER BY Gems DESC LIMIT 10;", (err, items) => {
       //Gems embed
-      let embed = new Discord.RichEmbed()
+      let embed = new Discord.MessageEmbed()
       .setAuthor('Hatchverse Leaderboard (Gems)', bot.user.displayAvatarURL)
       .setDescription(items.map((item, i) => `\`${i+1}.\` **${bot.users.get(item.Tag.toString()).username + "#" + bot.users.get(item.Tag.toString()).discriminator}** <:Gem:592857805380255745> **${item.Gems}**`))
       .setTimestamp()

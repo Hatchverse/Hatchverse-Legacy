@@ -20,7 +20,7 @@ module.exports.run = async (bot, message, args) => {
       if(perks == 'd' || perks == "t") return message.channel.send('`Error:` You already own the **Double Egg** perk!');
       if(gems < 12500) return message.channel.send(`\`Error:\` Not enough <:Gem:592857805380255745> **Gems**! You need **${12500 - gems}** more...`);
       
-      let embed = new Discord.RichEmbed()
+      let embed = new Discord.MessageEmbed()
       .setAuthor('Buy', bot.user.displayAvatarURL)
       .setDescription('Are you sure you want to buy **Double Egg** for <:Gem:592857805380255745> **12500**?')
       .setThumbnail('https://i.imgur.com/qpb0uIj.png')
@@ -58,7 +58,7 @@ module.exports.run = async (bot, message, args) => {
       if(perks == 't') return message.channel.send('`Error:` You already own the **Triple Egg** perk!');
       if(gems < 25000) return message.channel.send(`\`Error:\` Not enough <:Gem:592857805380255745> **Gems**! You need **${25000 - gems}** more...`);
       
-      let embed = new Discord.RichEmbed()
+      let embed = new Discord.MessageEmbed()
       .setAuthor('Buy', bot.user.displayAvatarURL)
       .setDescription('Are you sure you want to buy **Triple Egg** for <:Gem:592857805380255745> **25000**?')
       .setThumbnail("https://i.imgur.com/peud2fR.png")

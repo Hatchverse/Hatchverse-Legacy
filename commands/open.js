@@ -19,7 +19,7 @@ module.exports.run = async (bot, message, args) => {
     usedCmd.add(message.author.id);
     setTimeout(() => {
       usedCmd.delete(message.author.id);
-    }, 3000) //whats this faggot FREAKING MAKE REBALACNE ION THERE SO WE CAN UPATE WHA IF I DON'T  THEN WE BAN BAN WHO YOPUOYOOYOU YOU
+    }, 3000)
   }
   
   db.all(`SELECT * FROM Users WHERE Tag = '${message.author.id}'`, (err, items) => {

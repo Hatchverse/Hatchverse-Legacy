@@ -28,7 +28,7 @@ module.exports.run = async (bot, message, args) => {
   
     try {
       //Inventory embed
-      let embed = new Discord.RichEmbed()
+      let embed = new Discord.MessageEmbed()
       .setAuthor(`${message.author.username}'s Inventory`, message.author.displayAvatarURL)
       .setColor('#9c13f7')
       .setDescription(`:unlock: ${items[0].Inventory.split(', ').join("")}\n:lock: ${items[0].LockedPets.split(', ').join("")}`)

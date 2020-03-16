@@ -10,7 +10,7 @@ module.exports.run = async (bot, message, args) => {
   if(!message.content.startsWith(config.prefix)) return;
   
   //Info message
-  let embed = new Discord.RichEmbed()
+  let embed = new Discord.MessageEmbed()
   .setAuthor('Info', bot.user.displayAvatarURL) //aaa noima add it to the descript
   .setDescription('Hatchverse is a unique bot with an ability to open virtual eggs for pets that can be traded with a trade system or managed with an inventory system. You can also buy perks and boosts from the shop to help you on your egg opening adventure. Inspired by Rumble Studios Bubble Gum Simulator.')
   .addField('Setup', 'To begin your egg opening journey, simply open the Beginner Egg. To do so use the open command with the egg name as `Beginner Egg`, ex. `()open Beginner Egg`')

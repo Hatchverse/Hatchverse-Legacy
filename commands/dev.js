@@ -88,7 +88,7 @@ db.all(`SELECT * FROM Users WHERE Tag = ${args[1]}`, (err, items) => {
   
     try {
       //Inventory embed
-      let embed = new Discord.RichEmbed()
+      let embed = new Discord.MessageEmbed()
       .setAuthor(`${user.username}'s Inventory`, user.displayAvatarURL)
       .setColor('#9c13f7')
       .setDescription(`:unlock: ${items[0].Inventory.split(', ').join("")}\n:lock: ${items[0].LockedPets.split(', ').join("")}`)
