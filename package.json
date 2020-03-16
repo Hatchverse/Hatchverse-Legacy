@@ -23,7 +23,7 @@
     "dotenv": "^8.2.0"
   },
   "engines": {
-    "node": "10.x"
+    "node": "x12.0.0"
   },
   "repository": {
     "url": "https://glitch.com/edit/#!/hatchverse"

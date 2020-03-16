@@ -8,10 +8,10 @@ const db = new sqlite3.Database(dbFile);
 
 module.exports.run = async (bot, message, args) => {
   if(!message.content.startsWith(config.prefix)) return;
-  
+  return message.channel.send("Deprecated")
   //Help message
-  let embed = new Discord.MessageEmbed()
-  .setAuthor('Help/Commands', bot.user.displayAvatarURL)
+ let embed = new Discord.MessageEmbed()
+  .setAuthor('Help/Commands', bot.user.avatarURL())
   .addField('Eggs', '`()open <egg name>` - Opens an egg\n`()eggs` - Sends a message with every egg and its requirements')
   .addField('Inventory', '`()inventory` - Sends a message with your inventory\n`()remove <pet name | all >` - Removes a all pets or pets with a name\n`()remove single <pet name>` - Removes one pet with the name specified\n`()lock <pet name>` - Locks a certain pet so it can not be deleted!\n`()unlock <pet name>` - Unlocks a certain pet')
   .addField('Shop', '`()shop` - Sends a message with the available perks/boosts you can buy\n`()buy <perk/boost name>` - Purchases the perk/boost for the specified amount of gems **(You earn gems by Hatching Legendaries...)**')
@@ -21,7 +21,10 @@ module.exports.run = async (bot, message, args) => {
   .setFooter(bot.user.username)
   .setTimestamp()
   
-  message.channel.send(embed);
+  message.channel.send(embed); // NO its deprecated it creates errors @ addField
+  //o i thought it was avatarURL
+  
+  // watch console once the bot loads
 }
 
 module.exports.help = {

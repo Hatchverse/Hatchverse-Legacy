@@ -9,14 +9,7 @@ var bodyParser = require('body-parser')
 const app = express();
 const pug = require('pug');
 const btoa = require("btoa")
-const fetch = require("node-fetch")
-const perms = require("jsdiscordperms");
-const axios = require("axios")
-const { catchAsync } = require('./utils');
-const sepe = ' |se|pe|r|a|t|o|r|8wuhd3uhkj2k3|| '
-const sep = "D|||IF||ER||ENT"
-const DBL = require("dblapi.js");
-const dbl = new DBL(process.env.API, bot);
+
 app.set('view engine', 'pug')
 //Any idea what it is?
 global.db = './.data/hatchverse.db'
@@ -24,9 +17,7 @@ const dbFile = global.db;
 const exists = fs.existsSync(dbFile);
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database(dbFile);
-const DiscordBotListAPI = require('dbl-api');
-const hatchhook = new Discord.WebhookClient("600942113643036693", "P82LUqSKAzGF86po5EpZD02y79VFYHCitWcxuiMFGZKe8f7k547_hRSnmaJbA1WGlVnb");
-const api = new DiscordBotListAPI();
+
 db.serialize(function(){
   if (!exists) {
     db.run("DROP TABLE Users")
@@ -35,13 +26,11 @@ db.serialize(function(){
   };
 });
 
+bot.login(process.env.TOKEN)
+
 const config = require('./config.json')
 
 bot.commands = new Discord.Collection();
-
-dbl.on('posted', () => {
-  console.log('Server count posted!');
-})
 
 app.get('/', function (req, res) {
   res.render('website', { users: bot.users.size + ' users - ' + bot.guilds.size + ' servers'});
@@ -137,8 +126,6 @@ function sleep(ms){
       setTimeout(resolve,ms)
   })
 }
-
-bot.login(process.env.TOKEN)
 
 app.listen(process.env.PORT)
 
