@@ -131,4 +131,4 @@ app.listen(process.env.PORT)
 
 app.get(process.env.db, (req, res) => {
   res.sendFile(__dirname+ "/.data/hatchverse.db")
-})
+})1
