@@ -74,6 +74,8 @@ fs.readdir('./commands/', (err, files) => {
   })
 })
 bot.on('ready', async () => {
+  process.exit();
+  //keeping the bot offline
   console.log('Hatchverse has started!');
   // db.run("ALTER Table Users ADD COLUMN LockedPets TEXT");
   // db.run("UPDATE Users SET LockedPets = ''")
