@@ -33,7 +33,7 @@ const config = require('./config.json')
 bot.commands = new Discord.Collection();
 
 app.get('/', function (req, res) {
-  res.render('website', { users: bot.users.size + ' users - ' + bot.guilds.size + ' servers'});
+  res.render('website', { users: bot.users.cache.size + ' users - ' + bot.guilds.cache.size + ' servers'});
 });
 
 app.use(bodyParser.urlencoded({ extended: false }))
