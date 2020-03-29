@@ -11,7 +11,7 @@ const pug = require('pug');
 const btoa = require("btoa")
 
 app.set('view engine', 'pug')
-//Any idea what it is?
+
 global.db = './.data/hatchverse.db'
 const dbFile = global.db;
 const exists = fs.existsSync(dbFile);
@@ -74,8 +74,7 @@ fs.readdir('./commands/', (err, files) => {
   })
 })
 bot.on('ready', async () => {
-  process.exit();
-  //keeping the bot offline
+ 
   console.log('Hatchverse has started!');
   // db.run("ALTER Table Users ADD COLUMN LockedPets TEXT");
   // db.run("UPDATE Users SET LockedPets = ''")
