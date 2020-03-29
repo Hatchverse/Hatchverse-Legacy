@@ -13,10 +13,10 @@ Since this is a Glitch project, its easy to get up and running. In order to star
 - Bugs: `Smashed`
 # Developers
 ****
-@Krxnky#1824, @Epoch#1558, @Jullian#0001, @Syntax#1588, @Exists#9999
+@Krxnky#1274, @Epoch#1558, @Jullian#7767, @Syntax#9930, @Exists#4627
 # Description
 ****
 A unique bot with an ability to open virtual eggs for pets that can be traded with a trade system or managed with an inventory system. You can also buy perks and boosts from the shop to help you on your egg opening adventure. Inspired by Rumble Studios' Bubble Gum Simulator.
 # Any bugs/errors?
 ****
-DM @Landon_Scripts#1588 or @Krxnky#1824
+DM @Syntax#9930 or @Krxnky#1274
